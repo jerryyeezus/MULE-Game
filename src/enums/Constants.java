@@ -1,7 +1,7 @@
 package enums;
 
 public class Constants {
-	public static final int BASE_TIME = 50;
-	public static final int DELAY = 100;
+	public static final int BASE_TIME = 40;
+	public static final int DELAY = 500;
 
 }
