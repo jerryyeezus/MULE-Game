@@ -82,7 +82,7 @@ public class FourthScreenPanel extends JPanel {
 	 */
 	private void initialize() {
 		this.removeAll();
-		
+
 		clickedButton = new JButton();
 		model.addCallback(this);
 		next = new JButton();
@@ -147,7 +147,8 @@ public class FourthScreenPanel extends JPanel {
 		passButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ctr++;
+				// ctr++;
+				model.nextPlayer();
 
 			}
 		});
@@ -215,7 +216,7 @@ public class FourthScreenPanel extends JPanel {
 			}
 
 		});
-		
+
 		this.invalidate();
 		this.repaint();
 
@@ -226,17 +227,18 @@ public class FourthScreenPanel extends JPanel {
 		int timer = model.getTimer();
 		model.setTimer(timer);
 		if (timer != -1) {
-			ActionListener taskPerformer = new ActionListener() {
-				public void actionPerformed(ActionEvent evt) {
-					model.updateTimer();
-				}
-			};
 			roundTimer = new Timer(delay, taskPerformer);
 			roundTimer.start();
 		}
 		displayTimer();
 
 	}
+
+	ActionListener taskPerformer = new ActionListener() {
+		public void actionPerformed(ActionEvent evt) {
+			model.updateTimer();
+		}
+	};
 
 	private void displayTimer() {
 		timerLbl = new JLabel("");
@@ -260,10 +262,11 @@ public class FourthScreenPanel extends JPanel {
 	 */
 	public void callback() {
 		roundTimer.stop();
-		JOptionPane.showMessageDialog(this, "Player " + curPlayer + "'s turn is over.");
+		JOptionPane.showMessageDialog(this, "Player " + curPlayer
+				+ "'s turn is over.");
 		this.curPlayer = model.getCurPlayer();
 		this.landPicked = false;
-		//this.initialize();
+		// this.initialize();
 		this.displayTimer();
 		this.gotoMap();
 	}
@@ -299,7 +302,8 @@ public class FourthScreenPanel extends JPanel {
 
 		curPlayer = model.getCurPlayer();
 		add(passButton);
-		initTimer();
+		//initTimer();
+		displayTimer();
 
 		setBounds(100, 100, 850, 550);
 		setLayout(null);
@@ -423,5 +427,10 @@ public class FourthScreenPanel extends JPanel {
 		this.revalidate();
 		this.repaint();
 		
+		if (!roundTimer.isRunning())
+		{
+			roundTimer.start();
+		}
+
 	}
 }
