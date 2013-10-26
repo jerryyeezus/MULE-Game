@@ -236,14 +236,8 @@ public class ThirdScreenPanel extends JPanel {
 			}
 		});
 		
-		
-	
-		
-		
-		
 		btnNewButton_2.setBounds(463, 622, 89, 23);
 		add(btnNewButton_2);
-		
 		
 		JLabel lblNewLabel_8 = new JLabel("M.U.L.E.");
 		lblNewLabel_8.setHorizontalAlignment(SwingConstants.CENTER);

@@ -1,5 +1,6 @@
 package views;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -45,7 +46,7 @@ public class FourthScreenPanel extends JPanel {
 	private JLabel timerLbl;
 	int curPlayer;
 	boolean landPicked = false;
-	public JPanel townPanel;
+	public TownPanel townPanel;
 
 	/**
 	 * Create the application.
@@ -54,17 +55,14 @@ public class FourthScreenPanel extends JPanel {
 		ctr = 0;
 		this.model = model;
 		this.townPanel = new TownPanel(model);
-		clickedButton = new JButton();
-		model.addCallback(this);
-		next = new JButton();
-		next.setBounds(450, 450, 70, 70);
-		add(next);
-		passButton = new JButton();
-		passButton.setBounds(300, 450, 70, 70);
-		passButton.setText("Pass");
+		this.townPanel.addListener(new ActionListener() {
 
-		curPlayer = model.getCurPlayer();
-		add(passButton);
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				initialize();
+			}
+		});
+
 		initialize();
 	}
 
@@ -81,6 +79,18 @@ public class FourthScreenPanel extends JPanel {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		this.removeAll();
+		clickedButton = new JButton();
+		model.addCallback(this);
+		next = new JButton();
+		next.setBounds(450, 450, 70, 70);
+		add(next);
+		passButton = new JButton();
+		passButton.setBounds(300, 450, 70, 70);
+		passButton.setText("Pass");
+
+		curPlayer = model.getCurPlayer();
+		add(passButton);
 		initTimer();
 
 		setBounds(100, 100, 850, 550);
@@ -168,18 +178,17 @@ public class FourthScreenPanel extends JPanel {
 				if (!(i == 2 && j == 4)) {
 					final int my_i = i;
 					final int my_j = j;
-					// Set border. player.addLand(...). clickedButton = button.
-					// LandObj.setOwner(ctr)
-//					p.addLand(LandObjects[my_i][my_j]);
-
 					if (!currentlyOwned) {
 						button.addMouseListener(new MouseAdapter() {
 							@Override
 							public void mouseClicked(MouseEvent arg0) {
 								if (!landPicked) {
+									// TODO add round check if <2
 									Color playersColor = model.getPlayer(
 											curPlayer).getColor();
-									model.getPlayer(curPlayer).addLand(new Land(landArr[my_i][my_j], my_i, my_j));
+									model.getPlayer(curPlayer).addLand(
+											new Land(landArr[my_i][my_j], my_i,
+													my_j));
 									button.setBorder(BorderFactory
 											.createLineBorder(playersColor));
 									button.setVisible(true);
@@ -203,11 +212,13 @@ public class FourthScreenPanel extends JPanel {
 			}
 
 		});
+		
+		this.invalidate();
+		this.repaint();
 
 	}
 
 	private void initTimer() {
-//		int delay = 1000; // milliseconds
 		int delay = Constants.DELAY;
 		int timer = model.getTimer();
 		model.setTimer(timer);
@@ -217,30 +228,33 @@ public class FourthScreenPanel extends JPanel {
 					model.updateTimer();
 				}
 			};
-
 			new Timer(delay, taskPerformer).start();
 		}
+		displayTimer();
+
+	}
+
+	private void displayTimer() {
 		timerLbl = new JLabel("");
 		timerLbl.setBounds(680, 450, 301, 14);
-		add(timerLbl);
+		add(timerLbl, BorderLayout.SOUTH);
 		
 	}
 
 	private void gotoTown() {
 		this.removeAll();
 		this.setLayout(new java.awt.BorderLayout());
-			
-		this.add(townPanel);
+
+		this.add(townPanel, BorderLayout.CENTER);
+		displayTimer();
 		this.revalidate();
 		this.repaint();
-		
+
 		this.landPicked = false;
-		//this.initialize();
 	}
-	
-	
+
 	/*
-	 * callback when model updates the cur player 
+	 * callback when model updates the cur player
 	 */
 	public void callback() {
 		this.curPlayer = model.getCurPlayer();
