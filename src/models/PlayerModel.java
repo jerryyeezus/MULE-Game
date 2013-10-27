@@ -24,7 +24,7 @@ public class PlayerModel
 		name = "NOT IN GAME";
 		race = "NOT IN GAME";
 		color = "NOT IN GAME";
-		landOwned = new ArrayList<>();
+		landOwned = new ArrayList<Land>();
 		
 	}
 
