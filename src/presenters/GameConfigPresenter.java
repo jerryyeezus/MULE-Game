@@ -55,7 +55,7 @@ public class GameConfigPresenter {
 			JOptionPane.showMessageDialog(null, "num players cant be 0 dummy");
 		} else {
 			PlayerConfigPresenter p = new PlayerConfigPresenter(view,
-					view.getNumPlayers());
+					view.getNumPlayers(), this.model);
 		}
 	}
 
