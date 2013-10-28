@@ -1,6 +1,7 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ConcurrentModificationException;
 
 import enums.*;
@@ -79,6 +80,10 @@ public class PlayerConfigModel {
 			if (curPlayer == numPlayers - 1) {
 				curRoundOrder = calcPlayerOrder();
 				this.increaseRound();
+				System.out.println("Round increased");
+			
+				System.out.println(players[curPlayer].getName() + " "+ players[curPlayer].getTotal());
+
 				curPlayer = curRoundOrder[0];
 			} else {
 				curPlayer++;
@@ -91,11 +96,32 @@ public class PlayerConfigModel {
 
 	public int[] calcPlayerOrder() {
 		// TODO calc
+		System.out.println("calculating round");
+		players[1].setMoney(400);
+		int[] totals = new int[this.numPlayers];
 		int[] ret = new int[this.numPlayers];
+		ArrayList <PlayerModel> play = new ArrayList <PlayerModel>();
+		
 		for (int i = 0; i < this.numPlayers; i++) {
-			ret[i] = i;
-			curRoundOrder[i] = i;
+			totals[i] = players[i].getTotal();
+			System.out.println(players[i].getName() + " "+ players[i].getTotal());
+
+			play.add(players[i]);
 		}
+		Arrays.sort(ret);
+		
+		outerloop:
+		for(int i = 0; i <this.numPlayers; i++){
+			for(int j = 0; i <this.numPlayers; j++){
+				if(totals[i] == play.get(j).getTotal()){
+					ret[i] = j;
+					play.remove(j);
+					break outerloop;
+				}
+					
+			}
+		}
+		
 		return ret;
 	}
 
