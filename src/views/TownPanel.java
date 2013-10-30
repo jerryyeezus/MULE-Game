@@ -21,6 +21,7 @@ public class TownPanel extends JPanel {
 	// Pub, Buy MULES, Go to Map,
 	private PlayerConfigModel model;
 	JButton btnLand;
+	JButton btnPub;
 
 	/**
 	 * Create the application.
@@ -41,15 +42,19 @@ public class TownPanel extends JPanel {
 		this.add(panel);
 		panel.setLayout(null);
 
-		JButton btnPub = new JButton("");
-		btnPub.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("PUB CLICKED... gamble TODO");
-			}
-
-		});
+		btnPub = new JButton("");
+		
 		btnPub.setIcon(new ImageIcon("src/temp/miniPub.jpg"));
 		btnPub.setBounds(10, 174, 304, 128);
+		btnPub.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Pub p = new Pub(model);
+				p.setVisible(true);
+				
+			}
+		});
 		panel.add(btnPub);
 
 		JButton btnAssay = new JButton("ASSAY OFFICE");
@@ -97,8 +102,14 @@ public class TownPanel extends JPanel {
 		this.add(lblNewLabel_3);
 
 	}
+	/**
+	 * Add an action listener for the Exit button.
+	 * 
+	*/
 
 	public void addListener(ActionListener l) {
 		btnLand.addActionListener(l);
 	}
+
+	
 }
