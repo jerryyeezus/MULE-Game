@@ -133,7 +133,7 @@ public class PlayerConfigModel {
 		
 		for(int i = 0; i< this.numPlayers; i++){
 			ret[i]= ab.indexOf(totals[i]);
-			System.out.println("ret[i] "+ ret[i]);
+			System.out.println("index "+ i+" value :"+ ret[i]);
 			
 		}
 		return ret;
