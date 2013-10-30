@@ -113,37 +113,31 @@ public class PlayerConfigModel {
 
 		// Case met
 		return Constants.BASE_TIME;
+		
 	}
 
 	public int[] calcPlayerOrder() {
 		// TODO calc
-		System.out.println("calculating round");
-		players[1].setMoney(400);
+		ArrayList <Integer> ab = new ArrayList<Integer>();
 		int[] totals = new int[this.numPlayers];
 		int[] ret = new int[this.numPlayers];
-		ArrayList <PlayerModel> play = new ArrayList <PlayerModel>();
+		
 		
 		for (int i = 0; i < this.numPlayers; i++) {
 			totals[i] = players[i].getTotal();
 			System.out.println(players[i].getName() + " "+ players[i].getTotal());
-
-			play.add(players[i]);
-		}
-		Arrays.sort(ret);
-		
-		outerloop:
-		for(int i = 0; i <this.numPlayers; i++){
-			for(int j = 0; i <this.numPlayers; j++){
-				if(totals[i] == play.get(j).getTotal()){
-					ret[i] = j;
-					play.remove(j);
-					break outerloop;
-				}
-					
-			}
+			ab.add(players[i].getTotal());
 		}
 		
+		Arrays.sort(totals);
+		
+		for(int i = 0; i< this.numPlayers; i++){
+			ret[i]= ab.indexOf(totals[i]);
+			System.out.println("ret[i] "+ ret[i]);
+			
+		}
 		return ret;
+		
 	}
 
 	public int nextPlayer() {
