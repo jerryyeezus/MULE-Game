@@ -55,9 +55,9 @@ public class PlayerConfigModel {
 		round++;
 	}
 
-	public void broadcast() {
+	public void broadcast(String string) {
 		for (FourthScreenPanel o : observers) {
-			o.callback();
+			o.callback(string);
 		}
 	}
 
@@ -76,22 +76,43 @@ public class PlayerConfigModel {
 	}
 
 	public void updateTimer() {
+		System.out.println(this.timer);
+		// Decrement timer, check if timer = 0
+
 		if (--this.timer < 0) {
 			if (curPlayer == numPlayers - 1) {
 				curRoundOrder = calcPlayerOrder();
 				this.increaseRound();
-				System.out.println("Round increased");
-			
-				System.out.println(players[curPlayer].getName() + " "+ players[curPlayer].getTotal());
-
 				curPlayer = curRoundOrder[0];
+				this.timer = calcPlayerTime();
+				broadcast("ROUND_END");
 			} else {
 				curPlayer++;
+				this.timer = calcPlayerTime();
+				broadcast("TURN_END");
 			}
-			this.timer = Constants.BASE_TIME; // TODO calc1
-			broadcast();
+		} // End of ROUND END
+	}
+	
+	private static final int[] foodRequirements = { 3, 3, 3, 4, 4, 4, 5, 5, 5,
+		6, 6, 6 };
+	
+	private int calcPlayerTime() {
+		int numFood = this.getPlayer(curPlayer).getGoods();
+
+		// Case Partial Shortage
+		if (numFood > 0
+				&& numFood < PlayerConfigModel.foodRequirements[this.round]) {
+			return 30;
 		}
 
+		// Case Complete shortage
+		else if (numFood == 0) {
+			return 5;
+		}
+
+		// Case met
+		return Constants.BASE_TIME;
 	}
 
 	public int[] calcPlayerOrder() {
