@@ -7,6 +7,7 @@ import java.awt.*;
 
 import javax.swing.*;
 
+import models.GameConfigModel;
 import models.PlayerConfigModel;
 
 /**
@@ -22,12 +23,14 @@ public class TownPanel extends JPanel {
 	private PlayerConfigModel model;
 	JButton btnLand;
 	JButton btnPub;
+	private GameConfigModel gameConfig;
 
 	/**
 	 * Create the application.
 	 */
 	public TownPanel(PlayerConfigModel model) {
 		this.model = model;
+		this.gameConfig = gameConfig;
 		this.setLayout(null);
 		this.initialize();
 	}
@@ -43,16 +46,16 @@ public class TownPanel extends JPanel {
 		panel.setLayout(null);
 
 		btnPub = new JButton("");
-		
+
 		btnPub.setIcon(new ImageIcon("src/temp/miniPub.jpg"));
 		btnPub.setBounds(10, 174, 304, 128);
 		btnPub.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Pub p = new Pub(model);
 				p.setVisible(true);
-				
+
 			}
 		});
 		panel.add(btnPub);
@@ -102,14 +105,14 @@ public class TownPanel extends JPanel {
 		this.add(lblNewLabel_3);
 
 	}
+
 	/**
 	 * Add an action listener for the Exit button.
 	 * 
-	*/
+	 */
 
 	public void addListener(ActionListener l) {
 		btnLand.addActionListener(l);
 	}
 
-	
 }

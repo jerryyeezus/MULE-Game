@@ -9,6 +9,7 @@ import java.util.Random;
 
 import javax.swing.*;
 
+import models.GameConfigModel;
 import models.PlayerConfigModel;
 import models.PlayerModel;
 
@@ -37,7 +38,8 @@ public class Pub extends JFrame {
 		playerNumber = model.getCurPlayer();
 		playerMod = model.getPlayer(playerNumber);
 		playerMod.setMoney(playerMod.getMoney()+valueFromGambling);
-		
+		model.setTimer(0);
+
 		initialize();
 		
 		

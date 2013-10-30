@@ -18,6 +18,7 @@ public class PlayerConfigModel {
 	private int round;
 	private int curPlayer;
 	private int[] curRoundOrder;
+	private int curRoundOrderIndex;
 
 	public int getCurPlayer() {
 		return curPlayer;
@@ -37,6 +38,7 @@ public class PlayerConfigModel {
 		this.numPlayers = numPlayers;
 		this.curRoundOrder = new int[numPlayers];
 		this.curPlayer = -1;
+		this.curRoundOrderIndex = 0;
 		players = new PlayerModel[4];
 		for (int i = 0; i < numPlayers; i++) {
 			players[i] = new PlayerModel();
@@ -76,18 +78,18 @@ public class PlayerConfigModel {
 	}
 
 	public void updateTimer() {
-		System.out.println(this.timer);
 		// Decrement timer, check if timer = 0
 
 		if (--this.timer < 0) {
-			if (curPlayer == numPlayers - 1) {
+			if (curPlayer == curRoundOrder[this.numPlayers - 1]) {
 				curRoundOrder = calcPlayerOrder();
 				this.increaseRound();
 				curPlayer = curRoundOrder[0];
 				this.timer = calcPlayerTime();
+				this.curRoundOrderIndex = 0;
 				broadcast("ROUND_END");
 			} else {
-				curPlayer++;
+				curPlayer = curRoundOrder[++curRoundOrderIndex]; // TODO
 				this.timer = calcPlayerTime();
 				broadcast("TURN_END");
 			}
@@ -134,7 +136,7 @@ public class PlayerConfigModel {
 		for(int i = 0; i< this.numPlayers; i++){
 			ret[i]= ab.indexOf(totals[i]);
 			System.out.println("index "+ i+" value :"+ ret[i]);
-			
+			this.curRoundOrder[i] = ret[i];
 		}
 		return ret;
 		
