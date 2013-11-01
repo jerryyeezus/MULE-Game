@@ -37,7 +37,7 @@ public class TownPanel extends JPanel {
 	    	layout = new CardLayout();
 	    	pubPanel = new Pub(model);
 	    	this.setLayout(layout);
-		this.storePanel = new StorePanel();
+		this.storePanel = new StorePanel(model);
 		this.model = model;
 		this.initialize();
 	}
@@ -100,7 +100,7 @@ public class TownPanel extends JPanel {
 		this.add("Town", panel);
 		this.add("Store", storePanel);
 		this.add("Pub", pubPanel);
-		//btnAssay.addActionListener(new CardUpdater(this, "Store" ));
+		btnAssay.addActionListener(new CardUpdater(this, "Store",storePanel));
 		//CardLayout cl = (CardLayout) layout.getLayout();
 		//cl.show( layout, "Town");
 	}
