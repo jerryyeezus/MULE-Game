@@ -24,11 +24,10 @@ import models.PlayerModel;
 import enums.Constants;
 
 /**
+ * This class configures a map which allows user to select the land and
+ * start the game and work on it.
  * 
  * @author Tanay
- * 
- *         This class configures a map which allows user to select the land and
- *         start the game and work on it.
  * 
  */
 
@@ -50,7 +49,7 @@ public class FourthScreenPanel extends JPanel {
 	private Timer roundTimer;
 
 	/**
-	 * Create the application.
+	 * Constructor to Create the application.
 	 */
 	public FourthScreenPanel(PlayerConfigModel model) {
 		ctr = 0;
@@ -236,7 +235,11 @@ public class FourthScreenPanel extends JPanel {
 		this.repaint();
 
 	}
-
+	
+	/**
+	 * Initializes the timer for the player
+	 * 
+	 */
 	private void initTimer() {
 		int delay = Constants.DELAY;
 		int timer = model.getTimer();
@@ -255,12 +258,19 @@ public class FourthScreenPanel extends JPanel {
 		}
 	};
 
+	/**
+	 * displays the count-down timer as a panel
+	 */
 	private void displayTimer() {
 		timerLbl = new JLabel("");
 		timerLbl.setBounds(680, 450, 301, 14);
 		add(timerLbl, BorderLayout.SOUTH);
 	}
 
+	/**
+	 * repaints the mapScreen with the Town whenever the player clicks on the town
+	 * Button.
+	 */
 	private void gotoTown() {
 		this.removeAll();
 		this.setLayout(new java.awt.BorderLayout());
@@ -272,8 +282,9 @@ public class FourthScreenPanel extends JPanel {
 		// this.landPicked = false;
 	}
 
-	/*
+	/**
 	 * callback when model updates the cur player
+	 * @param a string
 	 */
 	public void callback(String string) {
 		if (string.equals("ROUND_END")) {
@@ -305,7 +316,7 @@ public class FourthScreenPanel extends JPanel {
 
 		}
 	}
-
+	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
 		int timer = model.getTimer();
@@ -322,6 +333,10 @@ public class FourthScreenPanel extends JPanel {
 		next.addActionListener(l);
 	}
 
+	
+	/**
+	 * refreshes and repaints the screen with the map screen for the player's turn.
+	 */
 	public void gotoMap() {
 		// TODO Auto-generated method stub
 		this.removeAll();
@@ -391,6 +406,7 @@ public class FourthScreenPanel extends JPanel {
 		passButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				model.setTimer(0);
 				ctr++;
 
 			}

@@ -13,7 +13,12 @@ import models.GameConfigModel;
 import models.PlayerConfigModel;
 import models.PlayerModel;
 
-
+/**
+ * 
+ * @author Tanay
+ *
+ * The Class implements the user interface where a player can gamble and win money. 
+ */
 public class Pub extends JFrame {
 
 	Random rand;
@@ -22,10 +27,6 @@ public class Pub extends JFrame {
 	int playerNumber;
 	PlayerModel playerMod;
 	JLabel lblNewLabel;
-
-	/**
-	 * Launch the application.
-	 */
 	
 
 	/**
@@ -85,6 +86,9 @@ public class Pub extends JFrame {
 		});
 		getContentPane().add(btnNext);
 	}
+	/**
+	 * A method which sets a text to the label indicating the money a player has won in that round.
+	 */
 	private void setLabel(){
 		lblNewLabel.setText("You have won "+valueFromGambling +" dollars from Gambling..");
 	}

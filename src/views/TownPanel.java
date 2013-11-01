@@ -1,21 +1,25 @@
 package views;
 
-import java.awt.Event.*;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.*;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
 
 import models.GameConfigModel;
 import models.PlayerConfigModel;
 
 /**
  * 
- * @author Tanay
+ * This class contains the Town this which contains different buttons
+ * which trigger different events.
  * 
- *         This class contains the Town this which contains different buttons
- *         which trigger different events.
+ * @author Tanay
  * 
  */
 public class TownPanel extends JPanel {
@@ -54,6 +58,7 @@ public class TownPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Pub p = new Pub(model);
+				
 				p.setVisible(true);
 
 			}
