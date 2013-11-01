@@ -61,7 +61,7 @@ public class View extends JFrame
 		this.panel = newPanel;
 
 		this.getContentPane().add( newPanel );
-		this.revalidate();
+		//this.revalidate();
 		this.repaint();
 	}
 
