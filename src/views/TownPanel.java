@@ -1,11 +1,13 @@
 package views;
 
-import java.awt.Event.*;
+import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.*;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import models.GameConfigModel;
 import models.PlayerConfigModel;
@@ -24,14 +26,20 @@ public class TownPanel extends JPanel {
 	JButton btnLand;
 	JButton btnPub;
 	private GameConfigModel gameConfig;
+	private JPanel storePanel;
+	private JPanel panel; // panel for Town
+	private CardLayout layout;
+	private JPanel pubPanel;
 
 	/**
 	 * Create the application.
 	 */
 	public TownPanel(PlayerConfigModel model) {
+	    	layout = new CardLayout();
+	    	pubPanel = new Pub(model);
+	    	this.setLayout(layout);
+		this.storePanel = new StorePanel();
 		this.model = model;
-		this.gameConfig = gameConfig;
-		this.setLayout(null);
 		this.initialize();
 	}
 
@@ -39,30 +47,20 @@ public class TownPanel extends JPanel {
 	 * Initialize the contents of the this.
 	 */
 	private void initialize() {
-
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setBounds(10, 118, 815, 313);
-		this.add(panel);
-		panel.setLayout(null);
 
 		btnPub = new JButton("");
 
 		btnPub.setIcon(new ImageIcon("src/temp/miniPub.jpg"));
 		btnPub.setBounds(10, 174, 304, 128);
-		btnPub.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Pub p = new Pub(model);
-				p.setVisible(true);
-
-			}
-		});
+		btnPub.addActionListener(new CardUpdater(this, "Pub", pubPanel));
 		panel.add(btnPub);
+		panel.setLayout(null);
 
-		JButton btnAssay = new JButton("ASSAY OFFICE");
+		JButton btnAssay = new JButton("slickdeals");
 		// btnAssay.setIcon(new
-		// ImageIcon("src/temp/miniLand.jpg"));
+		//btnAssay.setIcon(new ImageIcon("src/temp/miniLand.jpg"));
 		btnAssay.setBounds(10, 11, 304, 128);
 		panel.add(btnAssay);
 
@@ -71,27 +69,22 @@ public class TownPanel extends JPanel {
 		btnLand.setBounds(501, 11, 304, 128);
 		panel.add(btnLand);
 
-		JLabel lblNewLabel_1 = new JLabel("TOWN");
-		lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 30));
-		lblNewLabel_1.setBounds(324, 96, 167, 128);
-		panel.add(lblNewLabel_1);
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 
 		JButton btnStore = new JButton("");
 		btnStore.setIcon(new ImageIcon("src/temp/mule.jpg"));
 		btnStore.setBounds(501, 174, 304, 128);
 		panel.add(btnStore);
 
+		/*
 		JButton btnExit = new JButton("Exit");
 		btnExit.setBounds(736, 442, 89, 23);
 		this.add(btnExit);
 
 		JButton btnNewButton = new JButton("Next>>");
 		btnNewButton.setBounds(627, 442, 89, 23);
-
 		this.add(btnNewButton);
 
-		JLabel lblNewLabel_10 = new JLabel("");
+		JLabel lblNewLabel_10 = new JLabel("sdfd");
 		lblNewLabel_10.setIcon(new ImageIcon("src/temp/mule.jpg"));
 		lblNewLabel_10.setBounds(105, 11, 143, 96);
 		this.add(lblNewLabel_10);
@@ -104,6 +97,13 @@ public class TownPanel extends JPanel {
 		lblNewLabel_3.setBounds(10, 494, 815, 14);
 		this.add(lblNewLabel_3);
 
+		*/
+		this.add("Town", panel);
+		this.add("Store", storePanel);
+		this.add("Pub", pubPanel);
+		//btnAssay.addActionListener(new CardUpdater(this, "Store" ));
+		//CardLayout cl = (CardLayout) layout.getLayout();
+		//cl.show( layout, "Town");
 	}
 
 	/**
@@ -113,6 +113,11 @@ public class TownPanel extends JPanel {
 
 	public void addListener(ActionListener l) {
 		btnLand.addActionListener(l);
+	}
+
+	public void resetView() {
+	    System.out.println("reseting...");
+	    layout.show(this, "Town");
 	}
 
 }

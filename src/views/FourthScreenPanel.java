@@ -304,6 +304,8 @@ public class FourthScreenPanel extends JPanel {
 			this.gotoMap();
 
 		}
+		
+		townPanel.resetView();
 	}
 
 	public void paint(Graphics g) {
