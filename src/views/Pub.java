@@ -98,4 +98,5 @@ public class Pub extends JPanel {
 	lblNewLabel.setText("You have won " + valueFromGambling
 		+ " dollars from Gambling..");
     }
+
 }

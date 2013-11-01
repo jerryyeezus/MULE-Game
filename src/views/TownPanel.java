@@ -1,23 +1,22 @@
 package views;
 
+
 import java.awt.CardLayout;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import models.GameConfigModel;
 import models.PlayerConfigModel;
 
 /**
  * 
- * @author Tanay
+ * This class contains the Town this which contains different buttons
+ * which trigger different events.
  * 
- *         This class contains the Town this which contains different buttons
- *         which trigger different events.
+ * @author Tanay
  * 
  */
 public class TownPanel extends JPanel {

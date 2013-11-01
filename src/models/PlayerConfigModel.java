@@ -3,13 +3,15 @@ package models;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ConcurrentModificationException;
+import java.util.HashMap;
 
 import enums.*;
 import views.FourthScreenPanel;
 
 /**
- * @author yee Getters and setters for numPlayers and returns particular player
- *         object
+ * Getters and setters for numPlayers and returns particular player object
+ *  
+ * @author yee 
  */
 public class PlayerConfigModel {
 	PlayerModel[] players;
@@ -20,10 +22,20 @@ public class PlayerConfigModel {
 	private int[] curRoundOrder;
 	private int curRoundOrderIndex;
 
+	/**
+	 * Method which returns the player currently playing the game.
+	 * 
+	 * @return player.
+	 */
 	public int getCurPlayer() {
 		return curPlayer;
 	}
 
+	/**
+	 * Method which takes in a player number and sets it to current player.
+	 * 
+	 * @param curPlayer
+	 */
 	public void setCurPlayer(int curPlayer) {
 		this.curPlayer = curPlayer;
 	}
@@ -45,18 +57,37 @@ public class PlayerConfigModel {
 		}
 	}
 
+	/**
+	 * Method which returns the number of players playing the game.
+	 * 
+	 * @return no. of players
+	 */
 	public int getNumPlayers() {
 		return this.numPlayers;
 	}
 
+	/**
+	 * Method which returns a specific player from its integer value (assigned to it)
+	 * 
+	 * @param i
+	 * @return a player
+	 */
 	public PlayerModel getPlayer(int i) {
 		return players[i];
 	}
 
+	/**
+	 * Method which keeps in track of the rounds of the game and increment it.
+	 * 
+	 */
 	public void increaseRound() {
 		round++;
 	}
 
+	/**
+	 * Method which takes in string and call callback() method.
+	 * @param string
+	 */
 	public void broadcast(String string) {
 		for (FourthScreenPanel o : observers) {
 			o.callback(string);
@@ -65,18 +96,33 @@ public class PlayerConfigModel {
 
 	ArrayList<FourthScreenPanel> observers = new ArrayList<FourthScreenPanel>();
 
+	/**
+	 * Method that gets the current round in progress.
+	 * @return round
+	 */
 	public int getRound() {
 		return round;
 	}
 
+	/**
+	 * Method that gets the timer for a player.
+	 * @return time
+	 */
 	public int getTimer() {
 		return this.timer;
 	}
 
+	/**
+	 * Method that sets the timer for a player.
+	 * @param timer
+	 */
 	public void setTimer(int timer) {
 		this.timer = timer;
 	}
 
+	/**
+	 * Method that updates the timer for a player which allows to allot a time window for a particular turn. 
+	 */
 	public void updateTimer() {
 		// Decrement timer, check if timer = 0
 
@@ -96,9 +142,16 @@ public class PlayerConfigModel {
 		} // End of ROUND END
 	}
 	
+	/**
+	 * Makes an array for the food requirements that will be assigned to each player at the beginning according to their race they have chosen.
+	 */
 	private static final int[] foodRequirements = { 3, 3, 3, 4, 4, 4, 5, 5, 5,
 		6, 6, 6 };
 	
+	/**
+	 * Method that calculates the player time and update it at the end of the turn.
+	 * @return Constants
+	 */
 	private int calcPlayerTime() {
 		int numFood = this.getPlayer(curPlayer).getGoods();
 
@@ -118,11 +171,15 @@ public class PlayerConfigModel {
 		
 	}
 
+	/**
+	 * Method that calculates the order in which play takes place according to the resources and money left with the player.
+	 * @return
+	 */
 	public int[] calcPlayerOrder() {
 		// TODO calc
 		ArrayList <Integer> ab = new ArrayList<Integer>();
 		int[] totals = new int[this.numPlayers];
-		int[] ret = new int[this.numPlayers];
+		int[] orderedPlayers = new int[this.numPlayers];
 		
 		
 		for (int i = 0; i < this.numPlayers; i++) {
@@ -134,18 +191,27 @@ public class PlayerConfigModel {
 		Arrays.sort(totals);
 		
 		for(int i = 0; i< this.numPlayers; i++){
-			ret[i]= ab.indexOf(totals[i]);
-			System.out.println("index "+ i+" value :"+ ret[i]);
-			this.curRoundOrder[i] = ret[i];
+			orderedPlayers[i]= ab.indexOf(totals[i]);
+			ab.set(ab.indexOf(totals[i]), null);
+			System.out.println("index "+ i+" value :"+ orderedPlayers[i]);
+			this.curRoundOrder[i] = orderedPlayers[i];
 		}
-		return ret;
+		return orderedPlayers;
 		
 	}
 
+	/**
+	 * Method that returns the current round order of the current player.
+	 * @return round order for the player
+	 */
 	public int nextPlayer() {
 		return curRoundOrder[curPlayer];
 	}
 
+	/**
+	 * Method that add to the observers.
+	 * @param fourthScreenPanel
+	 */
 	public void addCallback(FourthScreenPanel fourthScreenPanel) {
 		this.observers.add(fourthScreenPanel);
 	}
