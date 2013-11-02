@@ -58,9 +58,10 @@ public class StorePanel extends JPanel {
 					model.getPlayer(playerNumber).setMoney(model.getPlayer(playerNumber).getMoney() + (noOfItems*storeModel.getPriceOfGoods()));
 					textField.setText("0");
 					System.out.println(model.getPlayer(playerNumber).getMoney());
+					foodAvailable.setText(storeModel.getGoodsAvailable()+"");
 				}
 				else{
-					JOptionPane.showMessageDialog(textField, "Can't sell more items than what you have dumbass");
+					JOptionPane.showMessageDialog(textField, "Can't sell more items than exisitng in Inventory");
 				}
 			}
 		});
@@ -79,6 +80,10 @@ public class StorePanel extends JPanel {
 					model.getPlayer(playerNumber).setMoney(model.getPlayer(playerNumber).getMoney() - (noOfItems*storeModel.getPriceOfGoods()));
 					textField_1.setText("0");
 					System.out.println(model.getPlayer(playerNumber).getMoney());
+					foodAvailable.setText(storeModel.getGoodsAvailable()+"");
+				}
+				else{
+					JOptionPane.showMessageDialog(textField, "Can't buy items worth more than existing Money");
 				}
 			}
 		});
@@ -108,6 +113,16 @@ public class StorePanel extends JPanel {
 		textField_1.setBounds(218, 186, 86, 20);
 		add(textField_1);
 		textField_1.setColumns(10);
+		
+		JButton btnBack = new JButton("Back to Town");
+		btnBack.setBounds(460, 278, 89, 40);
+		add(btnBack);
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+			}
+		});
+		
 	}
 
 	public void runStore() {
