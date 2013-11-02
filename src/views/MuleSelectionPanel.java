@@ -3,6 +3,7 @@ package views;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -24,15 +25,21 @@ public class MuleSelectionPanel extends JPanel{
 		
 		btnNewButton = new JButton("New button");
 		btnNewButton.setBounds(68, 119, 89, 23);
+		btnNewButton.setSize(135,135);
+		btnNewButton.setIcon(new ImageIcon("src/temp/food-mule.jpg"));
 		btnNewButton.addActionListener(new MuleListener(1));
 		add(btnNewButton);
 		
 		btnNewButton_1 = new JButton("New button");
-		btnNewButton_1.setBounds(191, 119, 89, 23);
+		btnNewButton_1.setBounds(261, 119, 89, 23);
+		btnNewButton_1.setSize(135,135);
+		btnNewButton_1.setIcon(new ImageIcon("src/temp/drink-mule.jpg"));
 		add(btnNewButton_1);
 		
 		btnNewButton_2 = new JButton("New button");
-		btnNewButton_2.setBounds(313, 119, 89, 23);
+		btnNewButton_2.setBounds(483, 119, 89, 23);
+		btnNewButton_2.setSize(135,135);
+		btnNewButton_2.setIcon(new ImageIcon("src/temp/Nicolas_Cage_2011_CC.jpg"));
 		add(btnNewButton_2);
 		
 		JLabel lblSelectYourMule = new JLabel("Select your mule ");

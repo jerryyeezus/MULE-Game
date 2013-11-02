@@ -13,6 +13,8 @@ import models.*;
 public class PlayerConfigPresenter {
 
     private static final int[] goodsTable = { 8, 4,4 };
+    private static final int[] drinkTable = {4, 2, 2};
+    private static final int[] cageTable = {0,0,0};
     private View view;
     private PlayerConfigModel model;
     private GameConfigModel gameConfig;
@@ -73,13 +75,9 @@ public class PlayerConfigPresenter {
      * Update the Player Models for names, races, colors
      */
     public void onSubmit() {
-	// STEP 3: UPDATE IN THE MODEL THE VALUE YOU GET FROM VIEW
-
 	// update names in model
 	for (int i = 0; i < numPlayers; i++) {
 	    model.getPlayer(i).setName(view.getPlayerNames()[i]);
-	    System.out.println("Name set to " + view.getPlayerNames()[i]
-		    + " for Player " + i);
 	}
 
 	// update races in model
@@ -96,17 +94,19 @@ public class PlayerConfigPresenter {
 		model.getPlayer(i).setMoney(1000);
 	    
 	    // update goods (food)
-	    model.getPlayer(i).setGoods(goodsTable[gameConfig.getDifficulty()]);
+	    model.getPlayer(i).setFood(goodsTable[gameConfig.getDifficulty()]);
+	    
+	    // update nicolasCage
+	    model.getPlayer(i).setNicolasCage((cageTable[gameConfig.getDifficulty()]));
+	    
+	    // update drink
+	    model.getPlayer(i).setDrink((drinkTable[gameConfig.getDifficulty()]));
 
-	    System.out.println("Race set to " + view.getPlayerRaces()[i]
-		    + " for player " + i);
 	}
 
 	// update color in model
 	for (int i = 0; i < numPlayers; i++) {
 	    model.getPlayer(i).setColor(view.getPlayerColors()[i]);
-	    System.out.println("Color set to " + view.getPlayerColors()[i]
-		    + " for player" + i);
 	}
 
 	// create next screen

@@ -10,13 +10,33 @@ import java.util.ArrayList;
  */
 public class PlayerModel
 {
-	String name;
-	String race;
-	String color;
-	int money;
-	int land;
-	int goods;
-	ArrayList<Land> landOwned ;
+	private String name;
+	private String race;
+	private String color;
+
+	private int money;
+	private int land;
+	private int food;
+	private int drink;
+	private int nicolasCage;
+
+	public int getDrink() {
+	    return drink;
+	}
+
+	public void setDrink(int drink) {
+	    this.drink = drink;
+	}
+
+	public int getNicolasCage() {
+	    return nicolasCage;
+	}
+
+	public void setNicolasCage(int nicolasCage) {
+	    this.nicolasCage = nicolasCage;
+	}
+
+	private ArrayList<Land> landOwned ;
 
 
 	public PlayerModel()
@@ -84,12 +104,12 @@ public class PlayerModel
 	
 	public int getGoods()
 	{
-		return goods;
+		return food;
 	}
 	
 	public int getTotal()
 	{
-		return (money+land+goods);
+		return (money+land+food);
 	}
 	
 	public void setMoney( int n )
@@ -102,10 +122,11 @@ public class PlayerModel
 		land = n;
 	}
 	
-	public void setGoods( int n )
+	public void setFood( int n )
 	{
-		goods = n;
+		food = n;
 	}
+
 	public ArrayList<Land> getLandsOwner(){
 		return landOwned;
 	}
