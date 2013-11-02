@@ -13,8 +13,6 @@ import javax.swing.JTextField;
 public class gui {
 
 	private JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
 
 	/**
 	 * Launch the application.
@@ -48,54 +46,20 @@ public class gui {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JSeparator separator = new JSeparator();
-		separator.setBounds(10, 123, 424, 113);
-		frame.getContentPane().add(separator);
-		
-		JLabel lblNewLabel = new JLabel("SELL");
-		lblNewLabel.setBounds(194, 11, 46, 14);
-		frame.getContentPane().add(lblNewLabel);
-		
-		JLabel lblBuy = new JLabel("BUY");
-		lblBuy.setBounds(194, 123, 46, 25);
-		frame.getContentPane().add(lblBuy);
-		
-		JButton btnNewButton = new JButton("Sell Items");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnNewButton.setBounds(160, 89, 89, 23);
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.setBounds(68, 119, 89, 23);
 		frame.getContentPane().add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Buy Goods");
-		btnNewButton_1.setBounds(160, 228, 89, 23);
+		JButton btnNewButton_1 = new JButton("New button");
+		btnNewButton_1.setBounds(191, 119, 89, 23);
 		frame.getContentPane().add(btnNewButton_1);
 		
-		JLabel lblGoodsAvailable = new JLabel("Number of Food to sell");
-		lblGoodsAvailable.setBounds(67, 48, 143, 14);
-		frame.getContentPane().add(lblGoodsAvailable);
+		JButton btnNewButton_2 = new JButton("New button");
+		btnNewButton_2.setBounds(313, 119, 89, 23);
+		frame.getContentPane().add(btnNewButton_2);
 		
-		textField = new JTextField();
-		textField.setBounds(224, 45, 86, 20);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
-		
-		JLabel lblAvailableNumberOf = new JLabel("Available Number of Food : ");
-		lblAvailableNumberOf.setBounds(52, 153, 143, 14);
-		frame.getContentPane().add(lblAvailableNumberOf);
-		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setBounds(218, 153, 46, 14);
-		frame.getContentPane().add(lblNewLabel_1);
-		
-		JLabel lblQuantityOfFood = new JLabel("Quantity of Food  :");
-		lblQuantityOfFood.setBounds(52, 189, 143, 14);
-		frame.getContentPane().add(lblQuantityOfFood);
-		
-		textField_1 = new JTextField();
-		textField_1.setBounds(218, 186, 86, 20);
-		frame.getContentPane().add(textField_1);
-		textField_1.setColumns(10);
+		JLabel lblSelectYourMule = new JLabel("Select your mule ");
+		lblSelectYourMule.setBounds(163, 62, 143, 14);
+		frame.getContentPane().add(lblSelectYourMule);
 	}
 }

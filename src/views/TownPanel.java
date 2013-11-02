@@ -2,6 +2,7 @@ package views;
 
 
 import java.awt.CardLayout;
+import java.awt.Component;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
@@ -24,21 +25,25 @@ public class TownPanel extends JPanel {
 	private PlayerConfigModel model;
 	JButton btnLand;
 	JButton btnPub;
+	private JPanel mulePanel;
 	private GameConfigModel gameConfig;
 	private JPanel storePanel;
 	private JPanel panel; // panel for Town
 	private CardLayout layout;
 	private JPanel pubPanel;
+	private JPanel mulePlacementPanel;
 
 	/**
 	 * Create the application.
 	 */
 	public TownPanel(PlayerConfigModel model) {
-	    	layout = new CardLayout();
-	    	pubPanel = new Pub(model);
-	    	this.setLayout(layout);
+    	layout = new CardLayout();
+    	pubPanel = new Pub(model);
+    	this.setLayout(layout);
 		this.storePanel = new StorePanel(model);
 		this.model = model;
+		this.mulePanel = new MuleSelectionPanel(this);
+		this.mulePlacementPanel = new MulePlacementPanel(model);
 		this.initialize();
 	}
 
@@ -72,6 +77,7 @@ public class TownPanel extends JPanel {
 		JButton btnStore = new JButton("");
 		btnStore.setIcon(new ImageIcon("src/temp/mule.jpg"));
 		btnStore.setBounds(501, 174, 304, 128);
+		btnStore.addActionListener(new CardUpdater(this, "Mule", mulePanel));
 		panel.add(btnStore);
 
 		/*
@@ -100,6 +106,9 @@ public class TownPanel extends JPanel {
 		this.add("Town", panel);
 		this.add("Store", storePanel);
 		this.add("Pub", pubPanel);
+		
+		this.add("MulePlacement" , mulePlacementPanel );
+		add("Mule", mulePanel);
 		btnAssay.addActionListener(new CardUpdater(this, "Store",storePanel));
 		//CardLayout cl = (CardLayout) layout.getLayout();
 		//cl.show( layout, "Town");
@@ -112,6 +121,11 @@ public class TownPanel extends JPanel {
 
 	public void addListener(ActionListener l) {
 		btnLand.addActionListener(l);
+	}
+	
+	public void gotoMulePlacement(int muleType) {
+		this.layout.show(this, "MulePlacement");
+		((MulePlacementPanel) this.mulePlacementPanel).doMuleSelection(muleType);
 	}
 
 	public void resetView() {

@@ -26,7 +26,8 @@ public class ThirdScreenPresenter {
 		this.view = view;
 		this.panel = new ThirdScreenPanel(model);
 		this.view.setPanel(this.panel);
-
+		this.view.invalidate();
+		this.view.repaint();
 		this.view.addActionListener(new ActionListener() {
 
 			@Override

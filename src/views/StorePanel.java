@@ -80,6 +80,9 @@ public class StorePanel extends JPanel {
 					textField_1.setText("0");
 					System.out.println(model.getPlayer(playerNumber).getMoney());
 				}
+				else{
+					JOptionPane.showMessageDialog(textField, "Dont have enough money");
+				}
 			}
 		});
 
