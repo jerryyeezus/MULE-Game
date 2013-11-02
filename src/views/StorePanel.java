@@ -93,6 +93,7 @@ public class StorePanel extends JPanel {
 				else{
 					JOptionPane.showMessageDialog(textField, "Can't buy items worth more than existing Money");
 				}
+				
 			}
 		});
 
