@@ -42,7 +42,7 @@ public class TownPanel extends JPanel {
     	this.setLayout(layout);
 		this.storePanel = new StorePanel(model);
 		this.model = model;
-		this.mulePanel = new MuleSelectionPanel(this);
+		this.mulePanel = new MuleSelectionPanel(this,model);
 		this.mulePlacementPanel = new MulePlacementPanel(model, this);
 		this.initialize();
 	}

@@ -8,15 +8,20 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import models.PlayerConfigModel;
+import models.PlayerModel;
+
 public class MuleSelectionPanel extends JPanel{
 	
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
 	private JButton btnNewButton_2;
+	private PlayerConfigModel model;
 	
 	private TownPanel townPanel;
-	public MuleSelectionPanel( TownPanel townPanel){
+	public MuleSelectionPanel( TownPanel townPanel, PlayerConfigModel model){
 		super();
+		this.model = model;
 		this.townPanel = townPanel;
 		initialize();
 	}
@@ -64,6 +69,8 @@ public class MuleSelectionPanel extends JPanel{
 		JLabel lblSelectYourMule = new JLabel("Select your mule ");
 		lblSelectYourMule.setBounds(163, 62, 143, 14);
 		add(lblSelectYourMule);
+		
+		
 	}
 	private class MuleListener implements ActionListener {
 		int muleType;
@@ -72,6 +79,13 @@ public class MuleSelectionPanel extends JPanel{
 		}
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
+			PlayerModel p = model.getPlayer(model.getCurPlayer());
+			if(muleType ==1)
+				p.setMoney(p.getMoney()-37);
+			else if(muleType ==2)
+				p.setMoney(p.getMoney()-13);
+			else if(muleType ==3)
+				p.setMoney(p.getMoney()-56);
 			townPanel.gotoMulePlacement(muleType);
 			
 		}

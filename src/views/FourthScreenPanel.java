@@ -454,7 +454,7 @@ public class FourthScreenPanel extends JPanel {
 									.createLineBorder(model.getPlayer(player)
 											.getColor()));
 							button.setEnabled(false);
-							if (myLand.getMule() == 1) {
+							if (myLand.getMule() == 1 || myLand.getMule() == 2 || myLand.getMule() == 3) {
 								button.setIcon(new ImageIcon("src/temp/muled.jpg"));
 								repaint();
 							}

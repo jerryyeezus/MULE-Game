@@ -1,5 +1,6 @@
 package views;
 
+import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -7,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import models.Land;
@@ -111,6 +113,14 @@ public class MulePlacementPanel extends JPanel {
 								button.setIcon(new ImageIcon("src/temp/muled.jpg"));
 								repaint();
 							}
+							if (myLand.getMule() == 2) {
+								button.setIcon(new ImageIcon("src/temp/muled.jpg"));
+								repaint();
+							}
+							if (myLand.getMule() == 3) {
+								button.setIcon(new ImageIcon("src/temp/muled.jpg"));
+								repaint();
+							}
 							currentlyOwned = true;
 							
 						}
@@ -157,6 +167,13 @@ public class MulePlacementPanel extends JPanel {
 					}
 
 				}
+				JLabel selectionLabel = new JLabel(" Player : " + model.getCurPlayer() + " ; Please select land to place the mule");
+				//selectionPanel.setBackground(model.getPlayer(model.getCurPlayer()).getColor());
+				selectionLabel.setBackground(Color.BLUE);
+				selectionLabel.setBounds(200, 450, 400, 40);
+				selectionLabel.setBorder(BorderFactory.createLineBorder(model.getPlayer(model.getCurPlayer()).getColor(), 5, true));
+				//foodLabel.setSize(50,10);
+				add(selectionLabel);
 				add(button);
 			}
 		} // end of FOR
