@@ -42,6 +42,7 @@ public class FourthScreenPanel extends JPanel {
 	public JButton clickedButton;
 	public JButton next;
 	public JButton passButton;
+	public JLabel PlayerNumLabel;
 	private JLabel timerLbl;
 	int curPlayer;
 	boolean landPicked = false;
@@ -94,6 +95,12 @@ public class FourthScreenPanel extends JPanel {
 		passButton = new JButton();
 		passButton.setBounds(300, 450, 70, 70);
 		passButton.setText("Pass");
+		PlayerNumLabel = new JLabel();
+		PlayerNumLabel.setBounds(10, 300, 300, 300);
+		add(PlayerNumLabel);
+		PlayerNumLabel.setText("<html> Player "+ model.getCurPlayer()+"'s" + " turn " + "<br>" + "Player Resources:" + "<br>" + "money: " + model.getPlayer(model.getCurPlayer()).getMoney()
+				+ "<br>" + "Food: " + model.getPlayer(model.getCurPlayer()).getFood() + "<br>" + "Drink: " + model.getPlayer(model.getCurPlayer()).getDrink()
+				+ "<br>" + "Nicolas Cage: " + model.getPlayer(model.getCurPlayer()).getNicolasCage() + "</html>");
 
 		curPlayer = model.getCurPlayer();
 		add(passButton);
@@ -303,7 +310,7 @@ public class FourthScreenPanel extends JPanel {
 			int[] scores = new int[4];
 			for (int i = 0; i < model.getNumPlayers(); i++) {
 				PlayerModel curPlayer = model.getPlayer(i);
-				dispMsg += "\nPlayer " + i + "\nMoney: " + curPlayer.getMoney()
+				dispMsg += "\nPlayer " + i + "\nMoney: " + curPlayer.getMoney() + "\nDrink: " + curPlayer.getDrink()+ "\nFood: " + curPlayer.getFood()+ "\nNicolasCage: " + curPlayer.getNicolasCage()
 						+ "\nTotal Score: " + curPlayer.getTotal() + "\n";
 			}
 			JOptionPane.showMessageDialog(this, dispMsg);
@@ -357,7 +364,13 @@ public class FourthScreenPanel extends JPanel {
 		passButton = new JButton();
 		passButton.setBounds(300, 450, 70, 70);
 		passButton.setText("Pass");
+		add(PlayerNumLabel);
+		PlayerNumLabel.setText("<html> Player "+ model.getCurPlayer()+"'s" + " turn " + "<br>" + "Player Resources:" + "<br>" + "money: " + model.getPlayer(model.getCurPlayer()).getMoney()
+				+ "<br>" + "Food: " + model.getPlayer(model.getCurPlayer()).getFood() + "<br>" + "Drink: " + model.getPlayer(model.getCurPlayer()).getDrink()
+				+ "<br>" + "Nicolas Cage: " + model.getPlayer(model.getCurPlayer()).getNicolasCage() + "</html>");
 
+		
+		
 		curPlayer = model.getCurPlayer();
 		add(passButton);
 		// initTimer();

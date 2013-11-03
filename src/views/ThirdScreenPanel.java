@@ -21,7 +21,6 @@ import models.PlayerConfigModel;
 
 public class ThirdScreenPanel extends JPanel {
 
-	private JFrame frame;
 	private PlayerConfigModel model;
 	JButton btnNewButton_1;
 	/**
@@ -43,6 +42,7 @@ public class ThirdScreenPanel extends JPanel {
 	private void initialize() {
 		setBounds(10, 78, 542, 125);
 		setLayout(null);
+		
 		
 		if(model.getPlayer(0) != null)
 		{
@@ -80,13 +80,14 @@ public class ThirdScreenPanel extends JPanel {
 			lblNewLabel_5.setBounds(131, 61, 159, 14);
 			panel.add(lblNewLabel_5);
 			
-			JLabel lblNewLabel_6 = new JLabel(""+model.getPlayer(0).getGoods());
+			JLabel lblNewLabel_6 = new JLabel(""+model.getPlayer(0).getFood());
 			lblNewLabel_6.setBounds(131, 86, 159, 14);
 			panel.add(lblNewLabel_6);
 			
 			JLabel lblNewLabel_7 = new JLabel(""+model.getPlayer(0).getTotal());
 			lblNewLabel_7.setBounds(131, 111, 159, 14);
 			panel.add(lblNewLabel_7);
+			
 		}
 		
 		if(model.getPlayer(1) != null)
@@ -108,7 +109,7 @@ public class ThirdScreenPanel extends JPanel {
 			lblPL.setBounds(131, 61, 159, 14);
 			panel_4.add(lblPL);
 			
-			JLabel lblPG = new JLabel(""+model.getPlayer(1).getGoods());
+			JLabel lblPG = new JLabel(""+model.getPlayer(1).getFood());
 			lblPG.setBounds(131, 86, 159, 14);
 			panel_4.add(lblPG);
 			
@@ -131,6 +132,7 @@ public class ThirdScreenPanel extends JPanel {
 			JLabel label_28 = new JLabel("Total");
 			label_28.setBounds(10, 111, 46, 14);
 			panel_4.add(label_28);
+			
 		}
 		
 		if(model.getPlayer(2) != null)
@@ -169,13 +171,14 @@ public class ThirdScreenPanel extends JPanel {
 			lblPL_2.setBounds(131, 61, 159, 14);
 			panel_1.add(lblPL_2);
 			
-			JLabel lblPG_2 = new JLabel(""+model.getPlayer(2).getGoods());
+			JLabel lblPG_2 = new JLabel(""+model.getPlayer(2).getFood());
 			lblPG_2.setBounds(131, 86, 159, 14);
 			panel_1.add(lblPG_2);
 			
 			JLabel lblPT_2 = new JLabel(""+model.getPlayer(2).getTotal());
 			lblPT_2.setBounds(131, 111, 159, 14);
 			panel_1.add(lblPT_2);
+			
 		
 		}
 		
@@ -215,15 +218,15 @@ public class ThirdScreenPanel extends JPanel {
 			lblPL_1.setBounds(131, 61, 159, 14);
 			panel_2.add(lblPL_1);
 			
-			JLabel lblPG_1 = new JLabel(""+model.getPlayer(3).getGoods());
+			JLabel lblPG_1 = new JLabel(""+model.getPlayer(3).getFood());
 			lblPG_1.setBounds(131, 86, 159, 14);
 			panel_2.add(lblPG_1);
 			
 			JLabel lblPT_1 = new JLabel(""+model.getPlayer(3).getTotal());
 			lblPT_1.setBounds(131, 111, 159, 14);
 			panel_2.add(lblPT_1);
+			
 		}
-		
 		
 		btnNewButton_1 = new JButton("Next>>");
 		btnNewButton_1.setBounds(450, 450, 70, 70);
@@ -243,7 +246,7 @@ public class ThirdScreenPanel extends JPanel {
 		lblNewLabel_8.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_8.setBounds(115, 11, 437, 31);
 		add(lblNewLabel_8);
-
+		
 	}
 
 /**

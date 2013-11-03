@@ -102,14 +102,14 @@ public class PlayerModel
 		return land;
 	}
 	
-	public int getGoods()
+	public int getFood()
 	{
 		return food;
 	}
 	
 	public int getTotal()
 	{
-		return (money+land+food);
+		return (money+food+drink+nicolasCage);
 	}
 	
 	public void setMoney( int n )
