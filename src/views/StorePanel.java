@@ -143,7 +143,7 @@ public class StorePanel extends JPanel {
 
 	public void runStore() {
 		int storeGoods = storeModel.getGoodsAvailable();
-		int playerGoods = model.getPlayer(model.getCurPlayer()).getGoods();
+		int playerGoods = model.getPlayer(model.getCurPlayer()).getFood();
 		int playerMoney = model.getPlayer(model.getCurPlayer()).getMoney();
 		foodAvailable.setText(storeGoods+"");
 

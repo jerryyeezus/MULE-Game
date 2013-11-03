@@ -162,7 +162,7 @@ public class PlayerConfigModel {
      * @return Constants
      */
     private int calcPlayerTime() {
-	int numFood = this.getPlayer(curPlayer).getGoods();
+	int numFood = this.getPlayer(curPlayer).getFood();
 
 	// Case Partial Shortage
 	if (numFood > 0
