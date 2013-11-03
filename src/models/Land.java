@@ -18,6 +18,7 @@ public class Land {
 	public boolean hasMule;
 	public int x;
 	public int y;
+	private int muleType;
 	public ArrayList<Mule> placedMules;
 
 	/**
@@ -32,6 +33,7 @@ public class Land {
 		placedMules = new ArrayList<Mule>();
 		x = locationX;
 		y = locationY;
+		this.muleType = -1;
 		owner = -1;
 		if (type.equals("M"))
 			price = 20;
@@ -90,6 +92,16 @@ public class Land {
 	 */
 	public int getOwner() {
 		return owner;
+	}
+
+	public void setMule(int muleType) {
+		// TODO Auto-generated method stub
+		this.muleType = muleType;		
+	}
+
+	public int getMule() {
+		// TODO Auto-generated method stub
+		return this.muleType;
 	}
 
 }

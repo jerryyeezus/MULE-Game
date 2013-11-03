@@ -13,6 +13,7 @@ public class MuleSelectionPanel extends JPanel{
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
 	private JButton btnNewButton_2;
+	
 	private TownPanel townPanel;
 	public MuleSelectionPanel( TownPanel townPanel){
 		super();
@@ -34,13 +35,31 @@ public class MuleSelectionPanel extends JPanel{
 		btnNewButton_1.setBounds(261, 119, 89, 23);
 		btnNewButton_1.setSize(135,135);
 		btnNewButton_1.setIcon(new ImageIcon("src/temp/drink-mule.jpg"));
+		btnNewButton_1.addActionListener(new MuleListener(2));
 		add(btnNewButton_1);
 		
 		btnNewButton_2 = new JButton("New button");
 		btnNewButton_2.setBounds(483, 119, 89, 23);
 		btnNewButton_2.setSize(135,135);
 		btnNewButton_2.setIcon(new ImageIcon("src/temp/Nicolas_Cage_2011_CC.jpg"));
+		btnNewButton_2.addActionListener(new MuleListener(3));
 		add(btnNewButton_2);
+		
+		JLabel foodLabel = new JLabel("Food Mule : 37 $");
+		foodLabel.setBounds(100, 300, 150, 20);
+		//foodLabel.setSize(50,10);
+		add(foodLabel);
+		
+		JLabel drinkLabel = new JLabel("Drink Mule : 13 $");
+		drinkLabel.setBounds(300, 300, 150, 20);
+		//foodLabel.setSize(50,10);
+		add(drinkLabel);
+		
+		JLabel cageLabel = new JLabel("Cage Mule : 56 $");
+		cageLabel.setBounds(500, 300, 150, 20);
+		//foodLabel.setSize(50,10);
+		add(cageLabel);
+		
 		
 		JLabel lblSelectYourMule = new JLabel("Select your mule ");
 		lblSelectYourMule.setBounds(163, 62, 143, 14);
@@ -58,4 +77,5 @@ public class MuleSelectionPanel extends JPanel{
 		}
 		
 	}
+	
 }

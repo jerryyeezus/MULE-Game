@@ -12,6 +12,7 @@ public class CardUpdater implements ActionListener {
 	private Pub pubPanel;
 	private StorePanel storePanel;
 	private MuleSelectionPanel mulePanel;
+	private FourthScreenPanel fourthScreenPanel;
 
 	public CardUpdater(JPanel cards, String panelString, JPanel panel) {
 		this.cards = cards;
@@ -25,6 +26,8 @@ public class CardUpdater implements ActionListener {
 		}
 		else if (panel instanceof MuleSelectionPanel)
 			this.mulePanel = (MuleSelectionPanel) panel;
+		else if (panel instanceof FourthScreenPanel)
+			this.fourthScreenPanel = (FourthScreenPanel) panel;
 	}
 
 	@Override
@@ -40,6 +43,9 @@ public class CardUpdater implements ActionListener {
 		}
 		if (panelString == "Mule")
 			System.out.println("shit");
+		if (panelString == "Four") {
+			
+		}
 	}
 
 }

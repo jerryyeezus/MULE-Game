@@ -46,6 +46,7 @@ public class FourthScreenPanel extends JPanel {
 	int curPlayer;
 	boolean landPicked = false;
 	public TownPanel townPanel;
+	//public MulePlacementPanel mulePlacementPanel;
 	private Timer roundTimer;
 
 	/**
@@ -62,6 +63,7 @@ public class FourthScreenPanel extends JPanel {
 				gotoMap();
 			}
 		});
+	
 
 		initialize();
 	}
@@ -73,7 +75,9 @@ public class FourthScreenPanel extends JPanel {
 	 */
 	public int getCtr() {
 		return ctr;
+		
 	}
+	
 
 	/**
 	 * Initialize the contents of the frame.
@@ -148,6 +152,8 @@ public class FourthScreenPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// ctr++;
 				model.nextPlayer();
+				model.setTimer(0);
+				ctr++;
 
 			}
 		});
@@ -271,10 +277,10 @@ public class FourthScreenPanel extends JPanel {
 	 * repaints the mapScreen with the Town whenever the player clicks on the town
 	 * Button.
 	 */
-	private void gotoTown() {
+	public void gotoTown() {
 		this.removeAll();
 		this.setLayout(new java.awt.BorderLayout());
-
+		
 		this.add(townPanel, BorderLayout.CENTER);
 		displayTimer();
 		this.revalidate();
@@ -435,6 +441,10 @@ public class FourthScreenPanel extends JPanel {
 									.createLineBorder(model.getPlayer(player)
 											.getColor()));
 							button.setEnabled(false);
+							if (myLand.getMule() == 1) {
+								button.setIcon(new ImageIcon("src/temp/muled.jpg"));
+								repaint();
+							}
 							currentlyOwned = true;
 						}
 					}

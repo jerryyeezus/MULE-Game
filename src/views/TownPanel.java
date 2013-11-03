@@ -43,9 +43,11 @@ public class TownPanel extends JPanel {
 		this.storePanel = new StorePanel(model);
 		this.model = model;
 		this.mulePanel = new MuleSelectionPanel(this);
-		this.mulePlacementPanel = new MulePlacementPanel(model);
+		this.mulePlacementPanel = new MulePlacementPanel(model, this);
 		this.initialize();
 	}
+	
+	
 
 	/**
 	 * Initialize the contents of the this.
@@ -80,29 +82,6 @@ public class TownPanel extends JPanel {
 		btnStore.addActionListener(new CardUpdater(this, "Mule", mulePanel));
 		panel.add(btnStore);
 
-		/*
-		JButton btnExit = new JButton("Exit");
-		btnExit.setBounds(736, 442, 89, 23);
-		this.add(btnExit);
-
-		JButton btnNewButton = new JButton("Next>>");
-		btnNewButton.setBounds(627, 442, 89, 23);
-		this.add(btnNewButton);
-
-		JLabel lblNewLabel_10 = new JLabel("sdfd");
-		lblNewLabel_10.setIcon(new ImageIcon("src/temp/mule.jpg"));
-		lblNewLabel_10.setBounds(105, 11, 143, 96);
-		this.add(lblNewLabel_10);
-
-		JSeparator separator = new JSeparator();
-		separator.setBounds(10, 476, 815, 7);
-		this.add(separator);
-
-		JLabel lblNewLabel_3 = new JLabel("New label");
-		lblNewLabel_3.setBounds(10, 494, 815, 14);
-		this.add(lblNewLabel_3);
-
-		*/
 		this.add("Town", panel);
 		this.add("Store", storePanel);
 		this.add("Pub", pubPanel);
@@ -110,8 +89,7 @@ public class TownPanel extends JPanel {
 		this.add("MulePlacement" , mulePlacementPanel );
 		add("Mule", mulePanel);
 		btnAssay.addActionListener(new CardUpdater(this, "Store",storePanel));
-		//CardLayout cl = (CardLayout) layout.getLayout();
-		//cl.show( layout, "Town");
+		
 	}
 
 	/**
@@ -129,8 +107,16 @@ public class TownPanel extends JPanel {
 	}
 
 	public void resetView() {
-	    System.out.println("reseting...");
 	    layout.show(this, "Town");
 	}
+	/*public void setInvisible(){
+		setVisible(false);
+	}*/
 
+
+
+	public void clickTheLandButton() {
+		btnLand.doClick();
+		
+	}
 }

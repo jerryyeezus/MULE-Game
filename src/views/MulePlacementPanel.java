@@ -1,8 +1,5 @@
 package views;
 
-import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -14,17 +11,19 @@ import javax.swing.JPanel;
 
 import models.Land;
 import models.PlayerConfigModel;
-import models.PlayerModel;
 
 public class MulePlacementPanel extends JPanel {
 	private int muleType;
 
 	private PlayerConfigModel model;
+	private JPanel townPanel;
+	private JButton[][] buttons = new JButton[5][9];
 	private int curPlayer;
 	private String[][] landArr = new String[5][9];
 
-	public MulePlacementPanel(PlayerConfigModel model) {
+	public MulePlacementPanel(PlayerConfigModel model, JPanel townPanel) {
 		this.model = model;
+		this.townPanel = townPanel;
 		System.out.println();
 
 	}
@@ -90,24 +89,30 @@ public class MulePlacementPanel extends JPanel {
 		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < 9; j++) {
 				final JButton button = new JButton("");
+				
 				button.setIcon(new ImageIcon("src/temp/images/map1_" + (n + 1)
 						+ ".gif"));
 				n++;
 				button.setBounds(80 * j, 80 * i, 80, 80);
 				button.setName(landArr[i][j]);
 				boolean currentlyOwned = false;
-
+				buttons[i][j] = button;
+				
 				// Check if currently owned
 				for (int player = 0; player < model.getNumPlayers(); player++) {
 					ArrayList<Land> ownedByPlayer = model.getPlayer(player)
 							.getLandsOwner();
-					for (Land myLand : ownedByPlayer) {
+					for (Land myLand : ownedByPlayer){
 						if (myLand.x == i && myLand.y == j) {
 							button.setBorder(BorderFactory
 									.createLineBorder(model.getPlayer(player)
 											.getColor()));
-							button.setEnabled(false);
+							if (myLand.getMule() == 1) {
+								button.setIcon(new ImageIcon("src/temp/muled.jpg"));
+								repaint();
+							}
 							currentlyOwned = true;
+							
 						}
 					}
 				}
@@ -115,11 +120,38 @@ public class MulePlacementPanel extends JPanel {
 				if (!(i == 2 && j == 4)) {
 					final int my_i = i;
 					final int my_j = j;
-					if (!currentlyOwned) {
+					final int muleType1 = this.muleType;
+					button.setEnabled(true);
+					if (true) {
 						button.addMouseListener(new MouseAdapter() {
 							@Override
 							public void mouseClicked(MouseEvent arg0) {
-
+									
+									int player = model.getCurPlayer();
+									ArrayList<Land> ownedByPlayer = model.getPlayer(player)
+											.getLandsOwner();
+									boolean isValid = false;
+									for (Land myLand : ownedByPlayer) {
+										if (myLand.x == my_i && myLand.y == my_j) {
+											isValid = true;
+											myLand.setOwner(player);
+											myLand.setMule(muleType1);
+											setVisible(false);
+											((TownPanel)townPanel).clickTheLandButton();
+											
+											break;
+										}
+									}
+									
+									if (!isValid) {
+										System.out.println("Mule lost lol owned");
+										((TownPanel)townPanel).clickTheLandButton();
+										setVisible(false);
+										//((TownPanel)townPanel).setInvisible();
+									}
+									
+									
+									
 							}
 						});
 					}
@@ -128,10 +160,12 @@ public class MulePlacementPanel extends JPanel {
 				add(button);
 			}
 		} // end of FOR
-
+		
 		this.revalidate();
 		this.repaint();
 
 	}
+
+	
 
 }
