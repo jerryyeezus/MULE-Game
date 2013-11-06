@@ -6,6 +6,11 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 
+/**
+ * @author yee
+ * Updates the Town class's card layout with appropriate JPanel
+ * 
+ */
 public class CardUpdater implements ActionListener {
 	private String panelString;
 	private JPanel cards;
@@ -14,6 +19,12 @@ public class CardUpdater implements ActionListener {
 	private MuleSelectionPanel mulePanel;
 	private FourthScreenPanel fourthScreenPanel;
 
+	/**
+	 * @param cards parent container
+	 * @param panelString "Town", "Pub", "Mule", etc...
+	 * @param panel instance of the appropriate JPanel
+	 * 
+	 */
 	public CardUpdater(JPanel cards, String panelString, JPanel panel) {
 		this.cards = cards;
 		this.panelString = panelString;

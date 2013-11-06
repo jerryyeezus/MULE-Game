@@ -12,8 +12,15 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
 import models.PlayerConfigModel;
+import models.PlayerModel;
 import models.StoreModel;
 
+
+/**
+ *
+ * GUI and controller logic for Store class
+ * @author yee
+ */
 public class StorePanel extends JPanel {
 	StoreModel storeModel;
 	PlayerConfigModel model;
@@ -23,9 +30,16 @@ public class StorePanel extends JPanel {
 	private JLabel foodAvailable;
 	private JLabel lblSellStatus;
 	private JLabel lblBuyStatus;
+	int a;
 	int playerNumber;
+	private JTextField drinkField;
 
 
+	/**
+	 * Constructor to initilize all the variables.
+	 * 
+	 * @param model
+	 */
 	public StorePanel(PlayerConfigModel model) {
 		super();
 		storeModel = new StoreModel();
@@ -33,6 +47,10 @@ public class StorePanel extends JPanel {
 		this.initialize();
 	}
 
+	/**
+	 * creates the gui and adds all the components.
+	 * It checks for the available resources to instantiate transactions;
+	 */
 	public void initialize() {
 		setLayout(null);
 
@@ -54,40 +72,42 @@ public class StorePanel extends JPanel {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Integer noOfItems = Integer.parseInt(textField.getText());
-				if (noOfItems <= storeModel.getGoodsAvailable()){
+				int a = model.getCurPlayer();
+				PlayerModel p = model.getPlayer(a);
+				if (noOfItems <= p.getFood()){
 					storeModel.increaseInventory(noOfItems);
-					playerNumber = model.getCurPlayer();
 					int moneyEarned = noOfItems*storeModel.getPriceOfGoods();
-					model.getPlayer(playerNumber).setMoney(model.getPlayer(playerNumber).getMoney() + moneyEarned);
+					model.getPlayer(a).setMoney(model.getPlayer(a).getMoney() + moneyEarned);
+					p.setFood(p.getFood()-noOfItems);
 					textField.setText("0");
-					System.out.println(model.getPlayer(playerNumber).getMoney());
 					foodAvailable.setText(storeModel.getGoodsAvailable()+"");
 					lblSellStatus.setText("You have sold " + noOfItems + " and gained "+ moneyEarned + "money.");
 					lblBuyStatus.setText("");
 				}
 				else{
-					JOptionPane.showMessageDialog(textField, "Can't sell more items than exisitng in Inventory");
+					JOptionPane.showMessageDialog(textField, "Can't sell more items than you have");
 				}
 			}
 		});
 
 		JButton btnNewButton_1 = new JButton("Buy Goods");
-		btnNewButton_1.setBounds(160, 330, 89, 23);
+		btnNewButton_1.setBounds(160, 430, 119, 23);
 		add(btnNewButton_1);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Integer noOfItems = Integer.parseInt(textField_1.getText());
-				playerNumber = model.getCurPlayer();
-				int moneyAvailable = model.getPlayer(playerNumber).getMoney();
+				a = model.getCurPlayer();
+				int moneyAvailable = model.getPlayer(a).getMoney();
 				int priceNeeded = noOfItems*storeModel.getPriceOfGoods();
 				if (moneyAvailable >= priceNeeded){
 					storeModel.reduceInventory(noOfItems);
 					int moneySpent = noOfItems*storeModel.getPriceOfGoods();
-					model.getPlayer(playerNumber).setMoney(model.getPlayer(playerNumber).getMoney() - moneySpent);
+					model.getPlayer(a).setMoney(model.getPlayer(a).getMoney() - moneySpent);
+					model.getPlayer(a).setFood(model.getPlayer(a).getFood()+noOfItems);
 					textField_1.setText("0");
-					System.out.println(model.getPlayer(playerNumber).getMoney());
+					System.out.println(model.getPlayer(a).getMoney());
 					foodAvailable.setText(storeModel.getGoodsAvailable()+"");
-					lblBuyStatus.setText("You have bought " + noOfItems + " and spent "+ moneySpent + "money.");
+					lblBuyStatus.setText("You have bought " + noOfItems + "food and spent "+ moneySpent + "money.");
 					lblSellStatus.setText("");
 				}
 				else{
@@ -118,10 +138,23 @@ public class StorePanel extends JPanel {
 		lblQuantityOfFood.setBounds(70, 300, 150, 20);
 		add(lblQuantityOfFood);
 
+		/*
+		JLabel lblQuantityOfDrink = new JLabel("Quantity of Drink  :");
+		lblQuantityOfDrink.setBounds(70, 340, 150, 20);
+		add(lblQuantityOfDrink);
+		*/
+
 		textField_1 = new JTextField("0");
 		textField_1.setBounds(220, 300, 100, 20);
 		add(textField_1);
 		textField_1.setColumns(10);
+
+		/*
+		drinkField = new JTextField("0");
+		drinkField.setBounds(220, 340, 100, 20);
+		add(drinkField);
+		drinkField.setColumns(10);
+		*/
 		
 		JButton btnBack = new JButton("Back to Town");
 		btnBack.setBounds(460, 400, 120, 23);
@@ -133,14 +166,21 @@ public class StorePanel extends JPanel {
 		});
 		
 		lblSellStatus = new JLabel("");
-		lblSellStatus.setBounds(70, 150, 150, 20);
+		lblSellStatus.setBounds(70, 150, 250, 20);
 		add(lblSellStatus);
 
 		lblBuyStatus = new JLabel("");
-		lblBuyStatus.setBounds(70, 360, 150, 20);
+		lblBuyStatus.setBounds(70, 360, 250, 20);
 		add(lblBuyStatus);
 	}
 
+	/**
+<<<<<<< HEAD
+	 * gets the information from the player regarding his available resources.
+=======
+	 * Populates jlabel with store's available stuff
+>>>>>>> 4d3a36d2d205e3a0d8a81b32db2b8bd3089c7bfa
+	 */
 	public void runStore() {
 		int storeGoods = storeModel.getGoodsAvailable();
 		int playerGoods = model.getPlayer(model.getCurPlayer()).getFood();

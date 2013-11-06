@@ -14,6 +14,11 @@ import javax.swing.JPanel;
 import models.Land;
 import models.PlayerConfigModel;
 
+/**
+ *
+ * Controller logic for Mule Placement. Dispalys a map and implement listeners and updates the player's model.
+ *  @author yee
+ */
 public class MulePlacementPanel extends JPanel {
 	private int muleType;
 
@@ -22,14 +27,25 @@ public class MulePlacementPanel extends JPanel {
 	private JButton[][] buttons = new JButton[5][9];
 	private int curPlayer;
 	private String[][] landArr = new String[5][9];
-
+	
+	/**
+	 * Constructor for the MulePlacement class.
+	 * sets the variables of townPanel and PlayerConfigModel.
+	 * 
+	 * @param model
+	 * @param townPanel
+	 */
 	public MulePlacementPanel(PlayerConfigModel model, JPanel townPanel) {
 		this.model = model;
 		this.townPanel = townPanel;
-		System.out.println();
-
 	}
 
+	/**
+	 * if the user selects the appropriate land, this method repaints the land 
+	 * with a mule placed on it.
+	 * 
+	 * @param muleType
+	 */
 	public void doMuleSelection(int muleType) {
 		this.muleType = muleType;
 
@@ -167,11 +183,15 @@ public class MulePlacementPanel extends JPanel {
 					}
 
 				}
-				JLabel selectionLabel = new JLabel(" Player : " + model.getCurPlayer() + " ; Please select land to place the mule");
+				JLabel selectionLabel = new JLabel(" Player : " + curPlayer + " ; Please select land to place the mule");
 				//selectionPanel.setBackground(model.getPlayer(model.getCurPlayer()).getColor());
 				selectionLabel.setBackground(Color.BLUE);
 				selectionLabel.setBounds(200, 450, 400, 40);
+//<<<<<<< HEAD
 				selectionLabel.setBorder(BorderFactory.createLineBorder(model.getPlayer(model.getCurPlayer()).getColor(), 5));
+//=======
+				selectionLabel.setBorder(BorderFactory.createLineBorder(model.getPlayer(curPlayer).getColor(), 5));
+//>>>>>>> a020287899c0eb66f201c4a20bde1968afcf57c7
 				//foodLabel.setSize(50,10);
 				add(selectionLabel);
 				add(button);
