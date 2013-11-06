@@ -19,7 +19,7 @@ public class Land {
 	public int x;
 	public int y;
 	private int muleType;
-	public ArrayList<Mule> placedMules;
+	//public ArrayList<Mule> placedMules;
 
 	/**
 	 * Constructor which implements the object of the Land class.
@@ -30,7 +30,7 @@ public class Land {
 	 */
 	public Land(String type, int locationX, int locationY) {
 		this.type = type;
-		placedMules = new ArrayList<Mule>();
+		//placedMules = new ArrayList<Mule>();
 		x = locationX;
 		y = locationY;
 		this.muleType = -1;
@@ -59,10 +59,12 @@ public class Land {
 	 * 
 	 * @param mule
 	 */
+	/*
 	public void placeMule(Mule mule) {
 		placedMules.add(mule);
 		hasMule = true;
 	}
+	*/
 
 	/**
 	 * Method that returns the price of the land, which is specific to the land

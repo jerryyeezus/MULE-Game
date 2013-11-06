@@ -14,6 +14,10 @@ import javax.swing.JTextField;
 import models.PlayerConfigModel;
 import models.StoreModel;
 
+/**
+ * @author yee
+ * GUI and controller logic for Store class
+ */
 public class StorePanel extends JPanel {
 	StoreModel storeModel;
 	PlayerConfigModel model;
@@ -24,6 +28,7 @@ public class StorePanel extends JPanel {
 	private JLabel lblSellStatus;
 	private JLabel lblBuyStatus;
 	int playerNumber;
+	private JTextField drinkField;
 
 
 	public StorePanel(PlayerConfigModel model) {
@@ -60,7 +65,6 @@ public class StorePanel extends JPanel {
 					int moneyEarned = noOfItems*storeModel.getPriceOfGoods();
 					model.getPlayer(playerNumber).setMoney(model.getPlayer(playerNumber).getMoney() + moneyEarned);
 					textField.setText("0");
-					System.out.println(model.getPlayer(playerNumber).getMoney());
 					foodAvailable.setText(storeModel.getGoodsAvailable()+"");
 					lblSellStatus.setText("You have sold " + noOfItems + " and gained "+ moneyEarned + "money.");
 					lblBuyStatus.setText("");
@@ -72,7 +76,7 @@ public class StorePanel extends JPanel {
 		});
 
 		JButton btnNewButton_1 = new JButton("Buy Goods");
-		btnNewButton_1.setBounds(160, 330, 89, 23);
+		btnNewButton_1.setBounds(160, 430, 119, 23);
 		add(btnNewButton_1);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -87,7 +91,7 @@ public class StorePanel extends JPanel {
 					textField_1.setText("0");
 					System.out.println(model.getPlayer(playerNumber).getMoney());
 					foodAvailable.setText(storeModel.getGoodsAvailable()+"");
-					lblBuyStatus.setText("You have bought " + noOfItems + " and spent "+ moneySpent + "money.");
+					lblBuyStatus.setText("You have bought " + noOfItems + "food and spent "+ moneySpent + "money.");
 					lblSellStatus.setText("");
 				}
 				else{
@@ -118,10 +122,23 @@ public class StorePanel extends JPanel {
 		lblQuantityOfFood.setBounds(70, 300, 150, 20);
 		add(lblQuantityOfFood);
 
+		/*
+		JLabel lblQuantityOfDrink = new JLabel("Quantity of Drink  :");
+		lblQuantityOfDrink.setBounds(70, 340, 150, 20);
+		add(lblQuantityOfDrink);
+		*/
+
 		textField_1 = new JTextField("0");
 		textField_1.setBounds(220, 300, 100, 20);
 		add(textField_1);
 		textField_1.setColumns(10);
+
+		/*
+		drinkField = new JTextField("0");
+		drinkField.setBounds(220, 340, 100, 20);
+		add(drinkField);
+		drinkField.setColumns(10);
+		*/
 		
 		JButton btnBack = new JButton("Back to Town");
 		btnBack.setBounds(460, 400, 120, 23);
@@ -141,6 +158,9 @@ public class StorePanel extends JPanel {
 		add(lblBuyStatus);
 	}
 
+	/**
+	 * Populates jlabel with store's available stuff
+	 */
 	public void runStore() {
 		int storeGoods = storeModel.getGoodsAvailable();
 		int playerGoods = model.getPlayer(model.getCurPlayer()).getFood();

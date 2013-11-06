@@ -11,6 +11,10 @@ import javax.swing.JPanel;
 import models.PlayerConfigModel;
 import models.PlayerModel;
 
+/**
+ * @author yee
+ * Controller logic for mule selection. Lets u choose between mules and calls the doMule() function in MulePlacementPanel
+ */
 public class MuleSelectionPanel extends JPanel{
 	
 	private JButton btnNewButton;

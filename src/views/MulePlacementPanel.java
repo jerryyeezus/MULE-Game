@@ -14,6 +14,10 @@ import javax.swing.JPanel;
 import models.Land;
 import models.PlayerConfigModel;
 
+/**
+ * @author yee
+ * Controller logic for Mule Placement. Dispalys a map and implement listeners and updates the player's model.
+ */
 public class MulePlacementPanel extends JPanel {
 	private int muleType;
 
