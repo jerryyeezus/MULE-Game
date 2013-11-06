@@ -229,7 +229,7 @@ public class ThirdScreenPanel extends JPanel {
 		}
 		
 		btnNewButton_1 = new JButton("Next>>");
-		btnNewButton_1.setBounds(450, 450, 70, 70);
+		btnNewButton_1.setBounds(350, 450, 100, 23);
 		add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Exit");
@@ -239,7 +239,7 @@ public class ThirdScreenPanel extends JPanel {
 			}
 		});
 		
-		btnNewButton_2.setBounds(463, 622, 89, 23);
+		btnNewButton_2.setBounds(460, 450, 89, 23);
 		add(btnNewButton_2);
 		
 		JLabel lblNewLabel_8 = new JLabel("M.U.L.E.");
