@@ -13,14 +13,11 @@ import javax.swing.JPanel;
 
 import models.Land;
 import models.PlayerConfigModel;
+
 /**
- * This is the Mule Placement screen that allows the user to choose a land to place his Mule.
- * If the user places the mule on an Incorrect land.. The mule is lost and the message is printed
- * on the console.
- * 
- * @author Tanay
- * @version 1.2
  *
+ * Controller logic for Mule Placement. Dispalys a map and implement listeners and updates the player's model.
+ *  @author yee
  */
 public class MulePlacementPanel extends JPanel {
 	private int muleType;

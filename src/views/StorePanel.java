@@ -14,12 +14,12 @@ import javax.swing.JTextField;
 import models.PlayerConfigModel;
 import models.PlayerModel;
 import models.StoreModel;
+
+
 /**
- * The SlickDeals store where the player can buy and sell his resourses 
- * Depending upon the moneey he has.
- * 
- * @author Tanay
  *
+ * GUI and controller logic for Store class
+ * @author yee
  */
 public class StorePanel extends JPanel {
 	StoreModel storeModel;
@@ -31,6 +31,8 @@ public class StorePanel extends JPanel {
 	private JLabel lblSellStatus;
 	private JLabel lblBuyStatus;
 	int a;
+	int playerNumber;
+	private JTextField drinkField;
 
 
 	/**
@@ -78,7 +80,6 @@ public class StorePanel extends JPanel {
 					model.getPlayer(a).setMoney(model.getPlayer(a).getMoney() + moneyEarned);
 					p.setFood(p.getFood()-noOfItems);
 					textField.setText("0");
-					//System.out.println(model.getPlayer(a).getMoney());
 					foodAvailable.setText(storeModel.getGoodsAvailable()+"");
 					lblSellStatus.setText("You have sold " + noOfItems + " and gained "+ moneyEarned + "money.");
 					lblBuyStatus.setText("");
@@ -90,7 +91,7 @@ public class StorePanel extends JPanel {
 		});
 
 		JButton btnNewButton_1 = new JButton("Buy Goods");
-		btnNewButton_1.setBounds(160, 330, 89, 23);
+		btnNewButton_1.setBounds(160, 430, 119, 23);
 		add(btnNewButton_1);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -106,7 +107,7 @@ public class StorePanel extends JPanel {
 					textField_1.setText("0");
 					System.out.println(model.getPlayer(a).getMoney());
 					foodAvailable.setText(storeModel.getGoodsAvailable()+"");
-					lblBuyStatus.setText("You have bought " + noOfItems + " and spent "+ moneySpent + "money.");
+					lblBuyStatus.setText("You have bought " + noOfItems + "food and spent "+ moneySpent + "money.");
 					lblSellStatus.setText("");
 				}
 				else{
@@ -137,10 +138,23 @@ public class StorePanel extends JPanel {
 		lblQuantityOfFood.setBounds(70, 300, 150, 20);
 		add(lblQuantityOfFood);
 
+		/*
+		JLabel lblQuantityOfDrink = new JLabel("Quantity of Drink  :");
+		lblQuantityOfDrink.setBounds(70, 340, 150, 20);
+		add(lblQuantityOfDrink);
+		*/
+
 		textField_1 = new JTextField("0");
 		textField_1.setBounds(220, 300, 100, 20);
 		add(textField_1);
 		textField_1.setColumns(10);
+
+		/*
+		drinkField = new JTextField("0");
+		drinkField.setBounds(220, 340, 100, 20);
+		add(drinkField);
+		drinkField.setColumns(10);
+		*/
 		
 		JButton btnBack = new JButton("Back to Town");
 		btnBack.setBounds(460, 400, 120, 23);
@@ -161,7 +175,11 @@ public class StorePanel extends JPanel {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * gets the information from the player regarding his available resources.
+=======
+	 * Populates jlabel with store's available stuff
+>>>>>>> 4d3a36d2d205e3a0d8a81b32db2b8bd3089c7bfa
 	 */
 	public void runStore() {
 		int storeGoods = storeModel.getGoodsAvailable();

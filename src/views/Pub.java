@@ -43,6 +43,9 @@ public class Pub extends JPanel {
 
     }
     
+    /**
+     * Called to run the gamble algorithm
+     */
     public void gamble() {
 	rand = new Random();
 	valueFromGambling = rand.nextInt(100);
@@ -51,7 +54,6 @@ public class Pub extends JPanel {
 	playerMod.setMoney(playerMod.getMoney() + valueFromGambling);
 	model.setTimer(5);
 	this.setLabel();
-	System.out.println("gamble");
     }
 
     /**
@@ -81,6 +83,7 @@ public class Pub extends JPanel {
 	add(lblGamble);
 	lblGamble.setHorizontalAlignment(SwingConstants.LEFT);
 
+	/*
 	JButton btnNext = new JButton("Next>>");
 	btnNext.setBounds(735, 444, 89, 23);
 	btnNext.addActionListener(new ActionListener() {
@@ -92,6 +95,7 @@ public class Pub extends JPanel {
 	    }
 	});
 	add(btnNext);
+	*/
     }
 
     private void setLabel() {

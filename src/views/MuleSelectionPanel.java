@@ -12,11 +12,16 @@ import models.PlayerConfigModel;
 import models.PlayerModel;
 
 /**
+<<<<<<< HEAD
  * The panel where the user can select the type of Mule he wants 
  * to buy. it also displays the price of each mule.
  * 
  * @author Tanay
  *
+=======
+ * @author yee
+ * Controller logic for mule selection. Lets u choose between mules and calls the doMule() function in MulePlacementPanel
+>>>>>>> 4d3a36d2d205e3a0d8a81b32db2b8bd3089c7bfa
  */
 public class MuleSelectionPanel extends JPanel{
 	
