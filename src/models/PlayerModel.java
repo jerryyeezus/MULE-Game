@@ -83,7 +83,7 @@ public class PlayerModel
 		else if(s.equalsIgnoreCase("Green"))
 			return new Color(0, 255, 0);
 		else 
-			return new Color(0, 0, 0);
+			return new Color(255, 255, 0);
 		
 	}
 
