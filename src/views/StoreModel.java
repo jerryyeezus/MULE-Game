@@ -1,5 +1,12 @@
 package views;
 
+/**
+ * 
+ * THe information holder for the Store where the player can Buy and Sell resources.
+ * 
+ * @author Tanay
+ *
+ */
 public class StoreModel {
 
 		private int numberOfGoodsAvailable;
@@ -7,6 +14,7 @@ public class StoreModel {
 		public StoreModel(){
 			numberOfGoodsAvailable = 16;
 		}
+		
 		
 		public int getGoodsAvailable(){
 			return numberOfGoodsAvailable;

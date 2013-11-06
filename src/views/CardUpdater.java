@@ -5,7 +5,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
-
+/**
+ * The card updater class that gives the card layout functionality to the game.
+ * It allows for the panels to be changed seamlessly on the JFrame of the game.
+ * 
+ * @author Tanay
+ * @version 1.3
+ */
 public class CardUpdater implements ActionListener {
 	private String panelString;
 	private JPanel cards;
@@ -14,6 +20,13 @@ public class CardUpdater implements ActionListener {
 	private MuleSelectionPanel mulePanel;
 	private FourthScreenPanel fourthScreenPanel;
 
+	/**
+	 * Changes the instance variables according to the parameter-panel.
+	 * 
+	 * @param cards
+	 * @param panelString
+	 * @param panel
+	 */
 	public CardUpdater(JPanel cards, String panelString, JPanel panel) {
 		this.cards = cards;
 		this.panelString = panelString;

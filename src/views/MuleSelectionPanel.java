@@ -11,6 +11,13 @@ import javax.swing.JPanel;
 import models.PlayerConfigModel;
 import models.PlayerModel;
 
+/**
+ * The panel where the user can select the type of Mule he wants 
+ * to buy. it also displays the price of each mule.
+ * 
+ * @author Tanay
+ *
+ */
 public class MuleSelectionPanel extends JPanel{
 	
 	private JButton btnNewButton;
@@ -19,12 +26,23 @@ public class MuleSelectionPanel extends JPanel{
 	private PlayerConfigModel model;
 	
 	private TownPanel townPanel;
+	
+	/**
+	 * Constructor to initilize variables.
+	 * 
+	 * @param townPanel
+	 * @param model
+	 */
 	public MuleSelectionPanel( TownPanel townPanel, PlayerConfigModel model){
 		super();
 		this.model = model;
 		this.townPanel = townPanel;
 		initialize();
 	}
+	
+	/**
+	 * Sets the buttons in place and adds the labels.
+	 */
 	private void initialize() {
 		setBounds(100, 100, 450, 300);
 		setLayout(null);
@@ -72,6 +90,14 @@ public class MuleSelectionPanel extends JPanel{
 		
 		
 	}
+	
+	/**
+	 * Private MuleListener class that inplements ActionListener interface.
+	 * It adds functionality to all the three ule selection buttons.
+	 * 
+	 * @author Tanay
+	 *
+	 */
 	private class MuleListener implements ActionListener {
 		int muleType;
 		public MuleListener(int muleType){

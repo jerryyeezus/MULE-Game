@@ -101,6 +101,7 @@ public class FourthScreenPanel extends JPanel {
 		PlayerNumLabel.setText("<html> Player "+ model.getCurPlayer()+"'s" + " turn " + "<br>" + "Player Resources:" + "<br>" + "money: " + model.getPlayer(model.getCurPlayer()).getMoney()
 				+ "<br>" + "Food: " + model.getPlayer(model.getCurPlayer()).getFood() + "<br>" + "Drink: " + model.getPlayer(model.getCurPlayer()).getDrink()
 				+ "<br>" + "Nicolas Cage: " + model.getPlayer(model.getCurPlayer()).getNicolasCage() + "</html>");
+		//PlayerNumLabel.setBorder(BorderFactory.createLineBorder(model.getPlayer(model.getCurPlayer()).getColor()));
 
 		curPlayer = model.getCurPlayer();
 		add(passButton);
