@@ -1,12 +1,14 @@
 package models;
 
+import java.io.Serializable;
+
 import views.StorePanel;
 
 /**
  * @author yee
  * Stores price of goods, quantities of goods, and perform transactions.
  */
-public class StoreModel {
+public class StoreModel implements Serializable {
 
 		private int numberOfGoodsAvailable;
 		private int priceOfGoods;

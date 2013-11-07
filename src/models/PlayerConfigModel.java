@@ -1,19 +1,18 @@
 package models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.ConcurrentModificationException;
-import java.util.HashMap;
 
-import enums.*;
 import views.FourthScreenPanel;
+import enums.Constants;
 
 /**
  * Getters and setters for numPlayers and returns particular player object
  * 
  * @author yee
  */
-public class PlayerConfigModel {
+public class PlayerConfigModel implements Serializable {
     private PlayerModel[] players;
     private int numPlayers;
     private int timer;
@@ -22,6 +21,7 @@ public class PlayerConfigModel {
     private int[] curRoundOrder;
     private int curRoundOrderIndex;
 
+    private static final long serialVersionUID = 1L;
     /**
      * Method which returns the player currently playing the game.
      * 
@@ -96,7 +96,7 @@ public class PlayerConfigModel {
 	}
     }
 
-    ArrayList<FourthScreenPanel> observers = new ArrayList<FourthScreenPanel>();
+    transient ArrayList<FourthScreenPanel> observers = new ArrayList<FourthScreenPanel>();
 
     /**
      * Method that gets the current round in progress.

@@ -1,5 +1,6 @@
 package models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -10,7 +11,7 @@ import java.util.ArrayList;
  * 
  */
 
-public class Land {
+public class Land implements Serializable {
 
 	private String type;
 	private int owner;
