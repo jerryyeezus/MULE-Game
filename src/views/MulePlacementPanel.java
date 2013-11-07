@@ -187,7 +187,11 @@ public class MulePlacementPanel extends JPanel {
 				//selectionPanel.setBackground(model.getPlayer(model.getCurPlayer()).getColor());
 				selectionLabel.setBackground(Color.BLUE);
 				selectionLabel.setBounds(200, 450, 400, 40);
-				selectionLabel.setBorder(BorderFactory.createLineBorder(model.getPlayer(curPlayer).getColor(), 5, true));
+//<<<<<<< HEAD
+				selectionLabel.setBorder(BorderFactory.createLineBorder(model.getPlayer(model.getCurPlayer()).getColor(), 5));
+//=======
+				selectionLabel.setBorder(BorderFactory.createLineBorder(model.getPlayer(curPlayer).getColor(), 5));
+//>>>>>>> a020287899c0eb66f201c4a20bde1968afcf57c7
 				//foodLabel.setSize(50,10);
 				add(selectionLabel);
 				add(button);

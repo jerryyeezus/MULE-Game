@@ -112,5 +112,4 @@ public class PlayerModel implements Serializable {
     public ArrayList<Land> getLandsOwner() {
 	return landOwned;
     }
-
 }

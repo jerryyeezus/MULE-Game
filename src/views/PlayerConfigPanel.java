@@ -103,8 +103,7 @@ public class PlayerConfigPanel extends JPanel {
 		this.setLayout(null);
 
 		JLabel lblMule = new JLabel("");
-		lblMule.setIcon(new ImageIcon(
-				"C:\\Users\\Tanay\\workspace\\MuleGame\\src\\mule_mini.jpg"));
+		lblMule.setIcon(new ImageIcon("C:\\Users\\Tanay\\workspace\\MuleGame\\src\\mule_mini.jpg"));
 		lblMule.setFont(new Font("Times New Roman", Font.BOLD, 19));
 		lblMule.setHorizontalAlignment(SwingConstants.LEFT);
 		lblMule.setBounds(60, 11, 77, 76);
@@ -121,13 +120,13 @@ public class PlayerConfigPanel extends JPanel {
 		JPanel panel = new JPanel();
 		panel.setBounds(10, 105, 398, 135);
 		this.add(panel);
+		panel.setBackground(new Color(255, 239, 213));
 		panel.setLayout(null);
 
 		JLabel lblSelectPlayerName = new JLabel("Select Player Name:");
 		lblSelectPlayerName.setBounds(10, 11, 104, 16);
 		panel.add(lblSelectPlayerName);
-		lblSelectPlayerName
-				.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+		lblSelectPlayerName.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 
 		textField = new JTextField();
 		textField.setBounds(163, 9, 130, 20);
@@ -143,8 +142,7 @@ public class PlayerConfigPanel extends JPanel {
 		JLabel lblSelectPlayerRace = new JLabel("Select Player Race:");
 		lblSelectPlayerRace.setBounds(10, 46, 121, 14);
 		panel.add(lblSelectPlayerRace);
-		lblSelectPlayerRace
-				.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+		lblSelectPlayerRace.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 
 		comboBox = new JComboBox();
 		comboBox.setBounds(163, 40, 130, 20);
@@ -162,7 +160,7 @@ public class PlayerConfigPanel extends JPanel {
 		comboBox_1.setBounds(163, 79, 130, 20);
 		panel.add(comboBox_1);
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] { "Red",
-				"Blue", "Green", "Black" }));
+				"Blue", "Green", "Yellow" }));
 		comboBox_1.setSelectedIndex(1);
 		comboBox_1.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 
@@ -180,27 +178,28 @@ public class PlayerConfigPanel extends JPanel {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(96, 397, 457, 46);
 		this.add(panel_1);
+		panel_1.setBackground(new Color(255, 239, 213));
 		panel_1.setLayout(null);
 
-		JButton btnClear = new JButton("<< Back");
-		btnClear.setBounds(58, 11, 93, 25);
-		panel_1.add(btnClear);
-		btnClear.setFont(new Font("Times New Roman", Font.PLAIN, 13));
-
 		JButton btnClear_1 = new JButton("Clear");
-		btnClear_1.setBounds(161, 12, 83, 23);
+		btnClear_1.setBounds(130, 12, 100, 23);
 		panel_1.add(btnClear_1);
+		btnClear_1.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+		
 		btnNext = new JButton("Next >>");
-		btnNext.setBounds(254, 12, 77, 23);
+		btnNext.setBounds(240, 12, 100, 23);
+		btnNext.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		panel_1.add(btnNext);
 
 		JButton btnExit = new JButton("Exit");
-		btnExit.setBounds(341, 12, 84, 23);
+		btnExit.setBounds(350, 12, 100, 23);
+		btnExit.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		panel_1.add(btnExit);
 
 		JPanel panel_2 = new JPanel();
 		panel_2.setBounds(10, 454, 806, 48);
 		this.add(panel_2);
+		panel_2.setBackground(new Color(255, 239, 213));
 		panel_2.setLayout(null);
 
 		JLabel lblNewLabel_1 = new JLabel(
@@ -212,6 +211,7 @@ public class PlayerConfigPanel extends JPanel {
 		JPanel panel_3 = new JPanel();
 		panel_3.setLayout(null);
 		panel_3.setBounds(418, 105, 398, 135);
+		panel_3.setBackground(new Color(255, 239, 213));
 		this.add(panel_3);
 
 		JLabel label = new JLabel("Select Player Name:");
@@ -248,7 +248,7 @@ public class PlayerConfigPanel extends JPanel {
 		panel_3.add(label_3);
 		comboBox_3 = new JComboBox();
 		comboBox_3.setModel(new DefaultComboBoxModel(new String[] { "Red",
-				"Blue", "Green", "Black" }));
+				"Blue", "Green", "Yellow" }));
 		comboBox_3.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		comboBox_3.setBounds(163, 79, 130, 20);
 		panel_3.add(comboBox_3);
@@ -267,6 +267,7 @@ public class PlayerConfigPanel extends JPanel {
 		JPanel panel_4 = new JPanel();
 		panel_4.setLayout(null);
 		panel_4.setBounds(10, 251, 398, 135);
+		panel_4.setBackground(new Color(255, 239, 213));
 		this.add(panel_4);
 
 		comboBox_3.setSelectedIndex(2);
@@ -305,7 +306,7 @@ public class PlayerConfigPanel extends JPanel {
 		panel_4.add(label_9);
 		comboBox_5 = new JComboBox();
 		comboBox_5.setModel(new DefaultComboBoxModel(new String[] { "Red",
-				"Blue", "Green", "Black" }));
+				"Blue", "Green", "Yellow" }));
 		comboBox_5.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		comboBox_5.setBounds(163, 79, 130, 20);
 		panel_4.add(comboBox_5);
@@ -324,6 +325,7 @@ public class PlayerConfigPanel extends JPanel {
 		JPanel panel_5 = new JPanel();
 		panel_5.setLayout(null);
 		panel_5.setBounds(418, 251, 398, 135);
+		panel_5.setBackground(new Color(255, 239, 213));
 		add(panel_5);
 
 		JLabel label_12 = new JLabel("Select Player Name:");
@@ -361,7 +363,7 @@ public class PlayerConfigPanel extends JPanel {
 
 		comboBox_7 = new JComboBox();
 		comboBox_7.setModel(new DefaultComboBoxModel(new String[] { "Red",
-				"Blue", "Green", "Black" }));
+				"Blue", "Green", "Yellow" }));
 		comboBox_7.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		comboBox_7.setBounds(163, 79, 130, 20);
 		panel_5.add(comboBox_7);
@@ -405,10 +407,6 @@ public class PlayerConfigPanel extends JPanel {
 				comboBox_6.setSelectedIndex(0);
 				comboBox_7.setSelectedIndex(0);
 				lblNewLabel.setText("600");
-			}
-		});
-		btnClear.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
 	}
