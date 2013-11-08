@@ -21,6 +21,7 @@ import javax.swing.Timer;
 import models.Land;
 import models.PlayerConfigModel;
 import models.PlayerModel;
+import presenters.EventManager;
 import enums.Constants;
 
 /**
@@ -47,8 +48,8 @@ public class FourthScreenPanel extends JPanel {
     int curPlayer;
     boolean landPicked = false;
     public TownPanel townPanel;
-    // public MulePlacementPanel mulePlacementPanel;
     private Timer roundTimer;
+    private EventManager eventManager;
 
     /**
      * Constructor to Create the application.
@@ -57,8 +58,8 @@ public class FourthScreenPanel extends JPanel {
 	ctr = 0;
 	this.model = model;
 	this.townPanel = new TownPanel(model);
+	this.eventManager = new EventManager(this.model);
 	this.townPanel.addListener(new ActionListener() {
-
 	    @Override
 	    public void actionPerformed(ActionEvent e) {
 		gotoMap();
@@ -66,16 +67,6 @@ public class FourthScreenPanel extends JPanel {
 	});
 
 	initialize();
-    }
-
-    /**
-     * It returns the player number who is playing at that moment.
-     * 
-     * @return current player number
-     */
-    public int getCtr() {
-	return ctr;
-
     }
 
     /**
@@ -329,6 +320,9 @@ public class FourthScreenPanel extends JPanel {
 	    this.landPicked = false;
 	    this.displayTimer();
 	    this.gotoMap();
+	    
+	    // Do Event randomization
+	    this.eventManager.run();
 	} else if (string.equals("TURN_END")) {
 	    roundTimer.stop();
 	    JOptionPane.showMessageDialog(this, "Player " + curPlayer

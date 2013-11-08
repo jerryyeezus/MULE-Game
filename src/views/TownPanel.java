@@ -11,6 +11,7 @@ import java.io.Serializable;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
@@ -65,6 +66,9 @@ public class TownPanel extends JPanel implements Serializable {
 		    new FileOutputStream(filename));
 	    
 	    out.writeObject(this.model);
+	    
+	    JOptionPane.showMessageDialog(this, "Game has been saved. Bye!" );
+	    System.exit(0);
 	} catch (FileNotFoundException e) {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
