@@ -75,6 +75,11 @@ public class View extends JFrame
 			GameConfigPanel myPanel = (GameConfigPanel) this.panel;
 			myPanel.addActionListener( l );
 		}
+		else if (this.panel instanceof TownPanel)
+		{
+			GameConfigPanel myPanel = (GameConfigPanel) this.panel;
+			myPanel.addActionListener( l );
+		}
 		
 		else if (this.panel instanceof PlayerConfigPanel) {
 			

@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -14,12 +15,15 @@ import javax.swing.JSlider;
 import javax.swing.JSpinner;
 import javax.swing.SwingConstants;
 
+import models.PlayerConfigModel;
+
 public class GameConfigPanel extends JPanel {
 	JLabel lblNewLabel;
 	JSpinner spinner;
 	private JButton btnNewButton;
 	private JSlider slider;
 	JSpinner spinner_1;
+	private static Logger myLogger = Logger.getLogger("example.Company");
 
 	/**
 	 * Add the passed listener to the next button
@@ -130,5 +134,7 @@ public class GameConfigPanel extends JPanel {
 			}
 		});
 	}
+	
+	 
 
 }
