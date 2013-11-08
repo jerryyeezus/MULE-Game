@@ -59,7 +59,7 @@ public class GameConfigPresenter {
 		}
 	}
 
-	public static void main(String[] args) {
+	public static void instantiate() {
 		GameConfigPanel panel = new GameConfigPanel();
 		View view = new View(panel);
 		GameConfigModel model = new GameConfigModel();
