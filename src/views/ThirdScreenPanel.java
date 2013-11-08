@@ -43,7 +43,7 @@ public class ThirdScreenPanel extends JPanel {
 	 */
 
 	private void initialize() {
-		setBounds(10, 78, 542, 125);
+		setBounds(10, 78, 850, 550);
 		setLayout(null);
 		setBackground(Color.black);
 		
