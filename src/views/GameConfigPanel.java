@@ -1,5 +1,6 @@
 package views;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -61,6 +62,8 @@ public class GameConfigPanel extends JPanel {
 	 */
 	public GameConfigPanel() {
 		this.setLayout(null);
+		this.setBounds(10, 78, 850, 550);
+		this.setBackground(new Color(255, 239, 213));
 		JLabel lblNewLabel = new JLabel("M.U.L.E.");
 		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 28));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -81,7 +84,7 @@ public class GameConfigPanel extends JPanel {
 		spinner = new JSpinner();
 		spinner.setBounds(208, 173, 43, 17);
 		add(spinner);
-		btnNewButton = new JButton("Next >>");
+		btnNewButton = new JButton("Next>>");
 		btnNewButton.setBounds(158, 201, 89, 23);
 		add(btnNewButton);
 
@@ -107,7 +110,7 @@ public class GameConfigPanel extends JPanel {
 				" \u00A9 Shyamak Aggarwal, Tanay Ponkshe, Nikhil Karajgikar, Jerry \"Yeezys\" Yee & Ishaan Grover ");
 		lblshyamakAggarwalTanay.setFont(new Font("Times New Roman", Font.PLAIN,
 				10));
-		lblshyamakAggarwalTanay.setBounds(10, 238, 407, 14);
+		lblshyamakAggarwalTanay.setBounds(10, 530, 800, 15);
 		this.add(lblshyamakAggarwalTanay);
 
 		JSeparator separator = new JSeparator();

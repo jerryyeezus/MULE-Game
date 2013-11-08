@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -16,8 +17,6 @@ import javax.swing.SwingUtilities;
 
 import models.GameConfigModel;
 import models.PlayerConfigModel;
-
-import com.sun.istack.internal.logging.Logger;
 
 /**
  * 
@@ -56,8 +55,7 @@ public class TownPanel extends JPanel implements Serializable {
 	this.initialize();
     }
 
-    private static Logger log = Logger.getLogger(PlayerConfigModel.class
-	    .getClass());
+   // private static Logger log = Logger.getLogger(PlayerConfigModel.class.getClass());
 
     public void save(String filename) {
 	try {
@@ -79,7 +77,7 @@ public class TownPanel extends JPanel implements Serializable {
      */
     private void initialize() {
 	panel = new JPanel();
-	panel.setBounds(10, 118, 815, 313);
+	panel.setBounds(10, 118, 850, 550);
 
 	btnPub = new JButton("");
 
