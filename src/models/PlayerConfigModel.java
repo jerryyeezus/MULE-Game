@@ -22,6 +22,7 @@ public class PlayerConfigModel implements Serializable {
     private int curRoundOrderIndex;
 
     private static final long serialVersionUID = 1L;
+
     /**
      * Method which returns the player currently playing the game.
      * 
@@ -194,8 +195,6 @@ public class PlayerConfigModel implements Serializable {
 
 	for (int i = 0; i < this.numPlayers; i++) {
 	    totals[i] = players[i].getTotal();
-	    System.out.println(players[i].getName() + " "
-		    + players[i].getTotal());
 	    ab.add(players[i].getTotal());
 	}
 
@@ -209,6 +208,10 @@ public class PlayerConfigModel implements Serializable {
 	}
 	return orderedPlayers;
 
+    }
+    
+    public int[] getCurRoundOrder() {
+	return curRoundOrder;
     }
 
     /**
@@ -226,6 +229,10 @@ public class PlayerConfigModel implements Serializable {
      * @param fourthScreenPanel
      */
     public void addCallback(FourthScreenPanel fourthScreenPanel) {
+	if (this.observers == null) {
+	    this.observers = new ArrayList<FourthScreenPanel>();
+	}
+
 	this.observers.add(fourthScreenPanel);
     }
 

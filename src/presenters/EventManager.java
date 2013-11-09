@@ -24,7 +24,15 @@ public class EventManager {
 
     public void run() {
 	Random r = new Random();
+	int poorest = model.getCurRoundOrder()[0];
+
 	for (int i = 0; i < model.getNumPlayers(); i++) {
+	    if (i == poorest) 
+	    {
+		System.out.println("no event since ur poor.");
+		break;
+	    }
+	    
 	    int rng = r.nextInt(100);
 	    for (int evt = NUM_EVENTS - 1; evt >= 0; evt--) {
 		if (rng > evt * PROBABILITY / NUM_EVENTS) {

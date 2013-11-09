@@ -45,7 +45,7 @@ public class ThirdScreenPresenter {
 
 		int[] calculatedOrder = this.model.calcPlayerOrder();
 		this.model.setCurPlayer(calculatedOrder[0]);
-		this.model.setTimer(50);
+		this.model.setTimer(40);
 		FourthScreenPresenter p = new FourthScreenPresenter(this.view,
 				this.model);
 	}
