@@ -80,6 +80,15 @@ public class PlayerModel implements Serializable {
     public void setColor(String n) {
 	color = n;
     }
+    
+    public void setActualColor(Color c) {
+    	if (c.equals(new Color(255, 0, 0) ))
+    	{
+    		this.color = "Red";
+    	}
+    	
+    	// TODO finish this
+    }
 
     public int getMoney() {
 	return money;

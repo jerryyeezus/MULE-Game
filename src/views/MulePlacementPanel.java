@@ -1,23 +1,31 @@
 package views;
 
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import models.Land;
 import models.PlayerConfigModel;
 
 /**
- *
- * Controller logic for Mule Placement. Dispalys a map and implement listeners and updates the player's model.
- *  @author yee
+ * 
+ * Controller logic for Mule Placement. Dispalys a map and implement listeners
+ * and updates the player's model.
+ * 
+ * @author yee
  */
 public class MulePlacementPanel extends JPanel {
 	private int muleType;
@@ -27,10 +35,10 @@ public class MulePlacementPanel extends JPanel {
 	private JButton[][] buttons = new JButton[5][9];
 	private int curPlayer;
 	private String[][] landArr = new String[5][9];
-	
+
 	/**
-	 * Constructor for the MulePlacement class.
-	 * sets the variables of townPanel and PlayerConfigModel.
+	 * Constructor for the MulePlacement class. sets the variables of townPanel
+	 * and PlayerConfigModel.
 	 * 
 	 * @param model
 	 * @param townPanel
@@ -41,7 +49,7 @@ public class MulePlacementPanel extends JPanel {
 	}
 
 	/**
-	 * if the user selects the appropriate land, this method repaints the land 
+	 * if the user selects the appropriate land, this method repaints the land
 	 * with a mule placed on it.
 	 * 
 	 * @param muleType
@@ -107,7 +115,7 @@ public class MulePlacementPanel extends JPanel {
 		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < 9; j++) {
 				final JButton button = new JButton("");
-				
+
 				button.setIcon(new ImageIcon("src/temp/images/map1_" + (n + 1)
 						+ ".gif"));
 				n++;
@@ -115,30 +123,27 @@ public class MulePlacementPanel extends JPanel {
 				button.setName(landArr[i][j]);
 				boolean currentlyOwned = false;
 				buttons[i][j] = button;
-				
+
 				// Check if currently owned
 				for (int player = 0; player < model.getNumPlayers(); player++) {
 					ArrayList<Land> ownedByPlayer = model.getPlayer(player)
 							.getLandsOwner();
-					for (Land myLand : ownedByPlayer){
+					for (Land myLand : ownedByPlayer) {
 						if (myLand.x == i && myLand.y == j) {
 							button.setBorder(BorderFactory
 									.createLineBorder(model.getPlayer(player)
 											.getColor()));
-							if (myLand.getMule() == 1) {
-								button.setIcon(new ImageIcon("src/temp/muled.jpg"));
-								repaint();
-							}
-							if (myLand.getMule() == 2) {
-								button.setIcon(new ImageIcon("src/temp/muled.jpg"));
-								repaint();
-							}
-							if (myLand.getMule() == 3) {
-								button.setIcon(new ImageIcon("src/temp/muled.jpg"));
-								repaint();
-							}
+							/*
+							 * if (myLand.getMule() == 1) { button.setIcon(new
+							 * ImageIcon("src/temp/muled.jpg")); repaint(); } if
+							 * (myLand.getMule() == 2) { button.setIcon(new
+							 * ImageIcon("src/temp/muled.jpg")); repaint(); } if
+							 * (myLand.getMule() == 3) { button.setIcon(new
+							 * ImageIcon("src/temp/muled.jpg")); repaint(); }
+							 */
+
 							currentlyOwned = true;
-							
+
 						}
 					}
 				}
@@ -152,57 +157,84 @@ public class MulePlacementPanel extends JPanel {
 						button.addMouseListener(new MouseAdapter() {
 							@Override
 							public void mouseClicked(MouseEvent arg0) {
-									
-									int player = model.getCurPlayer();
-									ArrayList<Land> ownedByPlayer = model.getPlayer(player)
-											.getLandsOwner();
-									boolean isValid = false;
-									for (Land myLand : ownedByPlayer) {
-										if (myLand.x == my_i && myLand.y == my_j) {
-											isValid = true;
-											myLand.setOwner(player);
-											myLand.setMule(muleType1);
-											setVisible(false);
-											((TownPanel)townPanel).clickTheLandButton();
-											
-											break;
-										}
-									}
-									
-									if (!isValid) {
-										System.out.println("Mule lost lol owned");
-										((TownPanel)townPanel).clickTheLandButton();
+
+								int player = model.getCurPlayer();
+								ArrayList<Land> ownedByPlayer = model
+										.getPlayer(player).getLandsOwner();
+								boolean isValid = false;
+								for (Land myLand : ownedByPlayer) {
+									if (myLand.x == my_i && myLand.y == my_j) {
+										isValid = true;
+										myLand.setOwner(player);
+										myLand.setMule(muleType1);
 										setVisible(false);
-										//((TownPanel)townPanel).setInvisible();
+										((TownPanel) townPanel)
+												.clickTheLandButton();
+
+										break;
 									}
-									
-									
-									
+								}
+
+								if (!isValid) {
+									showBad();
+									System.out.println("Mule lost lol owned");
+									((TownPanel) townPanel)
+											.clickTheLandButton();
+									setVisible(false);
+									// ((TownPanel)townPanel).setInvisible();
+								}
+
 							}
+
 						});
 					}
 
 				}
-				JLabel selectionLabel = new JLabel(" Player : " + curPlayer + " ; Please select land to place the mule");
-				//selectionPanel.setBackground(model.getPlayer(model.getCurPlayer()).getColor());
+				JLabel selectionLabel = new JLabel(" Player : " + curPlayer
+						+ " ; Please select land to place the mule");
+				// selectionPanel.setBackground(model.getPlayer(model.getCurPlayer()).getColor());
 				selectionLabel.setBackground(Color.BLUE);
 				selectionLabel.setBounds(200, 450, 400, 40);
-//<<<<<<< HEAD
-				selectionLabel.setBorder(BorderFactory.createLineBorder(model.getPlayer(model.getCurPlayer()).getColor(), 5));
-//=======
-				selectionLabel.setBorder(BorderFactory.createLineBorder(model.getPlayer(curPlayer).getColor(), 5));
-//>>>>>>> a020287899c0eb66f201c4a20bde1968afcf57c7
-				//foodLabel.setSize(50,10);
+				selectionLabel.setBorder(BorderFactory.createLineBorder(model
+						.getPlayer(model.getCurPlayer()).getColor(), 5));
+				selectionLabel.setBorder(BorderFactory.createLineBorder(model
+						.getPlayer(curPlayer).getColor(), 5));
 				add(selectionLabel);
 				add(button);
 			}
 		} // end of FOR
-		
-		this.revalidate();
-		this.repaint();
+
+		// this.revalidate();
+		// this.repaint();
 
 	}
 
-	
+	@Override
+	public void paint(Graphics g) {
+		super.paint(g);
 
+		for (int i = 0; i < model.getNumPlayers(); i++) {
+			ArrayList<Land> tmp = model.getPlayer(i).getLandsOwner();
+			for (Land land : tmp) {
+				if (land.getMule() != -1) {
+					try {
+						Image image = ImageIO.read(new File(
+								"src/temp/muleguy.png"));
+						g.drawImage(image, land.y * 80 + 10, land.x * 80 + 20,
+								null);
+					} catch (IOException e) {
+					}
+				}
+			}
+		}
+
+	}
+
+	private void showBad() {
+		JOptionPane
+				.showMessageDialog(
+						this,
+						"Your mule got scared and ran away since you placed it on land not owned by you. Too bad!");
+
+	}
 }
