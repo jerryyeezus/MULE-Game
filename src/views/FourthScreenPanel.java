@@ -185,6 +185,9 @@ public class FourthScreenPanel extends JPanel {
 											.getColor()));
 							button.setEnabled(false);
 							currentlyOwned = true;
+							if(myLand.getMule() != -1){
+								button.setFocusable(false);
+							}
 						}
 					}
 				}
@@ -317,6 +320,7 @@ public class FourthScreenPanel extends JPanel {
 			int[] scores = new int[4];
 			for (int i = 0; i < model.getNumPlayers(); i++) {
 				PlayerModel curPlayer = model.getPlayer(i);
+				
 				dispMsg += "\nPlayer " + i + "\nMoney: " + curPlayer.getMoney()
 						+ "\nDrink: " + curPlayer.getDrink() + "\nFood: "
 						+ curPlayer.getFood() + "\nNicolasCage: "
@@ -513,7 +517,6 @@ public class FourthScreenPanel extends JPanel {
 								// "src/temp/muled.jpg"));
 								repaint();
 							}
-
 							button.setFocusable(false);
 							currentlyOwned = true;
 						}

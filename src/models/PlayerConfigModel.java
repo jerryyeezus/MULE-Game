@@ -1,5 +1,6 @@
 package models;
 
+import java.awt.Color;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -72,8 +73,21 @@ public class PlayerConfigModel implements Serializable {
 			savedPlayer = readObject.getPlayer(i);
 			
 			newPlayer.setActualColor(savedPlayer.getColor());
+			if(savedPlayer.getColor().equals(new Color(255,0,0)))
+				newPlayer.setColor("RED");
+			if(savedPlayer.getColor().equals(new Color(0,0,255)))
+				newPlayer.setColor("BLUE");
+			if(savedPlayer.getColor().equals(new Color(0,255,0)))
+				newPlayer.setColor("GREEN");
+			if(savedPlayer.getColor().equals(new Color(255,255,0)))
+				newPlayer.setColor("YELLOW");
 			newPlayer.setDrink(savedPlayer.getDrink());
+			ArrayList<Land> lands = savedPlayer.getLandsOwner();
+			for(Land l : lands){
+				newPlayer.addLand(l);
+			}
 			newPlayer.setFood(savedPlayer.getFood());
+			newPlayer.setName(savedPlayer.getName());
 			newPlayer.setLand(savedPlayer.getLand());
 			newPlayer.setNicolasCage(savedPlayer.getNicolasCage());
 			newPlayer.setMoney(savedPlayer.getMoney());

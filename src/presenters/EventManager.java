@@ -26,18 +26,19 @@ public class EventManager {
 	Random r = new Random();
 	int poorest = model.getCurRoundOrder()[0];
 
-	for (int i = 0; i < model.getNumPlayers(); i++) {
-	    if (i == poorest) 
-	    {
-		System.out.println("no event since ur poor.");
-		continue;
-	    }
-	    
+	for (int i = 0; i < model.getNumPlayers(); i++) {	    
 	    int rng = r.nextInt(100);
+	    
 	    for (int evt = NUM_EVENTS - 1; evt >= 0; evt--) {
 		if (rng > evt * PROBABILITY / NUM_EVENTS) {
-		    events[evt].doEvent(i);
-		    break;
+			if(i != poorest)
+		    {	events[evt].doEvent(i);
+		    	break;
+		    }
+			else if (!events[evt].getIsBad()){
+				System.out.println("no bad event cuz ur poor");
+				break;
+			}
 		}
 	    }
 	} // end of outer-for
