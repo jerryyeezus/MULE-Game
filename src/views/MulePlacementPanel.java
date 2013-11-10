@@ -177,11 +177,9 @@ public class MulePlacementPanel extends JPanel {
 
 								if (!isValid) {
 									showBad();
-									System.out.println("Mule lost lol owned");
 									((TownPanel) townPanel)
 											.clickTheLandButton();
 									setVisible(false);
-									// ((TownPanel)townPanel).setInvisible();
 								}
 
 							}
@@ -212,14 +210,28 @@ public class MulePlacementPanel extends JPanel {
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
-
 		for (int i = 0; i < model.getNumPlayers(); i++) {
 			ArrayList<Land> tmp = model.getPlayer(i).getLandsOwner();
 			for (Land land : tmp) {
 				if (land.getMule() != -1) {
+					String muleStr;
+					switch (land.getMule()) {
+					case 1:
+						muleStr = "muleguy.png";
+						break;
+					case 2:
+						muleStr = "squirtle.png";
+						break;
+					case 3:
+						muleStr = "nic.png";
+						break;
+					default:
+						muleStr = "muleguy.png";
+					}
+
 					try {
-						Image image = ImageIO.read(new File(
-								"src/temp/muleguy.png"));
+						Image image = ImageIO.read(new File("src/temp/"
+								+ muleStr));
 						g.drawImage(image, land.y * 80 + 10, land.x * 80 + 20,
 								null);
 					} catch (IOException e) {

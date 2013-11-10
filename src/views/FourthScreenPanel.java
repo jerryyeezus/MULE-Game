@@ -354,19 +354,35 @@ public class FourthScreenPanel extends JPanel {
 
 		if (this.state == State.MAP) {
 
-		for (int i = 0; i < model.getNumPlayers(); i++) {
-			ArrayList<Land> tmp = model.getPlayer(i).getLandsOwner();
-			for (Land land : tmp) {
-				if (land.getMule() != -1) {
-					try {
-						Image image = ImageIO.read(new File(
-								"src/temp/muleguy.png"));
-						g.drawImage(image, land.y * 80 + 10, land.x * 80 + 20, null);
-					} catch (IOException e) {
+			for (int i = 0; i < model.getNumPlayers(); i++) {
+				ArrayList<Land> tmp = model.getPlayer(i).getLandsOwner();
+				for (Land land : tmp) {
+					if (land.getMule() != -1) {
+						String muleStr;
+						switch (land.getMule()) {
+						case 1:
+							muleStr = "muleguy.png";
+							break;
+						case 2:
+							muleStr = "squirtle.png";
+							break;
+						case 3:
+							muleStr = "nic.png";
+							break;
+						default:
+								muleStr = "muleguy.png";
+						}
+
+						try {
+							Image image = ImageIO.read(new File(
+									"src/temp/" + muleStr));
+							g.drawImage(image, land.y * 80 + 10,
+									land.x * 80 + 20, null);
+						} catch (IOException e) {
+						}
 					}
 				}
 			}
-		}
 		}
 
 		// g.drawImage(img, dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2, observer);
@@ -472,8 +488,10 @@ public class FourthScreenPanel extends JPanel {
 		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < 9; j++) {
 				final JButton button = new JButton("");
-				button.setIcon(new ImageIcon("src/temp/images/map1_" + (n + 1) + ".gif"));
-				button.setDisabledIcon(new ImageIcon("src/temp/images/map1_" + (n + 1) + ".gif"));
+				button.setIcon(new ImageIcon("src/temp/images/map1_" + (n + 1)
+						+ ".gif"));
+				button.setDisabledIcon(new ImageIcon("src/temp/images/map1_"
+						+ (n + 1) + ".gif"));
 				n++;
 				button.setBounds(80 * j, 80 * i, 80, 80);
 				button.setName(landArr[i][j]);

@@ -30,7 +30,7 @@ public class EventManager {
 	    if (i == poorest) 
 	    {
 		System.out.println("no event since ur poor.");
-		break;
+		continue;
 	    }
 	    
 	    int rng = r.nextInt(100);
