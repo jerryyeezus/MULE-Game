@@ -9,6 +9,7 @@ import models.GameConfigModel;
 import views.GameConfigPanel;
 import views.View;
 
+
 /**
  * @author yee update game config model with view values
  */

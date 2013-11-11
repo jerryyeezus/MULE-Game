@@ -28,6 +28,8 @@ public class AnimPanel extends JPanel {
 	private int arr_y[];
 	private int cloud_x;
 	private int cloud_y;
+	private int cloud_x2;
+	private int cloud_y2;
 
 	File[] images = { new File("src/temp/frame0.png"),
 			new File("src/temp/frame1.png"), new File("src/temp/frame2.png"),
@@ -43,7 +45,6 @@ public class AnimPanel extends JPanel {
 	protected int cursor;
 
 	private TitleScreen titleScreen;
-	private boolean pressedEnter = false;
 	protected int dAlpha;
 
 	private enum State {
@@ -57,7 +58,11 @@ public class AnimPanel extends JPanel {
 		titleScreen = screen;
 		dAlpha = -D_ALPHA;
 		cloud_x = 0;
-		cloud_y = 10;
+		cloud_y = 210;
+
+		cloud_x2 = 500;
+		cloud_y2 = 78;
+
 		cursor = 0;
 		addKeyListener(new KeyAdapter() {
 			@Override
@@ -127,23 +132,23 @@ public class AnimPanel extends JPanel {
 			g.setColor(Color.WHITE);
 			g.setFont(new Font("Verdana", Font.BOLD, 24));
 			if (cursor == 0)
-			    g.setColor(Color.RED);
+				g.setColor(Color.RED);
 			g.drawString("New Game", this.getWidth() / 3 + 30, 230);
 			g.setColor(Color.WHITE);
 
 			if (cursor == 1)
-			    g.setColor(Color.RED);
+				g.setColor(Color.RED);
 			g.drawString("Load Game", this.getWidth() / 3 + 30, 290);
 
 			g.setColor(Color.WHITE);
 			if (cursor == 2)
-			    g.setColor(Color.RED);
+				g.setColor(Color.RED);
 			g.drawString("About", this.getWidth() / 3 + 30, 350);
 			g.setColor(Color.WHITE);
 
 		} else if (current == State.PRESS_ENTER) {
-			g.setColor(new Color(255, 255, 255, alphaLevel));
-			g.setFont(new Font("TimesRoman", Font.BOLD, 15));
+			g.setColor(new Color(83, 23, 230, alphaLevel));
+			g.setFont(new Font("calibri", Font.BOLD, 20));
 			g.drawString("Press Enter...", this.getWidth() / 3 + 40, 290);
 		} else {
 			cursor = 0;
@@ -161,11 +166,12 @@ public class AnimPanel extends JPanel {
 			for (int i = 1; i < 5; i++)
 				g.drawString(str[i], this.getWidth() / 4, 200 + i * 30);
 		}
-		
-		g.drawImage(cloud, cloud_x, cloud_y, null);
 
 		for (int i = 0; i < NUM_ARROWS; i++)
 			g.drawImage(rain, arr_x[i], arr_y[i], null);
+
+		g.drawImage(cloud, cloud_x, cloud_y, 1800, 380, null);
+		g.drawImage(cloud, cloud_x2, cloud_y2, 1800, 400, null);
 	}
 
 	public void animate() {
@@ -190,10 +196,14 @@ public class AnimPanel extends JPanel {
 				if (counter > 21) {
 					counter = 0;
 				}
-				
-				cloud_x-= 25;
+
+				cloud_x -= 30;
 				if (cloud_x < -1750)
-				    cloud_x = 100;
+					cloud_x = 100;
+
+				cloud_x2 -= 15;
+				if (cloud_x2 < -1750)
+					cloud_x2 = 100;
 
 				for (int i = 0; i < NUM_ARROWS; i++) {
 					arr_y[i] += 19;

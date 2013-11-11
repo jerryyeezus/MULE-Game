@@ -185,6 +185,9 @@ public class FourthScreenPanel extends JPanel {
 											.getColor()));
 							button.setEnabled(false);
 							currentlyOwned = true;
+							if(myLand.getMule() != -1){
+								button.setFocusable(false);
+							}
 						}
 					}
 				}
@@ -208,22 +211,37 @@ public class FourthScreenPanel extends JPanel {
 											amt = 50;
 										else
 											amt = 40;
-
+										
 										PlayerModel curr = model
 												.getPlayer(curPlayer);
-										curr.setMoney(curr.getMoney() - amt);
+										if(curr.getMoney() >= amt){
+											curr.setMoney(curr.getMoney() - amt);
+											Color playersColor = model.getPlayer(
+													curPlayer).getColor();
+											model.getPlayer(curPlayer).addLand(
+													new Land(landArr[my_i][my_j], my_i,
+															my_j));
+											button.setBorder(BorderFactory
+													.createLineBorder(playersColor));
+											button.setVisible(true);
+											landPicked = true;
+											repaint();
+										}
 									}
-									Color playersColor = model.getPlayer(
-											curPlayer).getColor();
-									model.getPlayer(curPlayer).addLand(
-											new Land(landArr[my_i][my_j], my_i,
-													my_j));
-									button.setBorder(BorderFactory
-											.createLineBorder(playersColor));
-									button.setVisible(true);
-									landPicked = true;
-									repaint();
+									else{
+										Color playersColor = model.getPlayer(
+												curPlayer).getColor();
+										model.getPlayer(curPlayer).addLand(
+												new Land(landArr[my_i][my_j], my_i,
+														my_j));
+										button.setBorder(BorderFactory
+												.createLineBorder(playersColor));
+										button.setVisible(true);
+										landPicked = true;
+										repaint();
+									}
 								}
+									
 							}
 						});
 					}
@@ -317,6 +335,58 @@ public class FourthScreenPanel extends JPanel {
 			int[] scores = new int[4];
 			for (int i = 0; i < model.getNumPlayers(); i++) {
 				PlayerModel curPlayer = model.getPlayer(i);
+				ArrayList<Land> probe = curPlayer.getLandsOwner();
+				for (int s = 0; s < probe.size() ; s++){
+					Land land = probe.get(s);
+					if (land.getType() == "P"){
+						if (land.getMule() == 1){
+							curPlayer.setFood(curPlayer.getFood()+2);
+						}
+						else if (land.getMule() == 2){
+							curPlayer.setDrink(curPlayer.getDrink()+3);
+						}
+						else if (land.getMule() == 3)
+							curPlayer.setNicolasCage(curPlayer.getNicolasCage()+1);
+					}
+					if (land.getType() == "R"){
+						if (land.getMule() == 1){
+							curPlayer.setFood(curPlayer.getFood()+4);
+						}
+						else if (land.getMule() == 2)
+							curPlayer.setDrink(curPlayer.getDrink()+2);
+					}
+					if (land.getType() == "M"){
+						if (land.getMule() == 1){
+							curPlayer.setFood(curPlayer.getFood()+1);
+						}
+						else if (land.getMule() == 2){
+							curPlayer.setDrink(curPlayer.getDrink()+1);
+						}
+						else if (land.getMule() == 3)
+							curPlayer.setNicolasCage(curPlayer.getNicolasCage()+2);
+					}
+				}
+					/*if (land.getType() == "M2"){
+						if (land.getMule() == 1){
+							curPlayer.setFood(curPlayer.getFood()+1);
+						}
+						else if (land.getMule() == 2){
+							curPlayer.setDrink(curPlayer.getDrink()+1);
+						}
+						else if (land.getMule() == 3)
+							curPlayer.setNicolasCage(curPlayer.getNicolasCage()+3);
+					}
+					if (land.getType() == "M3"){
+						if (land.getMule() == 1){
+							curPlayer.setFood(curPlayer.getFood()+1);
+						}
+						else if (land.getMule() == 2){
+							curPlayer.setDrink(curPlayer.getDrink()+1);
+						}
+						else if (land.getMule() == 3)
+							curPlayer.setNicolasCage(curPlayer.getNicolasCage()+4);
+					}
+				}*/
 				dispMsg += "\nPlayer " + i + "\nMoney: " + curPlayer.getMoney()
 						+ "\nDrink: " + curPlayer.getDrink() + "\nFood: "
 						+ curPlayer.getFood() + "\nNicolasCage: "
@@ -331,7 +401,8 @@ public class FourthScreenPanel extends JPanel {
 
 			// Do Event randomization
 			this.eventManager.run();
-		} else if (string.equals("TURN_END")) {
+		}
+			else if (string.equals("TURN_END")) {
 			roundTimer.stop();
 			JOptionPane.showMessageDialog(this, "Player " + curPlayer
 					+ "'s turn is over.");
@@ -513,7 +584,6 @@ public class FourthScreenPanel extends JPanel {
 								// "src/temp/muled.jpg"));
 								repaint();
 							}
-
 							button.setFocusable(false);
 							currentlyOwned = true;
 						}

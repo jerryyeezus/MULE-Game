@@ -133,6 +133,7 @@ public class MulePlacementPanel extends JPanel {
 							button.setBorder(BorderFactory
 									.createLineBorder(model.getPlayer(player)
 											.getColor()));
+						
 							/*
 							 * if (myLand.getMule() == 1) { button.setIcon(new
 							 * ImageIcon("src/temp/muled.jpg")); repaint(); } if
@@ -141,7 +142,15 @@ public class MulePlacementPanel extends JPanel {
 							 * (myLand.getMule() == 3) { button.setIcon(new
 							 * ImageIcon("src/temp/muled.jpg")); repaint(); }
 							 */
-
+							setEnabled(false);
+							if (myLand.getMule() == 1 || myLand.getMule() == 2
+									|| myLand.getMule() == 3) {
+								// button.setIcon(new ImageIcon(
+								// "src/temp/muled.jpg"));
+								repaint();
+							}
+							button.setFocusable(false);
+							
 							currentlyOwned = true;
 
 						}
@@ -234,6 +243,7 @@ public class MulePlacementPanel extends JPanel {
 								+ muleStr));
 						g.drawImage(image, land.y * 80 + 10, land.x * 80 + 20,
 								null);
+						repaint();
 					} catch (IOException e) {
 					}
 				}

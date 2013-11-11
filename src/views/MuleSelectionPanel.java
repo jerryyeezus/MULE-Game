@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import models.PlayerConfigModel;
@@ -51,6 +52,8 @@ public class MuleSelectionPanel extends JPanel{
 	private void initialize() {
 		setBounds(100, 100, 450, 300);
 		setLayout(null);
+		int money =model.getPlayer(model.getCurPlayer()).getMoney();
+		System.out.println(money + " money for player " + model.getCurPlayer());
 		
 		btnNewButton = new JButton("New button");
 		btnNewButton.setBounds(68, 119, 89, 23);
@@ -59,12 +62,14 @@ public class MuleSelectionPanel extends JPanel{
 		btnNewButton.addActionListener(new MuleListener(1));
 		add(btnNewButton);
 		
+		
 		btnNewButton_1 = new JButton("New button");
 		btnNewButton_1.setBounds(261, 119, 89, 23);
 		btnNewButton_1.setSize(135,135);
 		btnNewButton_1.setIcon(new ImageIcon("src/temp/drink-mule.jpg"));
 		btnNewButton_1.addActionListener(new MuleListener(2));
 		add(btnNewButton_1);
+		
 		
 		btnNewButton_2 = new JButton("New button");
 		btnNewButton_2.setBounds(483, 119, 89, 23);
@@ -95,6 +100,9 @@ public class MuleSelectionPanel extends JPanel{
 		
 		
 	}
+	public void setVisiblity(){
+		this.setVisible(false);
+	}
 	
 	/**
 	 * Private MuleListener class that inplements ActionListener interface.
@@ -107,18 +115,43 @@ public class MuleSelectionPanel extends JPanel{
 		int muleType;
 		public MuleListener(int muleType){
 			this.muleType = muleType;
+			
 		}
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			PlayerModel p = model.getPlayer(model.getCurPlayer());
-			if(muleType ==1)
-				p.setMoney(p.getMoney()-37);
-			else if(muleType ==2)
-				p.setMoney(p.getMoney()-13);
-			else if(muleType ==3)
-				p.setMoney(p.getMoney()-56);
-			townPanel.gotoMulePlacement(muleType);
 			
+			PlayerModel p = model.getPlayer(model.getCurPlayer());
+			int money = p.getMoney();
+			if(muleType ==1 && money>=37){
+				p.setMoney(p.getMoney()-37);
+				townPanel.gotoMulePlacement(muleType);
+			}
+			else if(money < 37){
+				setVisiblity();
+				message();
+				
+			}
+			else if(muleType ==2 && money>=13){
+				p.setMoney(p.getMoney()-13);
+				townPanel.gotoMulePlacement(muleType);
+			}
+			else if(money <13){
+				setVisiblity();
+				message();
+			}
+			else if(muleType ==3  && money>=56){
+				p.setMoney(p.getMoney()-56);
+				townPanel.gotoMulePlacement(muleType);
+			}
+			else if(money < 56){
+				setVisiblity();
+				message();
+			}
+			
+			
+		}
+		public void message(){
+			JOptionPane.showMessageDialog(null, "You don't have enough money! Going back to town...");
 		}
 		
 	}

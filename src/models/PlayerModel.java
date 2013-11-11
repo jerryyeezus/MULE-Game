@@ -17,6 +17,7 @@ public class PlayerModel implements Serializable {
     private int food;
     private int drink;
     private int nicolasCage;
+    private ArrayList<Land> landOwned;
 
     public int getDrink() {
 	return drink;
@@ -34,7 +35,7 @@ public class PlayerModel implements Serializable {
 	this.nicolasCage = nicolasCage;
     }
 
-    private ArrayList<Land> landOwned;
+   
 
     public PlayerModel() {
 	name = "NOT IN GAME";
@@ -78,7 +79,7 @@ public class PlayerModel implements Serializable {
     }
 
     public void setColor(String n) {
-	color = n;
+    	color = n;
     }
     
     public void setActualColor(Color c) {
