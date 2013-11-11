@@ -91,7 +91,7 @@ public class TitleScreen {
 		//frame.getContentPane().add(a);
 
 		JLabel lblNewLabel = new JLabel("M.U.L.E   GAME");
-		lblNewLabel.setIcon(new ImageIcon("src/temp/Title.png"));
+		lblNewLabel.setIcon(new ImageIcon("src/temp/title.png"));
 		lblNewLabel.setOpaque(false);
 		lblNewLabel.setBounds(195, 43, 262, 48);
 

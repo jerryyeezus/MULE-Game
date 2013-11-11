@@ -26,6 +26,8 @@ public class AnimPanel extends JPanel {
 
 	private int arr_x[];
 	private int arr_y[];
+	private int cloud_x;
+	private int cloud_y;
 
 	File[] images = { new File("src/temp/frame0.png"),
 			new File("src/temp/frame1.png"), new File("src/temp/frame2.png"),
@@ -33,6 +35,7 @@ public class AnimPanel extends JPanel {
 
 	private Image[] imgFrames;
 	private Image cursorImg;
+	private Image cloud;
 	private Image bg;
 	private int alphaLevel = 255;
 	private Image rain;
@@ -53,6 +56,8 @@ public class AnimPanel extends JPanel {
 		super();
 		titleScreen = screen;
 		dAlpha = -D_ALPHA;
+		cloud_x = 0;
+		cloud_y = 10;
 		cursor = 0;
 		addKeyListener(new KeyAdapter() {
 			@Override
@@ -98,8 +103,9 @@ public class AnimPanel extends JPanel {
 		imgFrames = new Image[4];
 		try {
 			bg = ImageIO.read(new File("src/temp/bg2.jpg"));
-			cursorImg = ImageIO.read(new File("src/temp/right.png"));
-			rain = ImageIO.read(new File("src/temp/rain.png"));
+			cursorImg = ImageIO.read(new File("src/temp/cursor.png"));
+			cloud = ImageIO.read(new File("src/temp/cloud.png"));
+			rain = ImageIO.read(new File("src/temp/rain2.png"));
 			for (int i = 0; i < 4; i++)
 				imgFrames[i] = ImageIO.read(images[i]);
 		} catch (IOException e) {
@@ -116,15 +122,25 @@ public class AnimPanel extends JPanel {
 		g.drawImage(imgFrames[frame], 250, y, null);
 
 		if (current == State.CHOOSE) {
-			g.setColor(Color.GREEN);
-			// g.fillRect(210, 215 + cursor * 60, 10, 10);
-			g.drawImage(cursorImg, 210, 215 + cursor * 60, 10, 10, null);
+			g.drawImage(cursorImg, 210, 215 + cursor * 60, null);
 
 			g.setColor(Color.WHITE);
 			g.setFont(new Font("Verdana", Font.BOLD, 24));
+			if (cursor == 0)
+			    g.setColor(Color.RED);
 			g.drawString("New Game", this.getWidth() / 3 + 30, 230);
+			g.setColor(Color.WHITE);
+
+			if (cursor == 1)
+			    g.setColor(Color.RED);
 			g.drawString("Load Game", this.getWidth() / 3 + 30, 290);
+
+			g.setColor(Color.WHITE);
+			if (cursor == 2)
+			    g.setColor(Color.RED);
 			g.drawString("About", this.getWidth() / 3 + 30, 350);
+			g.setColor(Color.WHITE);
+
 		} else if (current == State.PRESS_ENTER) {
 			g.setColor(new Color(255, 255, 255, alphaLevel));
 			g.setFont(new Font("TimesRoman", Font.BOLD, 15));
@@ -141,10 +157,12 @@ public class AnimPanel extends JPanel {
 			str[1] = "	Architect: Jerry \"Yeezus\" Yee";
 			str[2] = "	Programmer: Tanay Pontkshe";
 			str[3] = "	Intern: Ishaan Grover";
-			str[4] = "	Javadoc Person : Sham";
+			str[4] = "	Javadoc Specialist : Sham";
 			for (int i = 1; i < 5; i++)
 				g.drawString(str[i], this.getWidth() / 4, 200 + i * 30);
 		}
+		
+		g.drawImage(cloud, cloud_x, cloud_y, null);
 
 		for (int i = 0; i < NUM_ARROWS; i++)
 			g.drawImage(rain, arr_x[i], arr_y[i], null);
@@ -172,10 +190,14 @@ public class AnimPanel extends JPanel {
 				if (counter > 21) {
 					counter = 0;
 				}
+				
+				cloud_x-= 25;
+				if (cloud_x < -1750)
+				    cloud_x = 100;
 
 				for (int i = 0; i < NUM_ARROWS; i++) {
-					arr_y[i] += 12;
-					arr_x[i] -= 6;
+					arr_y[i] += 19;
+					arr_x[i] -= 6 + r.nextInt(12);
 					if (arr_x[i] < 0) {
 						arr_x[i] = r.nextInt(800) + 40;
 						arr_y[i] = 0;
