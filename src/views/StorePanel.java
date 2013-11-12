@@ -61,7 +61,7 @@ public class StorePanel extends JPanel {
 		setLayout(null);
 
 		JSeparator separator = new JSeparator();
-		separator.setBounds(10, 200, 450, 25);
+		separator.setBounds(10, 220, 450, 25);
 		add(separator);
 
 		JLabel lblNewLabel = new JLabel("SELL");
@@ -109,7 +109,7 @@ public class StorePanel extends JPanel {
 		});
 
 		JButton btnNewButton_1 = new JButton("Buy Goods");
-		btnNewButton_1.setBounds(160, 430, 100, 25);
+		btnNewButton_1.setBounds(160, 470, 100, 25);
 		add(btnNewButton_1);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -175,15 +175,15 @@ public class StorePanel extends JPanel {
 		txtCageSell.setColumns(10);
 
 		JLabel lblAvailableNumberOf = new JLabel("Available Number of Foods: ");
-		lblAvailableNumberOf.setBounds(70, 280, 150, 20);
+		lblAvailableNumberOf.setBounds(70, 280, 170, 20);
 		add(lblAvailableNumberOf);
 		
 		JLabel lblAvailableNumberOfDrink = new JLabel("Available Number of Drinks: ");
-		lblAvailableNumberOfDrink.setBounds(70, 310, 150, 20);
+		lblAvailableNumberOfDrink.setBounds(70, 310, 170, 20);
 		add(lblAvailableNumberOfDrink);
 		
 		JLabel lblAvailableNumberOfCage = new JLabel("Available Number of Nicolas Cages: ");
-		lblAvailableNumberOfCage.setBounds(70, 340, 150, 20);
+		lblAvailableNumberOfCage.setBounds(70, 340, 170, 20);
 		add(lblAvailableNumberOfCage);
 
 		foodAvailable = new JLabel("New label");
@@ -208,24 +208,25 @@ public class StorePanel extends JPanel {
 		
 		JLabel lblQuantityOfCage = new JLabel("Quantity of Nicolas Cage:");
 		lblQuantityOfCage.setBounds(70, 430, 150, 20);
+		add(lblQuantityOfCage);
 
 		txtFoodBuy = new JTextField("0");
-		txtFoodBuy.setBounds(220, 370, 100, 20);
+		txtFoodBuy.setBounds(250, 370, 70, 20);
 		add(txtFoodBuy);
 		txtFoodBuy.setColumns(10);
 
 		txtDrinksBuy = new JTextField("0");
-		txtDrinksBuy.setBounds(220, 400, 100, 20);
+		txtDrinksBuy.setBounds(250, 400, 70, 20);
 		add(txtDrinksBuy);
 		txtDrinksBuy.setColumns(10);
 		
 		txtCageBuy = new JTextField("0");
-		txtCageBuy.setBounds(220, 400, 100, 20);
+		txtCageBuy.setBounds(250, 430, 70, 20);
 		add(txtCageBuy);
 		txtCageBuy.setColumns(10);
 		
 		JButton btnBack = new JButton("Back to Town");
-		btnBack.setBounds(460, 600, 120, 23);
+		btnBack.setBounds(460, 500, 120, 23);
 		add(btnBack);
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -234,11 +235,11 @@ public class StorePanel extends JPanel {
 		});
 		
 		lblSellStatus = new JLabel("");
-		lblSellStatus.setBounds(70, 150, 250, 20);
+		lblSellStatus.setBounds(70, 185, 250, 20);
 		add(lblSellStatus);
 
 		lblBuyStatus = new JLabel("");
-		lblBuyStatus.setBounds(70, 450, 250, 20);
+		lblBuyStatus.setBounds(70, 505, 250, 20);
 		add(lblBuyStatus);
 	}
 
@@ -250,11 +251,16 @@ public class StorePanel extends JPanel {
 >>>>>>> 4d3a36d2d205e3a0d8a81b32db2b8bd3089c7bfa
 	 */
 	public void runStore() {
-		int storeGoods = storeModel.getFoodAvailable();
-		int playerGoods = model.getPlayer(model.getCurPlayer()).getFood();
+		int storeFood = storeModel.getFoodAvailable();
+		int storeDrinks = storeModel.getFoodAvailable();
+		int storeCage = storeModel.getFoodAvailable();
+		int playerFood = model.getPlayer(model.getCurPlayer()).getFood();
+		int playerDrinks = model.getPlayer(model.getCurPlayer()).getDrink();
+		int playerCage = model.getPlayer(model.getCurPlayer()).getNicolasCage();
 		int playerMoney = model.getPlayer(model.getCurPlayer()).getMoney();
-		foodAvailable.setText(storeGoods+"");
-
+		foodAvailable.setText(storeFood+"");
+		drinkAvailable.setText(storeDrinks+"");
+		cageAvailable.setText(storeCage+"");
 	}
 
 }
