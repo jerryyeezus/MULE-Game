@@ -65,7 +65,7 @@ public class Pub extends JPanel {
 	this.setLayout(null);
 
 	JPanel panel = new JPanel();
-	panel.setBounds(10, 120, 800, 500);
+	panel.setBounds(10, 10, 800, 500);
 	this.add(panel);
 	panel.setLayout(null);
 
@@ -74,9 +74,9 @@ public class Pub extends JPanel {
 	panel.add(lblNewLabel);
 	
 	JLabel lblRoulette = new JLabel("");
-	lblRoulette.setBounds(10, 10, 700, 400);
+	lblRoulette.setBounds(10, 40, 700, 380);
 	panel.add(lblRoulette);
-	lblRoulette.setIcon(new ImageIcon("src/temp/roulette.gif"));
+	lblRoulette.setIcon(new ImageIcon("src/temp/roulette.jpg"));
 
 	JLabel lblNewLabel_1 = new JLabel("");
 	lblNewLabel_1.setBounds(160, 450, 500, 20);
@@ -84,9 +84,9 @@ public class Pub extends JPanel {
 	panel.add(lblNewLabel_1);
 
 	JLabel lblGamble = new JLabel("GAMBLING");
-	lblGamble.setBounds(354, 81, 450, 28);
-	add(lblGamble);
-	lblGamble.setHorizontalAlignment(SwingConstants.LEFT);
+	lblGamble.setBounds(10, 10, 450, 20);
+	panel.add(lblGamble);
+	lblGamble.setHorizontalAlignment(SwingConstants.CENTER);
 
 	/*
 	JButton btnNext = new JButton("Next>>");
