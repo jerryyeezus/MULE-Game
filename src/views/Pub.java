@@ -65,16 +65,21 @@ public class Pub extends JPanel {
 	this.setLayout(null);
 
 	JPanel panel = new JPanel();
-	panel.setBounds(10, 120, 814, 313);
+	panel.setBounds(10, 120, 800, 500);
 	this.add(panel);
 	panel.setLayout(null);
 
 	lblNewLabel = new JLabel("New label");
-	lblNewLabel.setBounds(160, 11, 500, 250);
+	lblNewLabel.setBounds(10, 420, 500, 20);
 	panel.add(lblNewLabel);
+	
+	JLabel lblRoulette = new JLabel("");
+	lblRoulette.setBounds(10, 10, 700, 400);
+	panel.add(lblRoulette);
+	lblRoulette.setIcon(new ImageIcon("src/temp/roulette.gif"));
 
-	JLabel lblNewLabel_1 = new JLabel("New label");
-	lblNewLabel_1.setBounds(160, 272, 500, 30);
+	JLabel lblNewLabel_1 = new JLabel("");
+	lblNewLabel_1.setBounds(160, 450, 500, 20);
 	setLabel();
 	panel.add(lblNewLabel_1);
 
