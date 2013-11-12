@@ -3,6 +3,7 @@ package models;
 import java.awt.Color;
 import java.io.Serializable;
 import java.util.ArrayList;
+import models.Land;
 
 /**
  * @author yee Info holder for player's name,race,color
