@@ -8,7 +8,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.logging.Logger;
+import java.util.HashMap;
+import java.util.HashSet;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -50,6 +51,7 @@ public class TownPanel extends JPanel implements Serializable {
 	pubPanel = new Pub(model);
 	this.setLayout(layout);
 	this.storePanel = new StorePanel(model);
+	
 	this.model = model;
 	this.mulePanel = new MuleSelectionPanel(this, model);
 	this.mulePlacementPanel = new MulePlacementPanel(model, this);
@@ -63,8 +65,14 @@ public class TownPanel extends JPanel implements Serializable {
 	    ObjectOutputStream out = new ObjectOutputStream(
 		    new FileOutputStream(filename));
 	    
-	    out.writeObject(this.model);
-	    out.writeObject(((StorePanel) this.storePanel).getStoreModel());
+	    HashMap saveMap = new HashMap();
+	    saveMap.put("player", model);
+	    saveMap.put("store", ((StorePanel) storePanel).getStoreModel());
+	    
+	    
+	    out.writeObject(saveMap);
+	    //out.writeObject(this.model);
+	    //out.writeObject(((StorePanel) this.storePanel).getStoreModel());
 	    
 	    JOptionPane.showMessageDialog(this, "Game has been saved. Bye!" );
 	    System.exit(0);

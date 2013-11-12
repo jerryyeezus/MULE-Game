@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.URL;
+import java.util.HashMap;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -136,8 +137,8 @@ public class TitleScreen {
 		try {
 			in = new ObjectInputStream(new FileInputStream(savefile));
 			try {
-				playerModel = new PlayerConfigModel(
-						(PlayerConfigModel) in.readObject());
+			    HashMap back = (HashMap) in.readObject();
+			    playerModel = new PlayerConfigModel((PlayerConfigModel) back.get("player"));
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			}

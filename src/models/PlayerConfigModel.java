@@ -32,7 +32,7 @@ public class PlayerConfigModel implements Serializable {
 	public int getCurPlayer() {
 		return curPlayer;
 	}
-
+	
 	/**
 	 * Method which takes in a player number and sets it to current player.
 	 * 
@@ -52,6 +52,7 @@ public class PlayerConfigModel implements Serializable {
 		this.numPlayers = numPlayers;
 		this.curRoundOrder = new int[numPlayers];
 		this.curPlayer = -1;
+		this.wasLoaded = false;
 		this.curRoundOrderIndex = 0;
 		players = new PlayerModel[4];
 		for (int i = 0; i < numPlayers; i++) {
@@ -70,7 +71,8 @@ public class PlayerConfigModel implements Serializable {
 		this.curRoundOrder = readObject.getCurRoundOrder();
 		this.curRoundOrderIndex = readObject.getCurRoundOrderIndex();
 		this.curPlayer = readObject.getCurPlayer();
-		
+		this.wasLoaded = true;
+		this.round = this.getRound();
 		
 		// now set players
 		PlayerModel savedPlayer;
@@ -153,6 +155,7 @@ public class PlayerConfigModel implements Serializable {
 	}
 
 	transient ArrayList<FourthScreenPanel> observers = new ArrayList<FourthScreenPanel>();
+	private boolean wasLoaded;
 
 	/**
 	 * Method that gets the current round in progress.
@@ -289,6 +292,10 @@ public class PlayerConfigModel implements Serializable {
 		}
 
 		this.observers.add(fourthScreenPanel);
+	}
+
+	public boolean wasLoaded() {
+	    return this.wasLoaded;
 	}
 
 }
