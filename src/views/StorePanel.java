@@ -38,7 +38,6 @@ public class StorePanel extends JPanel {
 	private JLabel lblBuyStatus;
 	int a;
 	int playerNumber;
-	private JTextField txtDrinksBuy;
 
 
 	/**
@@ -217,10 +216,10 @@ public class StorePanel extends JPanel {
 		add(txtFoodBuy);
 		txtFoodBuy.setColumns(10);
 
-		txtDrinksBuy = new JTextField("0");
-		txtDrinksBuy.setBounds(250, 400, 70, 20);
-		add(txtDrinksBuy);
-		txtDrinksBuy.setColumns(10);
+		txtDrinkBuy = new JTextField("0");
+		txtDrinkBuy.setBounds(250, 400, 70, 20);
+		add(txtDrinkBuy);
+		txtDrinkBuy.setColumns(10);
 		
 		txtCageBuy = new JTextField("0");
 		txtCageBuy.setBounds(250, 430, 70, 20);
