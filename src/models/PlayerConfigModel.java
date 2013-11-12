@@ -88,7 +88,7 @@ public class PlayerConfigModel implements Serializable {
 			}
 			newPlayer.setFood(savedPlayer.getFood());
 			newPlayer.setName(savedPlayer.getName());
-			newPlayer.setLand(savedPlayer.getLand());
+			newPlayer.setLand(savedPlayer.getLandsOwner().size());
 			newPlayer.setNicolasCage(savedPlayer.getNicolasCage());
 			newPlayer.setMoney(savedPlayer.getMoney());
 			newPlayer.setRace(savedPlayer.getRace());

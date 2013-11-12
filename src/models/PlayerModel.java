@@ -122,4 +122,7 @@ public class PlayerModel implements Serializable {
     public ArrayList<Land> getLandsOwner() {
 	return landOwned;
     }
+    public int getGoods(){
+    	return food+drink+nicolasCage;
+    }
 }

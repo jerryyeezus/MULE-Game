@@ -81,7 +81,7 @@ public class TownPanel extends JPanel implements Serializable {
      */
     private void initialize() {
 	panel = new JPanel();
-	panel.setBounds(10, 118, 850, 550);
+	panel.setBounds(0, 0, 850, 550);
 
 	btnPub = new JButton("");
 

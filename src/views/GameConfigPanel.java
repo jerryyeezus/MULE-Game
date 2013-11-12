@@ -62,7 +62,7 @@ public class GameConfigPanel extends JPanel {
 	 */
 	public GameConfigPanel() {
 		this.setLayout(null);
-		this.setBounds(10, 78, 850, 550);
+		this.setBounds(0, 0, 850, 550);
 		this.setBackground(new Color(255, 239, 213));
 		JLabel lblNewLabel = new JLabel("M.U.L.E.");
 		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 28));

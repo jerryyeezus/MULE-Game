@@ -57,6 +57,7 @@ public class StorePanel extends JPanel {
 	 * It checks for the available resources to instantiate transactions;
 	 */
 	public void initialize() {
+		setBounds(0, 0, 850, 550);
 		setLayout(null);
 
 		JSeparator separator = new JSeparator();
@@ -236,11 +237,11 @@ public class StorePanel extends JPanel {
 		});
 		
 		lblSellStatus = new JLabel("");
-		lblSellStatus.setBounds(70, 185, 400, 20);
+		lblSellStatus.setBounds(70, 185, 500, 20);
 		add(lblSellStatus);
 
 		lblBuyStatus = new JLabel("");
-		lblBuyStatus.setBounds(70, 505, 400, 20);
+		lblBuyStatus.setBounds(70, 505, 500, 20);
 		add(lblBuyStatus);
 	}
 

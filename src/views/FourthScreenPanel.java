@@ -202,7 +202,7 @@ public class FourthScreenPanel extends JPanel {
 								if (!landPicked) {
 									// TODO add round check if <2
 									// JERRY ADDED
-									if (model.getRound() > 2) {
+									if (model.getRound() >= 2) {
 										int amt = 0;
 										if (landArr[my_i][my_j].equals("M"))
 											amt = 20;
@@ -230,6 +230,8 @@ public class FourthScreenPanel extends JPanel {
 											landPicked = true;
 											repaint();
 										}
+										else
+											JOptionPane.showMessageDialog(null, "you dont have money to buy this land");
 									} else {
 										Color playersColor = model.getPlayer(
 												curPlayer).getColor();
@@ -593,7 +595,7 @@ public class FourthScreenPanel extends JPanel {
 							@Override
 							public void mouseClicked(MouseEvent arg0) {
 								if (!landPicked) {
-									if (model.getRound() > 2) {
+									if (model.getRound() >= 2) {
 										int amt = 0;
 										if (landArr[my_i][my_j].equals("M"))
 											amt = 20;
@@ -605,18 +607,37 @@ public class FourthScreenPanel extends JPanel {
 
 										PlayerModel curr = model
 												.getPlayer(curPlayer);
-										curr.setMoney(curr.getMoney() - amt);
+										if (curr.getMoney() >= amt) {
+											curr.setMoney(curr.getMoney() - amt);
+											Color playersColor = model
+													.getPlayer(curPlayer)
+													.getColor();
+											model.getPlayer(curPlayer)
+													.addLand(
+															new Land(
+																	landArr[my_i][my_j],
+																	my_i, my_j));
+											button.setBorder(BorderFactory
+													.createLineBorder(playersColor));
+											button.setVisible(true);
+											landPicked = true;
+											repaint();
+										}
+										else
+											JOptionPane.showMessageDialog(null, "you dont have money to buy this land");
+									} 
+									else {
+										Color playersColor = model.getPlayer(
+												curPlayer).getColor();
+										model.getPlayer(curPlayer).addLand(
+												new Land(landArr[my_i][my_j],
+														my_i, my_j));
+										button.setBorder(BorderFactory
+												.createLineBorder(playersColor));
+										button.setVisible(true);
+										landPicked = true;
+										repaint();
 									}
-									Color playersColor = model.getPlayer(
-											curPlayer).getColor();
-									model.getPlayer(curPlayer).addLand(
-											new Land(landArr[my_i][my_j], my_i,
-													my_j));
-									button.setBorder(BorderFactory
-											.createLineBorder(playersColor));
-									button.setVisible(true);
-									landPicked = true;
-									repaint();
 								}
 							}
 						});
