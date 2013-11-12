@@ -71,7 +71,7 @@ public class PlayerConfigModel implements Serializable {
 		for (int i = 0; i < readObject.getNumPlayers(); i++) {
 			newPlayer = this.getPlayer(i);
 			savedPlayer = readObject.getPlayer(i);
-			
+			//this.setCurPlayer(readObject.getCurPlayer());
 			newPlayer.setActualColor(savedPlayer.getColor());
 			if(savedPlayer.getColor().equals(new Color(255,0,0)))
 				newPlayer.setColor("RED");
