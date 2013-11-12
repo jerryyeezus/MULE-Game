@@ -322,7 +322,7 @@ public class FourthScreenPanel extends JPanel {
 
 	/**
 	 * callback when model updates the cur player. It assigns all the production to the lands according to the mule placement, and also checks
-	 * if the mule is thirsty or not (low on Drinks)
+	 * if the mule is thirsty or not (low on Drinks).
 	 * 
 	 * @param a
 	 *            string

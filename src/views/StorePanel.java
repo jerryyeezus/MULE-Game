@@ -132,7 +132,7 @@ public class StorePanel extends JPanel {
 					txtFoodBuy.setText("0");
 					txtDrinkBuy.setText("0");
 					txtCageBuy.setText("0");
-					System.out.println(model.getPlayer(a).getMoney());
+					//System.out.println(model.getPlayer(a).getMoney());
 					foodAvailable.setText(storeModel.getFoodAvailable()+"");
 					drinkAvailable.setText(storeModel.getDrinksAvailable()+"");
 					cageAvailable.setText(storeModel.getCageAvailable()+"");
@@ -210,17 +210,17 @@ public class StorePanel extends JPanel {
 		lblQuantityOfCage.setBounds(70, 430, 150, 20);
 		add(lblQuantityOfCage);
 
-		txtFoodBuy = new JTextField("0");
+		txtFoodBuy = new JTextField("Food Buy");
 		txtFoodBuy.setBounds(250, 370, 70, 20);
 		add(txtFoodBuy);
 		txtFoodBuy.setColumns(10);
 
-		txtDrinksBuy = new JTextField("0");
+		txtDrinksBuy = new JTextField("Drinks Buy");
 		txtDrinksBuy.setBounds(250, 400, 70, 20);
 		add(txtDrinksBuy);
 		txtDrinksBuy.setColumns(10);
 		
-		txtCageBuy = new JTextField("0");
+		txtCageBuy = new JTextField("Nicolas Cage Buy");
 		txtCageBuy.setBounds(250, 430, 70, 20);
 		add(txtCageBuy);
 		txtCageBuy.setColumns(10);
