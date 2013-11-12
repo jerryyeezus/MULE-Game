@@ -44,7 +44,10 @@ public class ThirdScreenPresenter {
 		// TODO set player base on score, timer based on shit
 
 		int[] calculatedOrder = this.model.calcPlayerOrder();
-		this.model.setCurPlayer(calculatedOrder[0]);
+		if(model.getCurPlayer() == -1)
+			this.model.setCurPlayer(calculatedOrder[0]);
+		else
+			this.model.setCurPlayer(model.getCurPlayer());
 		this.model.setTimer(40);
 		FourthScreenPresenter p = new FourthScreenPresenter(this.view,
 				this.model);

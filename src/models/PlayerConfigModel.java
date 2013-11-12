@@ -65,13 +65,22 @@ public class PlayerConfigModel implements Serializable {
 	 */
 	public PlayerConfigModel(PlayerConfigModel readObject) {
 		this(readObject.getNumPlayers());
+		
+		// Set playerConfigModel attributes
+		this.curRoundOrder = readObject.getCurRoundOrder();
+		this.curRoundOrderIndex = readObject.getCurRoundOrderIndex();
+		this.curPlayer = readObject.getCurPlayer();
+		
+		
 		// now set players
 		PlayerModel savedPlayer;
+		
 		PlayerModel newPlayer;
 		for (int i = 0; i < readObject.getNumPlayers(); i++) {
 			newPlayer = this.getPlayer(i);
 			savedPlayer = readObject.getPlayer(i);
-			//this.setCurPlayer(readObject.getCurPlayer());
+			this.setCurPlayer(readObject.getCurPlayer());
+			this.curRoundOrder = readObject.curRoundOrder;
 			newPlayer.setActualColor(savedPlayer.getColor());
 			if(savedPlayer.getColor().equals(new Color(255,0,0)))
 				newPlayer.setColor("RED");
@@ -93,6 +102,11 @@ public class PlayerConfigModel implements Serializable {
 			newPlayer.setMoney(savedPlayer.getMoney());
 			newPlayer.setRace(savedPlayer.getRace());
 		}
+	}
+
+	private int getCurRoundOrderIndex() {
+		// TODO Auto-generated method stub
+		return this.curRoundOrderIndex;
 	}
 
 	/**

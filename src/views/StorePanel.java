@@ -228,7 +228,7 @@ public class StorePanel extends JPanel {
 		txtCageBuy.setColumns(10);
 		
 		JButton btnBack = new JButton("Back to Town");
-		btnBack.setBounds(460, 510, 120, 23);
+		btnBack.setBounds(560, 510, 120, 23);
 		add(btnBack);
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
