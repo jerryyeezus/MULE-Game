@@ -10,11 +10,15 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
-import java.util.Observable;
-import java.util.Observer;
+import java.net.URL;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -30,6 +34,7 @@ public class AnimPanel extends JPanel {
 	private int cloud_y;
 	private int cloud_x2;
 	private int cloud_y2;
+	private int dcounter;
 
 	File[] images = { new File("src/temp/frame0.png"),
 			new File("src/temp/frame1.png"), new File("src/temp/frame2.png"),
@@ -52,6 +57,8 @@ public class AnimPanel extends JPanel {
 	}
 
 	private State current = State.PRESS_ENTER;
+	
+	private Clip clip;
 
 	public AnimPanel(TitleScreen screen) {
 		super();
@@ -59,18 +66,44 @@ public class AnimPanel extends JPanel {
 		dAlpha = -D_ALPHA;
 		cloud_x = 0;
 		cloud_y = 210;
-
+		dx = 8;
+		dcounter = 5;
 		cloud_x2 = 500;
 		cloud_y2 = 78;
 
 		cursor = 0;
+		
+		try {
+			// Open an audio input stream.
+			URL url = this.getClass().getClassLoader()
+					.getResource("temp/jump.wav");
+			if (url == null)
+				System.out.println("NULLLLL");
+
+			AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
+			// Get a sound clip resource.
+			clip = AudioSystem.getClip();
+			// Open audio clip and load samples from the audio input stream.
+			clip.open(audioIn);
+		} catch (UnsupportedAudioFileException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (LineUnavailableException e) {
+			e.printStackTrace();
+		}
+		
 		addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
+				clip.setFramePosition(0);
+				clip.start();
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					if (current == State.CHOOSE) {
 						if (cursor != 2)
+						{
 							titleScreen.update(cursor);
+						}
 						else
 							current = State.ABOUT;
 					} else if (current == State.PRESS_ENTER)
@@ -100,7 +133,6 @@ public class AnimPanel extends JPanel {
 			arr_x[i] = 30 + r.nextInt(1200);
 			arr_y[i] = r.nextInt(620);
 		}
-		this.dx = 0;
 		this.counter = 0;
 		this.x = 0;
 		this.y = 410;
@@ -159,12 +191,13 @@ public class AnimPanel extends JPanel {
 			g.drawString(str[0], this.getWidth() / 4, 200);
 
 			g.setFont(new Font("Verdana", Font.PLAIN, 12));
-			str[1] = "	Architect: Jerry \"Yeezus\" Yee";
+			g.setColor(Color.BLUE);
+			str[1] = "	Architect: Jerry \"YEEZUS\" Yee";
 			str[2] = "	Programmer: Tanay Pontkshe";
 			str[3] = "	Intern: Ishaan Grover";
 			str[4] = "	Javadoc Specialist : Sham";
 			for (int i = 1; i < 5; i++)
-				g.drawString(str[i], this.getWidth() / 4, 200 + i * 30);
+				g.drawString(str[i], this.getWidth() / 4 + 30, 200 + i * 30);
 		}
 
 		for (int i = 0; i < NUM_ARROWS; i++)
@@ -189,10 +222,10 @@ public class AnimPanel extends JPanel {
 					if (frame++ > 2)
 						frame = 0;
 
-				x -= 8;
-				if (x < -900)
+				x -= dx;
+				if (x < -940) // -900
 					x = 0;
-				counter += 5;
+				counter += dcounter;
 				if (counter > 21) {
 					counter = 0;
 				}
