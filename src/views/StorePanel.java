@@ -227,7 +227,7 @@ public class StorePanel extends JPanel {
 		txtCageBuy.setColumns(10);
 		
 		JButton btnBack = new JButton("Back to Town");
-		btnBack.setBounds(460, 500, 120, 23);
+		btnBack.setBounds(460, 510, 120, 23);
 		add(btnBack);
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -236,11 +236,11 @@ public class StorePanel extends JPanel {
 		});
 		
 		lblSellStatus = new JLabel("");
-		lblSellStatus.setBounds(70, 185, 300, 20);
+		lblSellStatus.setBounds(70, 185, 400, 20);
 		add(lblSellStatus);
 
 		lblBuyStatus = new JLabel("");
-		lblBuyStatus.setBounds(70, 505, 300, 20);
+		lblBuyStatus.setBounds(70, 505, 400, 20);
 		add(lblBuyStatus);
 	}
 
