@@ -99,7 +99,7 @@ public class PlayerConfigPanel extends JPanel {
 
 		this.numPlayers = numPlayers;
 		this.setBackground(new Color(255, 239, 213));
-		setBounds(100, 100, 850, 549);
+		setBounds(0, 0, 850, 550);
 		this.setLayout(null);
 
 		JLabel lblMule = new JLabel("");

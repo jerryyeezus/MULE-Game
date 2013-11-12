@@ -52,7 +52,7 @@ public class Pub extends JPanel {
 	playerNumber = model.getCurPlayer();
 	playerMod = model.getPlayer(playerNumber);
 	playerMod.setMoney(playerMod.getMoney() + valueFromGambling);
-	model.setTimer(5);
+	model.setTimer(1);
 	this.setLabel();
     }
 
@@ -65,23 +65,28 @@ public class Pub extends JPanel {
 	this.setLayout(null);
 
 	JPanel panel = new JPanel();
-	panel.setBounds(10, 120, 814, 313);
+	panel.setBounds(10, 10, 800, 500);
 	this.add(panel);
 	panel.setLayout(null);
 
 	lblNewLabel = new JLabel("New label");
-	lblNewLabel.setBounds(160, 11, 500, 250);
+	lblNewLabel.setBounds(10, 420, 500, 20);
 	panel.add(lblNewLabel);
+	
+	JLabel lblRoulette = new JLabel("");
+	lblRoulette.setBounds(10, 40, 700, 380);
+	panel.add(lblRoulette);
+	lblRoulette.setIcon(new ImageIcon("src/temp/roulette.jpg"));
 
-	JLabel lblNewLabel_1 = new JLabel("New label");
-	lblNewLabel_1.setBounds(160, 272, 500, 30);
+	JLabel lblNewLabel_1 = new JLabel("");
+	lblNewLabel_1.setBounds(160, 450, 500, 20);
 	setLabel();
 	panel.add(lblNewLabel_1);
 
 	JLabel lblGamble = new JLabel("GAMBLING");
-	lblGamble.setBounds(354, 81, 450, 28);
-	add(lblGamble);
-	lblGamble.setHorizontalAlignment(SwingConstants.LEFT);
+	lblGamble.setBounds(10, 10, 450, 20);
+	panel.add(lblGamble);
+	lblGamble.setHorizontalAlignment(SwingConstants.CENTER);
 
 	/*
 	JButton btnNext = new JButton("Next>>");

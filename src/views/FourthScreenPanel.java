@@ -54,7 +54,6 @@ public class FourthScreenPanel extends JPanel {
 	public TownPanel townPanel;
 	private Timer roundTimer;
 	private EventManager eventManager;
-	private int clientPlayer = 0;
 
 	/**
 	 * Constructor to Create the application.
@@ -203,7 +202,7 @@ public class FourthScreenPanel extends JPanel {
 								if (!landPicked) {
 									// TODO add round check if <2
 									// JERRY ADDED
-									if (model.getRound() > 2) {
+									if (model.getRound() >= 2) {
 										int amt = 0;
 										if (landArr[my_i][my_j].equals("M"))
 											amt = 20;
@@ -231,6 +230,8 @@ public class FourthScreenPanel extends JPanel {
 											landPicked = true;
 											repaint();
 										}
+										else
+											JOptionPane.showMessageDialog(null, "you dont have money to buy this land");
 									} else {
 										Color playersColor = model.getPlayer(
 												curPlayer).getColor();
@@ -322,7 +323,8 @@ public class FourthScreenPanel extends JPanel {
 	}
 
 	/**
-	 * callback when model updates the cur player
+	 * callback when model updates the cur player. It assigns all the production to the lands according to the mule placement, and also checks
+	 * if the mule is thirsty or not (low on Drinks).
 	 * 
 	 * @param a
 	 *            string
@@ -343,43 +345,46 @@ public class FourthScreenPanel extends JPanel {
 					Land land = probe.get(s);
 					if (land.getType() == "P") {
 						if (land.getMule() == 1) {
-							curPlayer.setFood(curPlayer.getFood() + 2);
-						} else if (land.getMule() == 2) {
+							if (curPlayer.getDrink() > 0) {
+								curPlayer.setFood(curPlayer.getFood() + 2);
+								curPlayer.setDrink(curPlayer.getDrink() - 1);
+							}
+						} else if (land.getMule() == 2)
 							curPlayer.setDrink(curPlayer.getDrink() + 3);
-						} else if (land.getMule() == 3)
-							curPlayer
-									.setNicolasCage(curPlayer.getNicolasCage() + 1);
-					}
-					if (land.getType() == "R") {
+						else if (land.getMule() == 3) {
+							if (curPlayer.getDrink() > 0) {
+								curPlayer.setNicolasCage(curPlayer
+										.getNicolasCage() + 1);
+								curPlayer.setDrink(curPlayer.getDrink() - 1);
+							}
+						}
+					} 
+					else if (land.getType() == "R") {
 						if (land.getMule() == 1) {
-							curPlayer.setFood(curPlayer.getFood() + 4);
+							if (curPlayer.getDrink() > 0) {
+								curPlayer.setFood(curPlayer.getFood() + 4);
+								curPlayer.setDrink(curPlayer.getDrink() - 1);
+							}
 						} else if (land.getMule() == 2)
 							curPlayer.setDrink(curPlayer.getDrink() + 2);
 					}
-					if (land.getType() == "M") {
+					else if (land.getType() == "M") {
 						if (land.getMule() == 1) {
-							curPlayer.setFood(curPlayer.getFood() + 1);
-						} else if (land.getMule() == 2) {
+							if (curPlayer.getDrink() > 0) {
+								curPlayer.setFood(curPlayer.getFood() + 1);
+								curPlayer.setDrink(curPlayer.getDrink() - 1);
+							}
+						} else if (land.getMule() == 2)
 							curPlayer.setDrink(curPlayer.getDrink() + 1);
-						} else if (land.getMule() == 3)
-							curPlayer
-									.setNicolasCage(curPlayer.getNicolasCage() + 2);
+						else if (land.getMule() == 3) {
+							if (curPlayer.getDrink() > 0) {
+								curPlayer.setNicolasCage(curPlayer
+										.getNicolasCage() + 2);
+								curPlayer.setDrink(curPlayer.getDrink() - 1);
+							}
+						}
 					}
 				}
-				/*
-				 * if (land.getType() == "M2"){ if (land.getMule() == 1){
-				 * curPlayer.setFood(curPlayer.getFood()+1); } else if
-				 * (land.getMule() == 2){
-				 * curPlayer.setDrink(curPlayer.getDrink()+1); } else if
-				 * (land.getMule() == 3)
-				 * curPlayer.setNicolasCage(curPlayer.getNicolasCage()+3); } if
-				 * (land.getType() == "M3"){ if (land.getMule() == 1){
-				 * curPlayer.setFood(curPlayer.getFood()+1); } else if
-				 * (land.getMule() == 2){
-				 * curPlayer.setDrink(curPlayer.getDrink()+1); } else if
-				 * (land.getMule() == 3)
-				 * curPlayer.setNicolasCage(curPlayer.getNicolasCage()+4); } }
-				 */
 				dispMsg += "\nPlayer " + i + "\nMoney: " + curPlayer.getMoney()
 						+ "\nDrink: " + curPlayer.getDrink() + "\nFood: "
 						+ curPlayer.getFood() + "\nNicolasCage: "
@@ -478,7 +483,7 @@ public class FourthScreenPanel extends JPanel {
 		passButton.setText("Pass");
 		add(PlayerNumLabel);
 		PlayerNumLabel.setText("<html> Player " + model.getCurPlayer() + "'s"
-				+ " turn " + "<br>" + "Player Resources:" + "<br>" + "money: "
+				+ " turn " + "<br>" + "Player Resources:" + "<br>" + "Money: "
 				+ model.getPlayer(model.getCurPlayer()).getMoney() + "<br>"
 				+ "Food: " + model.getPlayer(model.getCurPlayer()).getFood()
 				+ "<br>" + "Drink: "
@@ -572,6 +577,8 @@ public class FourthScreenPanel extends JPanel {
 							button.setEnabled(false);
 							if (myLand.getMule() == 1 || myLand.getMule() == 2
 									|| myLand.getMule() == 3) {
+								// button.setIcon(new ImageIcon(
+								// "src/temp/muled.jpg"));
 								repaint();
 							}
 							button.setFocusable(false);
@@ -588,7 +595,7 @@ public class FourthScreenPanel extends JPanel {
 							@Override
 							public void mouseClicked(MouseEvent arg0) {
 								if (!landPicked) {
-									if (model.getRound() > 2) {
+									if (model.getRound() >= 2) {
 										int amt = 0;
 										if (landArr[my_i][my_j].equals("M"))
 											amt = 20;
@@ -600,25 +607,43 @@ public class FourthScreenPanel extends JPanel {
 
 										PlayerModel curr = model
 												.getPlayer(curPlayer);
-										curr.setMoney(curr.getMoney() - amt);
+										if (curr.getMoney() >= amt) {
+											curr.setMoney(curr.getMoney() - amt);
+											Color playersColor = model
+													.getPlayer(curPlayer)
+													.getColor();
+											model.getPlayer(curPlayer)
+													.addLand(
+															new Land(
+																	landArr[my_i][my_j],
+																	my_i, my_j));
+											button.setBorder(BorderFactory
+													.createLineBorder(playersColor));
+											button.setVisible(true);
+											landPicked = true;
+											repaint();
+										}
+										else
+											JOptionPane.showMessageDialog(null, "you dont have money to buy this land");
+									} 
+									else {
+										Color playersColor = model.getPlayer(
+												curPlayer).getColor();
+										model.getPlayer(curPlayer).addLand(
+												new Land(landArr[my_i][my_j],
+														my_i, my_j));
+										button.setBorder(BorderFactory
+												.createLineBorder(playersColor));
+										button.setVisible(true);
+										landPicked = true;
+										repaint();
 									}
-									Color playersColor = model.getPlayer(
-											curPlayer).getColor();
-									model.getPlayer(curPlayer).addLand(
-											new Land(landArr[my_i][my_j], my_i,
-													my_j));
-									button.setBorder(BorderFactory
-											.createLineBorder(playersColor));
-									button.setVisible(true);
-									landPicked = true;
-									repaint();
 								}
 							}
 						});
-					} // end of if (!currentlyOwned)
+					}
 
 				}
-
 				buttonArray[i][j] = button;
 				add(button);
 			}

@@ -43,17 +43,16 @@ public class ThirdScreenPanel extends JPanel {
 	 */
 
 	private void initialize() {
-		setBounds(10, 78, 850, 550);
+		setBounds(0, 0, 850, 550);
 		setLayout(null);
-		setBackground(Color.black);
-		
+		setBackground(new Color(255, 239, 213));
 		if(model.getPlayer(0) != null)
 		{
 		
 			JPanel panel = new JPanel();
 			panel.setLayout(null);
-			panel.setBounds(10, 150, 400, 136);
-			panel.setBackground(Color.black);
+			panel.setBounds(10, 150, 350, 136);
+			panel.setBackground(Color.white);
 			panel.setBorder(BorderFactory.createMatteBorder(7, 7, 7, 7, model.getPlayer(0).getColor()));
 			add(panel);
 			
@@ -92,7 +91,7 @@ public class ThirdScreenPanel extends JPanel {
 			lblNewLabel_5.setForeground(model.getPlayer(0).getColor());
 			panel.add(lblNewLabel_5);
 			
-			JLabel lblNewLabel_6 = new JLabel(""+model.getPlayer(0).getFood());
+			JLabel lblNewLabel_6 = new JLabel(""+model.getPlayer(0).getGoods());
 			lblNewLabel_6.setBounds(131, 86, 159, 14);
 			lblNewLabel_6.setForeground(model.getPlayer(0).getColor());
 			panel.add(lblNewLabel_6);
@@ -108,8 +107,8 @@ public class ThirdScreenPanel extends JPanel {
 		{
 			JPanel panel_4 = new JPanel();
 			panel_4.setLayout(null);
-			panel_4.setBounds(425, 150, 400, 136);
-			panel_4.setBackground(Color.black);
+			panel_4.setBounds(425, 150, 350, 136);
+			panel_4.setBackground(Color.white);
 			panel_4.setBorder(BorderFactory.createMatteBorder(7, 7, 7, 7, model.getPlayer(1).getColor()));
 			add(panel_4);
 			
@@ -128,7 +127,7 @@ public class ThirdScreenPanel extends JPanel {
 			lblPL.setForeground(model.getPlayer(1).getColor());
 			panel_4.add(lblPL);
 			
-			JLabel lblPG = new JLabel(""+model.getPlayer(1).getFood());
+			JLabel lblPG = new JLabel(""+model.getPlayer(1).getGoods());
 			lblPG.setBounds(131, 86, 159, 14);
 			lblPG.setForeground(model.getPlayer(1).getColor());
 			panel_4.add(lblPG);
@@ -165,8 +164,8 @@ public class ThirdScreenPanel extends JPanel {
 		
 			JPanel panel_1 = new JPanel();
 			panel_1.setLayout(null);
-			panel_1.setBounds(10, 310, 400, 136);
-			panel_1.setBackground(Color.black);
+			panel_1.setBounds(10, 310, 350, 136);
+			panel_1.setBackground(Color.white);
 			panel_1.setBorder(BorderFactory.createMatteBorder(7, 7, 7, 7, model.getPlayer(2).getColor()));
 			add(panel_1);
 			
@@ -205,7 +204,7 @@ public class ThirdScreenPanel extends JPanel {
 			lblPL_2.setForeground(model.getPlayer(2).getColor());
 			panel_1.add(lblPL_2);
 			
-			JLabel lblPG_2 = new JLabel(""+model.getPlayer(2).getFood());
+			JLabel lblPG_2 = new JLabel(""+model.getPlayer(2).getGoods());
 			lblPG_2.setBounds(131, 86, 159, 14);
 			lblPG_2.setForeground(model.getPlayer(2).getColor());
 			panel_1.add(lblPG_2);
@@ -223,8 +222,8 @@ public class ThirdScreenPanel extends JPanel {
 		
 			JPanel panel_2 = new JPanel();
 			panel_2.setLayout(null);
-			panel_2.setBounds(425, 310, 400, 136);
-			panel_2.setBackground(Color.black);
+			panel_2.setBounds(425, 310, 350, 136);
+			panel_2.setBackground(Color.white);
 			panel_2.setBorder(BorderFactory.createMatteBorder(7, 7, 7, 7, model.getPlayer(3).getColor()));
 			add(panel_2);
 			
@@ -263,7 +262,7 @@ public class ThirdScreenPanel extends JPanel {
 			lblPL_1.setForeground(model.getPlayer(3).getColor());
 			panel_2.add(lblPL_1);
 			
-			JLabel lblPG_1 = new JLabel(""+model.getPlayer(3).getFood());
+			JLabel lblPG_1 = new JLabel(""+model.getPlayer(3).getGoods());
 			lblPG_1.setBounds(131, 86, 159, 14);
 			lblPG_1.setForeground(model.getPlayer(3).getColor());
 			panel_2.add(lblPG_1);

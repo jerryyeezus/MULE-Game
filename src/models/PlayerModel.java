@@ -3,6 +3,7 @@ package models;
 import java.awt.Color;
 import java.io.Serializable;
 import java.util.ArrayList;
+import models.Land;
 
 /**
  * @author yee Info holder for player's name,race,color
@@ -121,5 +122,8 @@ public class PlayerModel implements Serializable {
 
     public ArrayList<Land> getLandsOwner() {
 	return landOwned;
+    }
+    public int getGoods(){
+    	return food+drink+nicolasCage;
     }
 }
