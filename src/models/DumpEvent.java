@@ -1,7 +1,11 @@
 package models;
 
 import javax.swing.JOptionPane;
-
+/**
+ * A class that implements a specific kind of event. 
+ * @author Tanay
+ *
+ */
 public class DumpEvent extends Event {
     public DumpEvent(PlayerConfigModel players) {
 	super(players);
@@ -9,6 +13,10 @@ public class DumpEvent extends Event {
     this.isBad = false;
     }
 
+    /**
+     * An overriden method that describes the algorithm for the event.
+     * @param player
+     */
     @Override
     public void doEvent(int player) {
 	System.out.println("TODO dump event");

@@ -104,6 +104,10 @@ public class PlayerConfigModel implements Serializable {
 		}
 	}
 
+	/**
+	 * Method that gives the Round order Index of the current player.
+	 * @return int curRoundOrderIndex
+	 */
 	private int getCurRoundOrderIndex() {
 		// TODO Auto-generated method stub
 		return this.curRoundOrderIndex;

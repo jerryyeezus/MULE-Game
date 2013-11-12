@@ -64,6 +64,7 @@ public class TownPanel extends JPanel implements Serializable {
 		    new FileOutputStream(filename));
 	    
 	    out.writeObject(this.model);
+	    out.writeObject(((StorePanel) this.storePanel).getStoreModel());
 	    
 	    JOptionPane.showMessageDialog(this, "Game has been saved. Bye!" );
 	    System.exit(0);

@@ -52,6 +52,7 @@ public class StorePanel extends JPanel {
 		this.initialize();
 	}
 
+	public StoreModel getStoreModel() { return this.storeModel; }
 	/**
 	 * creates the gui and adds all the components.
 	 * It checks for the available resources to instantiate transactions;

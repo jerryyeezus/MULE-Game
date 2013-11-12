@@ -2,6 +2,11 @@ package models;
 
 import javax.swing.JOptionPane;
 
+/**
+ * A class that implements a specific event.
+ * @author Tanay
+ *
+ */
 public class CageEvent extends Event {
 	public CageEvent(PlayerConfigModel players) {
 		super(players);
@@ -9,6 +14,11 @@ public class CageEvent extends Event {
 		this.isBad = true;
 	}
 
+	/**
+	 * An overriden method which takes in an integer as a parameter and runs the algorithm for the event.
+	 * 
+	 * @param player
+	 */
 	@Override
 	public void doEvent(int player) {
 		JOptionPane.showMessageDialog(null, "Player " + player + ": " + eventString);
