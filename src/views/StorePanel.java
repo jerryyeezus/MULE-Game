@@ -235,11 +235,11 @@ public class StorePanel extends JPanel {
 		});
 		
 		lblSellStatus = new JLabel("");
-		lblSellStatus.setBounds(70, 185, 250, 20);
+		lblSellStatus.setBounds(70, 185, 300, 20);
 		add(lblSellStatus);
 
 		lblBuyStatus = new JLabel("");
-		lblBuyStatus.setBounds(70, 505, 250, 20);
+		lblBuyStatus.setBounds(70, 505, 300, 20);
 		add(lblBuyStatus);
 	}
 
@@ -252,8 +252,8 @@ public class StorePanel extends JPanel {
 	 */
 	public void runStore() {
 		int storeFood = storeModel.getFoodAvailable();
-		int storeDrinks = storeModel.getFoodAvailable();
-		int storeCage = storeModel.getFoodAvailable();
+		int storeDrinks = storeModel.getDrinksAvailable();
+		int storeCage = storeModel.getCageAvailable();
 		int playerFood = model.getPlayer(model.getCurPlayer()).getFood();
 		int playerDrinks = model.getPlayer(model.getCurPlayer()).getDrink();
 		int playerCage = model.getPlayer(model.getCurPlayer()).getNicolasCage();
