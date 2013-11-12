@@ -114,8 +114,8 @@ public class StorePanel extends JPanel {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Integer noOfFoodItems = Integer.parseInt(txtFoodBuy.getText());
-				Integer noOfDrinkItems = Integer.parseInt(txtDrinkSell.getText());
-				Integer noOfCageItems = Integer.parseInt(txtCageSell.getText());
+				Integer noOfDrinkItems = Integer.parseInt(txtDrinkBuy.getText());
+				Integer noOfCageItems = Integer.parseInt(txtCageBuy.getText());
 				a = model.getCurPlayer();
 				int moneyAvailable = model.getPlayer(a).getMoney();
 				int priceNeeded = (noOfFoodItems*storeModel.getPriceOfFood())+(noOfDrinkItems*storeModel.getPriceOfDrinks())+
@@ -238,7 +238,7 @@ public class StorePanel extends JPanel {
 		lblSellStatus.setBounds(70, 185, 300, 20);
 		add(lblSellStatus);
 
-		lblBuyStatus = new JLabel("");
+		lblBuyStatus = new JLabel("blah blah");
 		lblBuyStatus.setBounds(70, 505, 300, 20);
 		add(lblBuyStatus);
 	}
