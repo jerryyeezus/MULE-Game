@@ -26,8 +26,14 @@ public class StorePanel extends JPanel {
 	PlayerConfigModel model;
 	private JFrame frame;
 	private JTextField txtFoodSell;
+	private JTextField txtDrinkSell;
+	private JTextField txtCageSell;
 	private JTextField txtFoodBuy;
+	private JTextField txtDrinkBuy;
+	private JTextField txtCageBuy;
 	private JLabel foodAvailable;
+	private JLabel drinkAvailable;
+	private JLabel cageAvailable;
 	private JLabel lblSellStatus;
 	private JLabel lblBuyStatus;
 	int a;
@@ -55,106 +61,171 @@ public class StorePanel extends JPanel {
 		setLayout(null);
 
 		JSeparator separator = new JSeparator();
-		separator.setBounds(10, 175, 450, 120);
+		separator.setBounds(10, 200, 450, 25);
 		add(separator);
 
 		JLabel lblNewLabel = new JLabel("SELL");
-		lblNewLabel.setBounds(200, 20, 50, 25);
+		lblNewLabel.setBounds(200, 20, 50, 20);
 		add(lblNewLabel);
 
 		JLabel lblBuy = new JLabel("BUY");
-		lblBuy.setBounds(200, 225, 50, 25);
+		lblBuy.setBounds(200, 250, 50, 20);
 		add(lblBuy);
 
 		JButton btnNewButton = new JButton("Sell Items");
-		btnNewButton.setBounds(160, 89, 89, 23);
+		btnNewButton.setBounds(160, 150, 100, 25);
 		add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Integer noOfFoodItems = Integer.parseInt(txtFoodSell.getText());
+				Integer noOfDrinkItems = Integer.parseInt(txtDrinkSell.getText());
+				Integer noOfCageItems = Integer.parseInt(txtCageSell.getText());
 				int a = model.getCurPlayer();
 				PlayerModel p = model.getPlayer(a);
-				if (noOfFoodItems <= p.getFood()){
+				if (noOfFoodItems <= p.getFood() && noOfDrinkItems <= p.getDrink() && noOfCageItems <= p.getNicolasCage()){
 					storeModel.addToFood(noOfFoodItems);
-					int moneyEarned = noOfFoodItems*storeModel.getPriceOfFood();
+					storeModel.addToDrinks(noOfDrinkItems);
+					storeModel.addToCage(noOfCageItems);
+					int moneyEarned = (noOfFoodItems*storeModel.getPriceOfFood()) + (noOfDrinkItems*storeModel.getPriceOfDrinks()) +
+							(noOfCageItems*storeModel.getPriceOfCage());
 					model.getPlayer(a).setMoney(model.getPlayer(a).getMoney() + moneyEarned);
 					p.setFood(p.getFood()-noOfFoodItems);
+					p.setDrink(p.getDrink()-noOfDrinkItems);
+					p.setNicolasCage(p.getNicolasCage()-noOfCageItems);
 					txtFoodSell.setText("0");
+					txtDrinkSell.setText("0");
+					txtCageSell.setText("0");
 					foodAvailable.setText(storeModel.getFoodAvailable()+"");
-					lblSellStatus.setText("You have sold " + noOfFoodItems + " and gained "+ moneyEarned + "money.");
+					drinkAvailable.setText(storeModel.getDrinksAvailable()+"");
+					cageAvailable.setText(storeModel.getCageAvailable()+"");
+					lblSellStatus.setText("You have sold "+noOfFoodItems+" food items, "+noOfDrinkItems
+							+" drink items, "+noOfCageItems+" Nicolas Cage and gained "+ moneyEarned + " money.");
 					lblBuyStatus.setText("");
 				}
 				else{
-					JOptionPane.showMessageDialog(txtFoodSell, "Can't sell more items than you have");
-				}
+					JOptionPane.showMessageDialog(lblSellStatus, "Can't Sell more Items than what you have.");		
+					}
 			}
 		});
 
 		JButton btnNewButton_1 = new JButton("Buy Goods");
-		btnNewButton_1.setBounds(160, 430, 119, 23);
+		btnNewButton_1.setBounds(160, 430, 100, 25);
 		add(btnNewButton_1);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Integer noOfFoodItems = Integer.parseInt(txtFoodBuy.getText());
+				Integer noOfDrinkItems = Integer.parseInt(txtDrinkSell.getText());
+				Integer noOfCageItems = Integer.parseInt(txtCageSell.getText());
 				a = model.getCurPlayer();
 				int moneyAvailable = model.getPlayer(a).getMoney();
-				int priceNeeded = noOfFoodItems*storeModel.getPriceOfFood();
+				int priceNeeded = (noOfFoodItems*storeModel.getPriceOfFood())+(noOfDrinkItems*storeModel.getPriceOfDrinks())+
+						(noOfCageItems*storeModel.getPriceOfCage());
 				if (moneyAvailable >= priceNeeded){
 					storeModel.reduceFood(noOfFoodItems);
-					int moneySpent = noOfFoodItems*storeModel.getPriceOfFood();
+					storeModel.reduceDrinks(noOfDrinkItems);
+					storeModel.reduceCage(noOfCageItems);
+					int moneySpent = priceNeeded;
 					model.getPlayer(a).setMoney(model.getPlayer(a).getMoney() - moneySpent);
 					model.getPlayer(a).setFood(model.getPlayer(a).getFood()+noOfFoodItems);
+					model.getPlayer(a).setDrink(model.getPlayer(a).getDrink()+noOfDrinkItems);
+					model.getPlayer(a).setNicolasCage(model.getPlayer(a).getNicolasCage()+noOfCageItems);
 					txtFoodBuy.setText("0");
+					txtDrinkBuy.setText("0");
+					txtCageBuy.setText("0");
 					System.out.println(model.getPlayer(a).getMoney());
 					foodAvailable.setText(storeModel.getFoodAvailable()+"");
-					lblBuyStatus.setText("You have bought " + noOfFoodItems + "food and spent "+ moneySpent + "money.");
+					drinkAvailable.setText(storeModel.getDrinksAvailable()+"");
+					cageAvailable.setText(storeModel.getCageAvailable()+"");
+					lblBuyStatus.setText("You have bought " + noOfFoodItems + " food items, "+noOfDrinkItems+" drink items and "
+							+noOfCageItems+" Nicolas Cage and spent "+ moneySpent + " money.");
 					lblSellStatus.setText("");
 				}
 				else{
-					JOptionPane.showMessageDialog(txtFoodBuy, "Can't buy items worth more than existing Money");
+					JOptionPane.showMessageDialog(lblBuyStatus, "Can't buy items worth more than existing Money");
 				}
 				
 			}
 		});
 
-		JLabel lblGoodsAvailable = new JLabel("Number of Food to sell");
-		lblGoodsAvailable.setBounds(70, 50, 175, 20);
-		add(lblGoodsAvailable);
+		JLabel lblFoodAvailable = new JLabel("Number of Food to sell");
+		lblFoodAvailable.setBounds(70, 50, 175, 20);
+		add(lblFoodAvailable);
 
+		JLabel lblDrinksAvailable = new JLabel("Number of Drinks to sell");
+		lblDrinksAvailable.setBounds(70, 80, 175, 20);
+		add(lblDrinksAvailable);
+		
+		JLabel lblCageAvailable = new JLabel("Number of Nicolas Cage to sell");
+		lblCageAvailable.setBounds(70, 110, 175, 20);
+		add(lblCageAvailable);
+		
 		txtFoodSell = new JTextField("0");
-		txtFoodSell.setBounds(255, 45, 70, 20);
+		txtFoodSell.setBounds(255, 50, 70, 20);
 		add(txtFoodSell);
 		txtFoodSell.setColumns(10);
+		
+		txtDrinkSell = new JTextField("0");
+		txtDrinkSell.setBounds(255, 80, 70, 20);
+		add(txtDrinkSell);
+		txtDrinkSell.setColumns(10);
+		
+		txtCageSell = new JTextField("0");
+		txtCageSell.setBounds(255, 110, 70, 20);
+		add(txtCageSell);
+		txtCageSell.setColumns(10);
 
-		JLabel lblAvailableNumberOf = new JLabel("Available Number of Food : ");
-		lblAvailableNumberOf.setBounds(70, 250, 150, 20);
+		JLabel lblAvailableNumberOf = new JLabel("Available Number of Foods: ");
+		lblAvailableNumberOf.setBounds(70, 280, 150, 20);
 		add(lblAvailableNumberOf);
+		
+		JLabel lblAvailableNumberOfDrink = new JLabel("Available Number of Drinks: ");
+		lblAvailableNumberOfDrink.setBounds(70, 310, 150, 20);
+		add(lblAvailableNumberOfDrink);
+		
+		JLabel lblAvailableNumberOfCage = new JLabel("Available Number of Nicolas Cages: ");
+		lblAvailableNumberOfCage.setBounds(70, 340, 150, 20);
+		add(lblAvailableNumberOfCage);
 
 		foodAvailable = new JLabel("New label");
-		foodAvailable.setBounds(250, 250, 50, 20);
+		foodAvailable.setBounds(250, 280, 50, 20);
 		add(foodAvailable);
+		
+		drinkAvailable = new JLabel("");
+		drinkAvailable.setBounds(250, 310, 50, 20);
+		add(drinkAvailable);
+		
+		cageAvailable = new JLabel("");
+		cageAvailable.setBounds(250, 340, 50, 20);
+		add(cageAvailable);
 
-		JLabel lblQuantityOfFood = new JLabel("Quantity of Food  :");
-		lblQuantityOfFood.setBounds(70, 300, 150, 20);
+		JLabel lblQuantityOfFood = new JLabel("Quantity of Foods:");
+		lblQuantityOfFood.setBounds(70, 370, 150, 20);
 		add(lblQuantityOfFood);
 
-		JLabel lblQuantityOfDrink = new JLabel("Quantity of Drink  :");
-		lblQuantityOfDrink.setBounds(70, 340, 150, 20);
+		JLabel lblQuantityOfDrink = new JLabel("Quantity of Drinks:");
+		lblQuantityOfDrink.setBounds(70, 400, 150, 20);
 		add(lblQuantityOfDrink);
+		
+		JLabel lblQuantityOfCage = new JLabel("Quantity of Nicolas Cage:");
+		lblQuantityOfCage.setBounds(70, 430, 150, 20);
 
 		txtFoodBuy = new JTextField("0");
-		txtFoodBuy.setBounds(220, 300, 100, 20);
+		txtFoodBuy.setBounds(220, 370, 100, 20);
 		add(txtFoodBuy);
 		txtFoodBuy.setColumns(10);
 
 		txtDrinksBuy = new JTextField("0");
-		txtDrinksBuy.setBounds(220, 340, 100, 20);
+		txtDrinksBuy.setBounds(220, 400, 100, 20);
 		add(txtDrinksBuy);
 		txtDrinksBuy.setColumns(10);
 		
+		txtCageBuy = new JTextField("0");
+		txtCageBuy.setBounds(220, 400, 100, 20);
+		add(txtCageBuy);
+		txtCageBuy.setColumns(10);
 		
 		JButton btnBack = new JButton("Back to Town");
-		btnBack.setBounds(460, 400, 120, 23);
+		btnBack.setBounds(460, 600, 120, 23);
 		add(btnBack);
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -167,7 +238,7 @@ public class StorePanel extends JPanel {
 		add(lblSellStatus);
 
 		lblBuyStatus = new JLabel("");
-		lblBuyStatus.setBounds(70, 360, 250, 20);
+		lblBuyStatus.setBounds(70, 450, 250, 20);
 		add(lblBuyStatus);
 	}
 
