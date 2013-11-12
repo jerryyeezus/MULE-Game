@@ -52,7 +52,7 @@ public class Pub extends JPanel {
 	playerNumber = model.getCurPlayer();
 	playerMod = model.getPlayer(playerNumber);
 	playerMod.setMoney(playerMod.getMoney() + valueFromGambling);
-	model.setTimer(5);
+	model.setTimer(1);
 	this.setLabel();
     }
 

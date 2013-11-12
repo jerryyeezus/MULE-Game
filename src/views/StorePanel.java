@@ -120,11 +120,13 @@ public class StorePanel extends JPanel {
 				int moneyAvailable = model.getPlayer(a).getMoney();
 				int priceNeeded = (noOfFoodItems*storeModel.getPriceOfFood())+(noOfDrinkItems*storeModel.getPriceOfDrinks())+
 						(noOfCageItems*storeModel.getPriceOfCage());
-				if (moneyAvailable >= priceNeeded){
+				if (moneyAvailable >= priceNeeded && noOfFoodItems <= storeModel.getFoodAvailable() && 
+						noOfDrinkItems <= storeModel.getDrinksAvailable() && noOfCageItems <= storeModel.getCageAvailable()){
 					storeModel.reduceFood(noOfFoodItems);
 					storeModel.reduceDrinks(noOfDrinkItems);
 					storeModel.reduceCage(noOfCageItems);
-					int moneySpent = priceNeeded;
+					int moneySpent = (noOfFoodItems*storeModel.getPriceOfFood())+(noOfDrinkItems*storeModel.getPriceOfDrinks())+
+							(noOfCageItems*storeModel.getPriceOfCage());
 					model.getPlayer(a).setMoney(model.getPlayer(a).getMoney() - moneySpent);
 					model.getPlayer(a).setFood(model.getPlayer(a).getFood()+noOfFoodItems);
 					model.getPlayer(a).setDrink(model.getPlayer(a).getDrink()+noOfDrinkItems);
@@ -207,20 +209,20 @@ public class StorePanel extends JPanel {
 		add(lblQuantityOfDrink);
 		
 		JLabel lblQuantityOfCage = new JLabel("Quantity of Nicolas Cage:");
-		lblQuantityOfCage.setBounds(70, 430, 150, 20);
+		lblQuantityOfCage.setBounds(70, 430, 170, 20);
 		add(lblQuantityOfCage);
 
-		txtFoodBuy = new JTextField("Food Buy");
+		txtFoodBuy = new JTextField("0");
 		txtFoodBuy.setBounds(250, 370, 70, 20);
 		add(txtFoodBuy);
 		txtFoodBuy.setColumns(10);
 
-		txtDrinksBuy = new JTextField("Drinks Buy");
+		txtDrinksBuy = new JTextField("0");
 		txtDrinksBuy.setBounds(250, 400, 70, 20);
 		add(txtDrinksBuy);
 		txtDrinksBuy.setColumns(10);
 		
-		txtCageBuy = new JTextField("Nicolas Cage Buy");
+		txtCageBuy = new JTextField("0");
 		txtCageBuy.setBounds(250, 430, 70, 20);
 		add(txtCageBuy);
 		txtCageBuy.setColumns(10);
@@ -238,7 +240,7 @@ public class StorePanel extends JPanel {
 		lblSellStatus.setBounds(70, 185, 300, 20);
 		add(lblSellStatus);
 
-		lblBuyStatus = new JLabel("blah blah");
+		lblBuyStatus = new JLabel("");
 		lblBuyStatus.setBounds(70, 505, 300, 20);
 		add(lblBuyStatus);
 	}
