@@ -25,14 +25,14 @@ public class StorePanel extends JPanel {
 	StoreModel storeModel;
 	PlayerConfigModel model;
 	private JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField txtFoodSell;
+	private JTextField txtFoodBuy;
 	private JLabel foodAvailable;
 	private JLabel lblSellStatus;
 	private JLabel lblBuyStatus;
 	int a;
 	int playerNumber;
-	private JTextField drinkField;
+	private JTextField txtDrinksBuy;
 
 
 	/**
@@ -71,21 +71,21 @@ public class StorePanel extends JPanel {
 		add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Integer noOfItems = Integer.parseInt(textField.getText());
+				Integer noOfFoodItems = Integer.parseInt(txtFoodSell.getText());
 				int a = model.getCurPlayer();
 				PlayerModel p = model.getPlayer(a);
-				if (noOfItems <= p.getFood()){
-					storeModel.increaseInventory(noOfItems);
-					int moneyEarned = noOfItems*storeModel.getPriceOfGoods();
+				if (noOfFoodItems <= p.getFood()){
+					storeModel.addToFood(noOfFoodItems);
+					int moneyEarned = noOfFoodItems*storeModel.getPriceOfFood();
 					model.getPlayer(a).setMoney(model.getPlayer(a).getMoney() + moneyEarned);
-					p.setFood(p.getFood()-noOfItems);
-					textField.setText("0");
-					foodAvailable.setText(storeModel.getGoodsAvailable()+"");
-					lblSellStatus.setText("You have sold " + noOfItems + " and gained "+ moneyEarned + "money.");
+					p.setFood(p.getFood()-noOfFoodItems);
+					txtFoodSell.setText("0");
+					foodAvailable.setText(storeModel.getFoodAvailable()+"");
+					lblSellStatus.setText("You have sold " + noOfFoodItems + " and gained "+ moneyEarned + "money.");
 					lblBuyStatus.setText("");
 				}
 				else{
-					JOptionPane.showMessageDialog(textField, "Can't sell more items than you have");
+					JOptionPane.showMessageDialog(txtFoodSell, "Can't sell more items than you have");
 				}
 			}
 		});
@@ -95,23 +95,23 @@ public class StorePanel extends JPanel {
 		add(btnNewButton_1);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Integer noOfItems = Integer.parseInt(textField_1.getText());
+				Integer noOfFoodItems = Integer.parseInt(txtFoodBuy.getText());
 				a = model.getCurPlayer();
 				int moneyAvailable = model.getPlayer(a).getMoney();
-				int priceNeeded = noOfItems*storeModel.getPriceOfGoods();
+				int priceNeeded = noOfFoodItems*storeModel.getPriceOfFood();
 				if (moneyAvailable >= priceNeeded){
-					storeModel.reduceInventory(noOfItems);
-					int moneySpent = noOfItems*storeModel.getPriceOfGoods();
+					storeModel.reduceFood(noOfFoodItems);
+					int moneySpent = noOfFoodItems*storeModel.getPriceOfFood();
 					model.getPlayer(a).setMoney(model.getPlayer(a).getMoney() - moneySpent);
-					model.getPlayer(a).setFood(model.getPlayer(a).getFood()+noOfItems);
-					textField_1.setText("0");
+					model.getPlayer(a).setFood(model.getPlayer(a).getFood()+noOfFoodItems);
+					txtFoodBuy.setText("0");
 					System.out.println(model.getPlayer(a).getMoney());
-					foodAvailable.setText(storeModel.getGoodsAvailable()+"");
-					lblBuyStatus.setText("You have bought " + noOfItems + "food and spent "+ moneySpent + "money.");
+					foodAvailable.setText(storeModel.getFoodAvailable()+"");
+					lblBuyStatus.setText("You have bought " + noOfFoodItems + "food and spent "+ moneySpent + "money.");
 					lblSellStatus.setText("");
 				}
 				else{
-					JOptionPane.showMessageDialog(textField, "Can't buy items worth more than existing Money");
+					JOptionPane.showMessageDialog(txtFoodBuy, "Can't buy items worth more than existing Money");
 				}
 				
 			}
@@ -121,10 +121,10 @@ public class StorePanel extends JPanel {
 		lblGoodsAvailable.setBounds(70, 50, 175, 20);
 		add(lblGoodsAvailable);
 
-		textField = new JTextField("0");
-		textField.setBounds(255, 45, 70, 20);
-		add(textField);
-		textField.setColumns(10);
+		txtFoodSell = new JTextField("0");
+		txtFoodSell.setBounds(255, 45, 70, 20);
+		add(txtFoodSell);
+		txtFoodSell.setColumns(10);
 
 		JLabel lblAvailableNumberOf = new JLabel("Available Number of Food : ");
 		lblAvailableNumberOf.setBounds(70, 250, 150, 20);
@@ -138,23 +138,20 @@ public class StorePanel extends JPanel {
 		lblQuantityOfFood.setBounds(70, 300, 150, 20);
 		add(lblQuantityOfFood);
 
-		/*
 		JLabel lblQuantityOfDrink = new JLabel("Quantity of Drink  :");
 		lblQuantityOfDrink.setBounds(70, 340, 150, 20);
 		add(lblQuantityOfDrink);
-		*/
 
-		textField_1 = new JTextField("0");
-		textField_1.setBounds(220, 300, 100, 20);
-		add(textField_1);
-		textField_1.setColumns(10);
+		txtFoodBuy = new JTextField("0");
+		txtFoodBuy.setBounds(220, 300, 100, 20);
+		add(txtFoodBuy);
+		txtFoodBuy.setColumns(10);
 
-		/*
-		drinkField = new JTextField("0");
-		drinkField.setBounds(220, 340, 100, 20);
-		add(drinkField);
-		drinkField.setColumns(10);
-		*/
+		txtDrinksBuy = new JTextField("0");
+		txtDrinksBuy.setBounds(220, 340, 100, 20);
+		add(txtDrinksBuy);
+		txtDrinksBuy.setColumns(10);
+		
 		
 		JButton btnBack = new JButton("Back to Town");
 		btnBack.setBounds(460, 400, 120, 23);
@@ -182,7 +179,7 @@ public class StorePanel extends JPanel {
 >>>>>>> 4d3a36d2d205e3a0d8a81b32db2b8bd3089c7bfa
 	 */
 	public void runStore() {
-		int storeGoods = storeModel.getGoodsAvailable();
+		int storeGoods = storeModel.getFoodAvailable();
 		int playerGoods = model.getPlayer(model.getCurPlayer()).getFood();
 		int playerMoney = model.getPlayer(model.getCurPlayer()).getMoney();
 		foodAvailable.setText(storeGoods+"");
