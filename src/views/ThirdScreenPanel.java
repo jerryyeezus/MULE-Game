@@ -61,56 +61,56 @@ public class ThirdScreenPanel extends JPanel {
 			lblPlayer.setForeground(model.getPlayer(0).getColor());
 			panel.add(lblPlayer);
 			
-			JLabel lblNewLabel = new JLabel("Money");
-			lblNewLabel.setBounds(10, 36, 46, 14);
-			lblNewLabel.setForeground(model.getPlayer(0).getColor());
-			panel.add(lblNewLabel);
+			JLabel lblMoney = new JLabel("Money");
+			lblMoney.setBounds(10, 36, 46, 14);
+			lblMoney.setForeground(model.getPlayer(0).getColor());
+			panel.add(lblMoney);
 			
-			JLabel lblNewLabel_1 = new JLabel("Land");
-			lblNewLabel_1.setBounds(10, 61, 46, 14);
-			lblNewLabel_1.setForeground(model.getPlayer(0).getColor());
-			panel.add(lblNewLabel_1);
+			JLabel lblLand = new JLabel("Land");
+			lblLand.setBounds(10, 61, 46, 14);
+			lblLand.setForeground(model.getPlayer(0).getColor());
+			panel.add(lblLand);
 			
-			JLabel lblNewLabel_2 = new JLabel("Goods");
-			lblNewLabel_2.setBounds(10, 86, 46, 14);
-			lblNewLabel_2.setForeground(model.getPlayer(0).getColor());
-			panel.add(lblNewLabel_2);
+			JLabel lblGoods = new JLabel("Goods");
+			lblGoods.setBounds(10, 86, 46, 14);
+			lblGoods.setForeground(model.getPlayer(0).getColor());
+			panel.add(lblGoods);
 			
-			JLabel lblNewLabel_3 = new JLabel("Total");
-			lblNewLabel_3.setBounds(10, 111, 46, 14);
-			lblNewLabel_3.setForeground(model.getPlayer(0).getColor());
-			panel.add(lblNewLabel_3);
+			JLabel lblTotal = new JLabel("Total");
+			lblTotal.setBounds(10, 111, 46, 14);
+			lblTotal.setForeground(model.getPlayer(0).getColor());
+			panel.add(lblTotal);
 	
-			JLabel lblNewLabel_4 = new JLabel(""+model.getPlayer(0).getMoney());
-			lblNewLabel_4.setBounds(131, 36, 159, 14);
-			lblNewLabel_4.setForeground(model.getPlayer(0).getColor());
-			panel.add(lblNewLabel_4);
+			JLabel lblGetMoney = new JLabel(""+model.getPlayer(0).getMoney());
+			lblGetMoney.setBounds(131, 36, 159, 14);
+			lblGetMoney.setForeground(model.getPlayer(0).getColor());
+			panel.add(lblGetMoney);
 			
-			JLabel lblNewLabel_5 = new JLabel(""+model.getPlayer(0).getLand());
-			lblNewLabel_5.setBounds(131, 61, 159, 14);
-			lblNewLabel_5.setForeground(model.getPlayer(0).getColor());
-			panel.add(lblNewLabel_5);
+			JLabel lblGetLand = new JLabel(""+model.getPlayer(0).getLand());
+			lblGetLand.setBounds(131, 61, 159, 14);
+			lblGetLand.setForeground(model.getPlayer(0).getColor());
+			panel.add(lblGetLand);
 			
-			JLabel lblNewLabel_6 = new JLabel(""+model.getPlayer(0).getGoods());
-			lblNewLabel_6.setBounds(131, 86, 159, 14);
-			lblNewLabel_6.setForeground(model.getPlayer(0).getColor());
-			panel.add(lblNewLabel_6);
+			JLabel lblgetGoods = new JLabel(""+model.getPlayer(0).getGoods());
+			lblgetGoods.setBounds(131, 86, 159, 14);
+			lblgetGoods.setForeground(model.getPlayer(0).getColor());
+			panel.add(lblgetGoods);
 			
-			JLabel lblNewLabel_7 = new JLabel(""+model.getPlayer(0).getTotal());
-			lblNewLabel_7.setBounds(131, 111, 159, 14);
-			lblNewLabel_7.setForeground(model.getPlayer(0).getColor());
-			panel.add(lblNewLabel_7);
+			JLabel lblGetTotal = new JLabel(""+model.getPlayer(0).getTotal());
+			lblGetTotal.setBounds(131, 111, 159, 14);
+			lblGetTotal.setForeground(model.getPlayer(0).getColor());
+			panel.add(lblGetTotal);
 			
 		}
 		
 		if(model.getPlayer(1) != null)
 		{
-			JPanel panel_4 = new JPanel();
-			panel_4.setLayout(null);
-			panel_4.setBounds(425, 150, 350, 136);
-			panel_4.setBackground(Color.pink);
-			panel_4.setBorder(BorderFactory.createMatteBorder(7, 7, 7, 7, model.getPlayer(1).getColor()));
-			add(panel_4);
+			JPanel panelPlayer1 = new JPanel();
+			panelPlayer1.setLayout(null);
+			panelPlayer1.setBounds(425, 150, 350, 136);
+			panelPlayer1.setBackground(Color.pink);
+			panelPlayer1.setBorder(BorderFactory.createMatteBorder(7, 7, 7, 7, model.getPlayer(1).getColor()));
+			add(panelPlayer1);
 			
 			JLabel label = new JLabel(""+model.getPlayer(1).getName());
 			label.setBounds(10, 11, 301, 14);
@@ -137,25 +137,25 @@ public class ThirdScreenPanel extends JPanel {
 			lblPT.setForeground(model.getPlayer(1).getColor());
 			panel_4.add(lblPT);
 			
-			JLabel label_25 = new JLabel("Money");
-			label_25.setBounds(10, 36, 46, 14);
-			label_25.setForeground(model.getPlayer(1).getColor());
-			panel_4.add(label_25);
+			JLabel lblMoney = new JLabel("Money");
+			lblMoney.setBounds(10, 36, 46, 14);
+			lblMoney.setForeground(model.getPlayer(1).getColor());
+			panelPlayer1.add(lblMoney);
 			
-			JLabel label_26 = new JLabel("Land");
-			label_26.setBounds(10, 61, 46, 14);
-			label_26.setForeground(model.getPlayer(1).getColor());
-			panel_4.add(label_26);
+			JLabel lblLand = new JLabel("Land");
+			lblLand.setBounds(10, 61, 46, 14);
+			lblLand.setForeground(model.getPlayer(1).getColor());
+			panelPlayer1.add(lblLand);
 			
-			JLabel label_27 = new JLabel("Goods");
-			label_27.setBounds(10, 86, 46, 14);
-			label_27.setForeground(model.getPlayer(1).getColor());
-			panel_4.add(label_27);
+			JLabel lblGoods = new JLabel("Goods");
+			lblGoods.setBounds(10, 86, 46, 14);
+			lblGoods.setForeground(model.getPlayer(1).getColor());
+			panelPlayer1.add(lblGoods);
 			
-			JLabel label_28 = new JLabel("Total");
-			label_28.setBounds(10, 111, 46, 14);
-			label_28.setForeground(model.getPlayer(1).getColor());
-			panel_4.add(label_28);
+			JLabel lblTotal = new JLabel("Total");
+			lblTotal.setBounds(10, 111, 46, 14);
+			lblTotal.setForeground(model.getPlayer(1).getColor());
+			panelPlayer1.add(lblTotal);
 			
 		}
 		
@@ -174,25 +174,25 @@ public class ThirdScreenPanel extends JPanel {
 			label_1.setForeground(model.getPlayer(2).getColor());
 			panel_1.add(label_1);
 			
-			JLabel label_2 = new JLabel("Money");
-			label_2.setBounds(10, 36, 46, 14);
-			label_2.setForeground(model.getPlayer(2).getColor());
-			panel_1.add(label_2);
+			JLabel lblMoney = new JLabel("Money");
+			lblMoney.setBounds(10, 36, 46, 14);
+			lblMoney.setForeground(model.getPlayer(2).getColor());
+			panelPlayer2.add(lblMoney);
 			
-			JLabel label_3 = new JLabel("Land");
-			label_3.setBounds(10, 61, 46, 14);
-			label_3.setForeground(model.getPlayer(2).getColor());
-			panel_1.add(label_3);
+			JLabel lblLand = new JLabel("Land");
+			lblLand.setBounds(10, 61, 46, 14);
+			lblLand.setForeground(model.getPlayer(2).getColor());
+			panelPlayer2.add(lblLand);
 			
-			JLabel label_4 = new JLabel("Goods");
-			label_4.setBounds(10, 86, 46, 14);
-			label_4.setForeground(model.getPlayer(2).getColor());
-			panel_1.add(label_4);
+			JLabel lblGoods = new JLabel("Goods");
+			lblGoods.setBounds(10, 86, 46, 14);
+			lblGoods.setForeground(model.getPlayer(2).getColor());
+			panelPlayer2.add(lblGoods);
 			
-			JLabel label_5 = new JLabel("Total");
-			label_5.setBounds(10, 111, 46, 14);
-			label_5.setForeground(model.getPlayer(2).getColor());
-			panel_1.add(label_5);
+			JLabel lblTotal = new JLabel("Total");
+			lblTotal.setBounds(10, 111, 46, 14);
+			lblTotal.setForeground(model.getPlayer(2).getColor());
+			panelPlayer2.add(lblTotal);
 			
 			JLabel lblPM_2 = new JLabel(""+model.getPlayer(2).getMoney());
 			lblPM_2.setBounds(131, 36, 159, 14);
@@ -232,25 +232,25 @@ public class ThirdScreenPanel extends JPanel {
 			label_10.setForeground(model.getPlayer(3).getColor());
 			panel_2.add(label_10);
 			
-			JLabel label_11 = new JLabel("Money");
-			label_11.setBounds(10, 36, 46, 14);
-			label_11.setForeground(model.getPlayer(3).getColor());
-			panel_2.add(label_11);
+			JLabel lblMoney = new JLabel("Money");
+			lblMoney.setBounds(10, 36, 46, 14);
+			lblMoney.setForeground(model.getPlayer(3).getColor());
+			panelPlayer3.add(lblMoney);
 			
-			JLabel label_12 = new JLabel("Land");
-			label_12.setBounds(10, 61, 46, 14);
-			label_12.setForeground(model.getPlayer(3).getColor());
-			panel_2.add(label_12);
+			JLabel lblLand = new JLabel("Land");
+			lblLand.setBounds(10, 61, 46, 14);
+			lblLand.setForeground(model.getPlayer(3).getColor());
+			panelPlayer3.add(lblLand);
 			
-			JLabel label_13 = new JLabel("Goods");
-			label_13.setBounds(10, 86, 46, 14);
-			label_13.setForeground(model.getPlayer(3).getColor());
-			panel_2.add(label_13);
+			JLabel lblGoods = new JLabel("Goods");
+			lblGoods.setBounds(10, 86, 46, 14);
+			lblGoods.setForeground(model.getPlayer(3).getColor());
+			panelPlayer3.add(lblGoods);
 			
-			JLabel label_14 = new JLabel("Total");
-			label_14.setBounds(10, 111, 46, 14);
-			label_14.setForeground(model.getPlayer(3).getColor());
-			panel_2.add(label_14);
+			JLabel lblTotal = new JLabel("Total");
+			lblTotal.setBounds(10, 111, 46, 14);
+			lblTotal.setForeground(model.getPlayer(3).getColor());
+			panelPlayer3.add(lblTotal);
 			
 			JLabel lblPM_1 = new JLabel(""+model.getPlayer(3).getMoney());
 			lblPM_1.setBounds(131, 36, 159, 14);
