@@ -32,7 +32,7 @@ public class PlayerConfigModel implements Serializable {
 	public int getCurPlayer() {
 		return curPlayer;
 	}
-	
+
 	/**
 	 * Method which takes in a player number and sets it to current player.
 	 * 
@@ -62,21 +62,23 @@ public class PlayerConfigModel implements Serializable {
 
 	/**
 	 * Copy constructor for Player
-	 * @param readObject serialized player object to be serialized
+	 * 
+	 * @param readObject
+	 *            serialized player object to be serialized
 	 */
 	public PlayerConfigModel(PlayerConfigModel readObject) {
 		this(readObject.getNumPlayers());
-		
+
 		// Set playerConfigModel attributes
 		this.curRoundOrder = readObject.getCurRoundOrder();
 		this.curRoundOrderIndex = readObject.getCurRoundOrderIndex();
 		this.curPlayer = readObject.getCurPlayer();
 		this.wasLoaded = true;
 		this.round = this.getRound();
-		
+
 		// now set players
 		PlayerModel savedPlayer;
-		
+
 		PlayerModel newPlayer;
 		for (int i = 0; i < readObject.getNumPlayers(); i++) {
 			newPlayer = this.getPlayer(i);
@@ -84,17 +86,17 @@ public class PlayerConfigModel implements Serializable {
 			this.setCurPlayer(readObject.getCurPlayer());
 			this.curRoundOrder = readObject.curRoundOrder;
 			newPlayer.setActualColor(savedPlayer.getColor());
-			if(savedPlayer.getColor().equals(new Color(255,0,0)))
+			if (savedPlayer.getColor().equals(new Color(255, 0, 0)))
 				newPlayer.setColor("RED");
-			if(savedPlayer.getColor().equals(new Color(0,0,255)))
+			if (savedPlayer.getColor().equals(new Color(0, 0, 255)))
 				newPlayer.setColor("BLUE");
-			if(savedPlayer.getColor().equals(new Color(0,255,0)))
+			if (savedPlayer.getColor().equals(new Color(0, 255, 0)))
 				newPlayer.setColor("GREEN");
-			if(savedPlayer.getColor().equals(new Color(255,255,0)))
+			if (savedPlayer.getColor().equals(new Color(255, 255, 0)))
 				newPlayer.setColor("YELLOW");
 			newPlayer.setDrink(savedPlayer.getDrink());
 			ArrayList<Land> lands = savedPlayer.getLandsOwned();
-			for(Land l : lands){
+			for (Land l : lands) {
 				newPlayer.addLand(l);
 			}
 			newPlayer.setFood(savedPlayer.getFood());
@@ -108,6 +110,7 @@ public class PlayerConfigModel implements Serializable {
 
 	/**
 	 * Method that gives the Round order Index of the current player.
+	 * 
 	 * @return int curRoundOrderIndex
 	 */
 	private int getCurRoundOrderIndex() {
@@ -295,7 +298,7 @@ public class PlayerConfigModel implements Serializable {
 	}
 
 	public boolean wasLoaded() {
-	    return this.wasLoaded;
+		return this.wasLoaded;
 	}
 
 }

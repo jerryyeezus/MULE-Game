@@ -76,7 +76,7 @@ public class TitleScreen {
 
 		JLabel b = new JLabel("Load Game");
 		b.setBounds(frame.getWidth() / 3 + 30, 267, 203, 23);
-		//frame.getContentPane().add(b);
+		// frame.getContentPane().add(b);
 
 		JButton btnNewButton_1 = new JButton("LOAD");
 		btnNewButton_1.addActionListener(new ActionListener() {
@@ -89,7 +89,7 @@ public class TitleScreen {
 		// frame.getContentPane().add(btnNewButton_1);
 		JLabel a = new JLabel("New Game");
 		a.setBounds(frame.getWidth() / 3 + 30, 208, 200, 23);
-		//frame.getContentPane().add(a);
+		// frame.getContentPane().add(a);
 
 		JLabel lblNewLabel = new JLabel("M.U.L.E   GAME");
 		lblNewLabel.setIcon(new ImageIcon("src/temp/title.png"));
@@ -137,8 +137,9 @@ public class TitleScreen {
 		try {
 			in = new ObjectInputStream(new FileInputStream(savefile));
 			try {
-			    HashMap back = (HashMap) in.readObject();
-			    playerModel = new PlayerConfigModel((PlayerConfigModel) back.get("player"));
+				HashMap back = (HashMap) in.readObject();
+				playerModel = new PlayerConfigModel(
+						(PlayerConfigModel) back.get("player"));
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			}
@@ -159,8 +160,6 @@ public class TitleScreen {
 		TitleScreen t = new TitleScreen();
 	}
 
-	
-	
 	public void update(int cursor) {
 		if (cursor == 0) {
 			clip.stop();
@@ -170,8 +169,11 @@ public class TitleScreen {
 		} else if (cursor == 1)
 			load();
 		else
-			JOptionPane.showMessageDialog(frame, "Produced by Team OUTSOURCED\n\nLead Architect: Jerry \"Yeezus\" Yee\n\n"
-					+ "Asst. Programmer: Tanay Pontkshe\n\nIntern: Nikhil\n\nIntern: Ishaan Grover\n\nJavadoc Person : Sham");
+			JOptionPane
+					.showMessageDialog(
+							frame,
+							"Produced by Team OUTSOURCED\n\nLead Architect: Jerry \"Yeezus\" Yee\n\n"
+									+ "Asst. Programmer: Tanay Pontkshe\n\nIntern: Nikhil\n\nIntern: Ishaan Grover\n\nJavadoc Person : Sham");
 	}
 
 }
