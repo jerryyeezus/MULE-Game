@@ -32,7 +32,19 @@ public class PlayerConfigModel implements Serializable {
 	public int getCurPlayer() {
 		return curPlayer;
 	}
-
+	
+	/**
+	 * Method which takes in a roundOrder and sets it to curRoundOrder.
+	 * 
+	 * @param a[]
+	 */
+	public void setCurRoundOrder(int a[])
+	{
+		for(int i =0; i<numPlayers; i++)
+		{
+			curRoundOrder[i]= a[i];
+		}
+	}
 	/**
 	 * Method which takes in a player number and sets it to current player.
 	 * 
@@ -177,7 +189,7 @@ public class PlayerConfigModel implements Serializable {
 	public int getTimer() {
 		return this.timer;
 	}
-
+	
 	/**
 	 * Method that sets the timer for a player.
 	 * 
@@ -209,7 +221,8 @@ public class PlayerConfigModel implements Serializable {
 			}
 		} // End of ROUND END
 	}
-
+	
+	
 	/**
 	 * Makes an array for the food requirements that will be assigned to each
 	 * player at the beginning according to their race they have chosen.
@@ -223,7 +236,7 @@ public class PlayerConfigModel implements Serializable {
 	 * 
 	 * @return Constants
 	 */
-	private int calcPlayerTime() {
+	public int calcPlayerTime() {
 		int numFood = this.getPlayer(curPlayer).getFood();
 
 		// Case Partial Shortage
@@ -241,7 +254,16 @@ public class PlayerConfigModel implements Serializable {
 		return Constants.BASE_TIME;
 
 	}
-
+	
+	/**
+	 * Method that sets the round.
+	 * 
+	 * @param n
+	 */
+	public void setRound(int n)
+	{
+		round = n;
+	}
 	/**
 	 * Method that calculates the order in which play takes place according to
 	 * the resources and money left with the player.
