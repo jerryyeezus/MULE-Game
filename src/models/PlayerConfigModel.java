@@ -93,13 +93,13 @@ public class PlayerConfigModel implements Serializable {
 			if(savedPlayer.getColor().equals(new Color(255,255,0)))
 				newPlayer.setColor("YELLOW");
 			newPlayer.setDrink(savedPlayer.getDrink());
-			ArrayList<Land> lands = savedPlayer.getLandsOwner();
+			ArrayList<Land> lands = savedPlayer.getLandsOwned();
 			for(Land l : lands){
 				newPlayer.addLand(l);
 			}
 			newPlayer.setFood(savedPlayer.getFood());
 			newPlayer.setName(savedPlayer.getName());
-			newPlayer.setLand(savedPlayer.getLandsOwner().size());
+			newPlayer.setLand(savedPlayer.getLandsOwned().size());
 			newPlayer.setNicolasCage(savedPlayer.getNicolasCage());
 			newPlayer.setMoney(savedPlayer.getMoney());
 			newPlayer.setRace(savedPlayer.getRace());
@@ -118,7 +118,7 @@ public class PlayerConfigModel implements Serializable {
 	/**
 	 * Method which returns the number of players playing the game.
 	 * 
-	 * @return no. of players
+	 * @return num of players
 	 */
 	public int getNumPlayers() {
 		return this.numPlayers;

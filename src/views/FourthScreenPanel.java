@@ -177,7 +177,7 @@ public class FourthScreenPanel extends JPanel {
 				// Check if currently owned
 				for (int player = 0; player < model.getNumPlayers(); player++) {
 					ArrayList<Land> ownedByPlayer = model.getPlayer(player)
-							.getLandsOwner();
+							.getLandsOwned();
 					for (Land myLand : ownedByPlayer) {
 						if (myLand.x == i && myLand.y == j) {
 							button.setBorder(BorderFactory
@@ -339,7 +339,7 @@ public class FourthScreenPanel extends JPanel {
 			int[] scores = new int[4];
 			for (int i = 0; i < model.getNumPlayers(); i++) {
 				PlayerModel curPlayer = model.getPlayer(i);
-				ArrayList<Land> probe = curPlayer.getLandsOwner();
+				ArrayList<Land> probe = curPlayer.getLandsOwned();
 				for (int s = 0; s < probe.size(); s++) {
 					Land land = probe.get(s);
 					if (land.getType() == "P") {
@@ -422,7 +422,7 @@ public class FourthScreenPanel extends JPanel {
 		if (this.state == State.MAP) {
 
 			for (int i = 0; i < model.getNumPlayers(); i++) {
-				ArrayList<Land> tmp = model.getPlayer(i).getLandsOwner();
+				ArrayList<Land> tmp = model.getPlayer(i).getLandsOwned();
 				for (Land land : tmp) {
 					if (land.getMule() != -1) {
 						String muleStr;
@@ -567,7 +567,7 @@ public class FourthScreenPanel extends JPanel {
 				// Check if currently owned
 				for (int player = 0; player < model.getNumPlayers(); player++) {
 					ArrayList<Land> ownedByPlayer = model.getPlayer(player)
-							.getLandsOwner();
+							.getLandsOwned();
 					for (Land myLand : ownedByPlayer) {
 						if (myLand.x == i && myLand.y == j) {
 							button.setBorder(BorderFactory
