@@ -105,8 +105,8 @@ public class MuleSelectionPanel extends JPanel{
 	}
 	
 	/**
-	 * Private MuleListener class that inplements ActionListener interface.
-	 * It adds functionality to all the three ule selection buttons.
+	 * Private MuleListener class that implements ActionListener interface.
+	 * It adds functionality to all the three Mule selection buttons.
 	 * 
 	 * @author Tanay
 	 *

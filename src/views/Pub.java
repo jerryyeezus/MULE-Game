@@ -14,98 +14,85 @@ import models.PlayerModel;
 
 public class Pub extends JPanel {
 
-    Random rand;
-    int valueFromGambling;
-    PlayerConfigModel model;
-    int playerNumber;
-    PlayerModel playerMod;
-    JLabel lblNewLabel;
+	Random rand;
+	int valueFromGambling;
+	PlayerConfigModel model;
+	int playerNumber;
+	PlayerModel playerMod;
+	JLabel lblNewLabel;
 
-    /**
-     * Launch the application.
-     */
+	/**
+	 * Launch the application.
+	 */
 
-    /**
-     * Create the application.
-     */
-    public Pub(PlayerConfigModel model) {
-	this.model = model;
-	/*
-	rand = new Random();
-	valueFromGambling = rand.nextInt(100);
-	playerNumber = model.getCurPlayer();
-	playerMod = model.getPlayer(playerNumber);
-	playerMod.setMoney(playerMod.getMoney() + valueFromGambling);
-	model.setTimer(0);
-	*/
+	/**
+	 * Create the application.
+	 */
+	public Pub(PlayerConfigModel model) {
+		this.model = model;
+		initialize();
 
-	initialize();
+	}
 
-    }
-    
-    /**
-     * Called to run the gamble algorithm
-     */
-    public void gamble() {
-	rand = new Random();
-	valueFromGambling = rand.nextInt(100);
-	playerNumber = model.getCurPlayer();
-	playerMod = model.getPlayer(playerNumber);
-	playerMod.setMoney(playerMod.getMoney() + valueFromGambling);
-	model.setTimer(1);
-	this.setLabel();
-    }
+	/**
+	 * Called to run the gamble algorithm
+	 */
+	public void gamble() {
+		rand = new Random();
+		valueFromGambling = rand.nextInt(100);
+		playerNumber = model.getCurPlayer();
+		playerMod = model.getPlayer(playerNumber);
+		playerMod.setMoney(playerMod.getMoney() + valueFromGambling);
+		model.setTimer(1);
+		this.setLabel();
+	}
 
-    /**
-     * Initialize the contents of the
-     */
-    private void initialize() {
+	/**
+	 * Initialize the contents of the
+	 */
+	private void initialize() {
 
-	setBounds(100, 100, 850, 550);
-	this.setLayout(null);
+		setBounds(100, 100, 850, 550);
+		this.setLayout(null);
 
-	JPanel panel = new JPanel();
-	panel.setBounds(10, 10, 800, 500);
-	this.add(panel);
-	panel.setLayout(null);
+		JPanel panel = new JPanel();
+		panel.setBounds(10, 10, 800, 500);
+		this.add(panel);
+		panel.setLayout(null);
 
-	lblNewLabel = new JLabel("New label");
-	lblNewLabel.setBounds(10, 420, 500, 20);
-	panel.add(lblNewLabel);
-	
-	JLabel lblRoulette = new JLabel("");
-	lblRoulette.setBounds(10, 40, 700, 380);
-	panel.add(lblRoulette);
-	lblRoulette.setIcon(new ImageIcon("src/temp/roulette.jpg"));
+		lblNewLabel = new JLabel("New label");
+		lblNewLabel.setBounds(10, 420, 500, 20);
+		panel.add(lblNewLabel);
 
-	JLabel lblNewLabel_1 = new JLabel("");
-	lblNewLabel_1.setBounds(160, 450, 500, 20);
-	setLabel();
-	panel.add(lblNewLabel_1);
+		JLabel lblRoulette = new JLabel("");
+		lblRoulette.setBounds(10, 40, 700, 380);
+		panel.add(lblRoulette);
+		lblRoulette.setIcon(new ImageIcon("src/temp/roulette.jpg"));
 
-	JLabel lblGamble = new JLabel("GAMBLING");
-	lblGamble.setBounds(10, 10, 450, 20);
-	panel.add(lblGamble);
-	lblGamble.setHorizontalAlignment(SwingConstants.CENTER);
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setBounds(160, 450, 500, 20);
+		setLabel();
+		panel.add(lblNewLabel_1);
 
-	/*
-	JButton btnNext = new JButton("Next>>");
-	btnNext.setBounds(735, 444, 89, 23);
-	btnNext.addActionListener(new ActionListener() {
+		JLabel lblGamble = new JLabel("GAMBLING");
+		lblGamble.setBounds(10, 10, 450, 20);
+		panel.add(lblGamble);
+		lblGamble.setHorizontalAlignment(SwingConstants.CENTER);
 
-	    @Override
-	    public void actionPerformed(ActionEvent e) {
-		setVisible(false);
+		/*
+		 * JButton btnNext = new JButton("Next>>"); btnNext.setBounds(735, 444,
+		 * 89, 23); btnNext.addActionListener(new ActionListener() {
+		 * 
+		 * @Override public void actionPerformed(ActionEvent e) {
+		 * setVisible(false);
+		 * 
+		 * } }); add(btnNext);
+		 */
+	}
 
-	    }
-	});
-	add(btnNext);
-	*/
-    }
-
-    private void setLabel() {
-	lblNewLabel.setText("You have won " + valueFromGambling
-		+ " dollars from Gambling..");
-    }
+	private void setLabel() {
+		lblNewLabel.setText("You have won " + valueFromGambling
+				+ " dollars from Gambling..");
+	}
 
 }
